@@ -22,7 +22,7 @@ Click here to deploy on Netlify:
 If you are reading this on github, you can click on the "Use this template" button above to create a new repository from astroship to your account. Then you can do a `git clone` to clone it to your local system.
 
 Alternatively, you can clone the project directly from this repo to your local system.
-
+<!-- Ema -->
 ### 1. Clone the repo
 
 ```bash
