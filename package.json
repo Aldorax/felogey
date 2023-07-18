@@ -1,8 +1,8 @@
 {
-  "name": "bigspring-light-astro",
+  "name": "felojey",
   "version": "1.0.0",
-  "description": "astro personal blog theme",
-  "author": "themefisher",
+  "description": "Felojey Agrp Solutions",
+  "author": "Aldorax",
   "license": "MIT",
   "scripts": {
     "dev": "astro dev",

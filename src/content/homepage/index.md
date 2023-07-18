@@ -1,6 +1,6 @@
 ---
 banner:
-  title: Let us solve your critical website development challenges
+  title: Felojey Agro Soulutions
   content: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nihil enim maxime corporis cumque <br/> totam aliquid nam sint inventore optio modi neque laborum officiis necessitatibus
   image: /images/banner-art.png
   button:
@@ -10,30 +10,30 @@ banner:
 
 # feature
 feature: 
-  title: Something You Need To Know
+  title: Services we offer
   features:
-  - name: "Clean Code"
+  - name: "Lorem"
     icon: "/images/code.svg"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Object Oriented"
+  - name: "Lorem"
     icon: "/images/oop.svg"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "24h Service"
+  - name: "Lorem"
     icon: "/images/user-clock.svg"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Value for Money"
+  - name: "Lorem"
     icon: "/images/love.svg"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Faster Response"
+  - name: "Lorem"
     icon: "/images/speedometer.svg"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Cloud Support"
+  - name: "Lorem"
     icon: "/images/cloud.svg"
     content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
 
 # services
 services:
-  - title: "It is the most advanced digital marketing and it company."
+  - title: "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem"
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat. consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat."
     images:
       - "/images/service-slide-1.png"
@@ -44,7 +44,7 @@ services:
       label: Check it out
       link: /contact
 
-  - title: "It is a privately owned Information and cyber security company"
+  - title: "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem "
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat. consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat."
     images: 
       - "/images/service-slide-1.png"
@@ -53,7 +53,7 @@ services:
       label: Check it out
       link: /contact
   
-  - title: "It’s a team of experienced and skilled people with distributions"
+  - title: "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem "
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat. consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat."
     images:
       - "/images/service-slide-1.png"
@@ -64,7 +64,7 @@ services:
       label: Check it out
       link: /contact
 
-  - title: "A company standing different from others"
+  - title: "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem "
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat. consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat."
     images:
       - "/images/service-slide-1.png"

@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Bigspring Light Astro",
-    "base_url": "https://bigspring-light-astro.vercel.app",
+    "title": "Felojey",
+    "base_url": "https://felojey.vercel.app",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
@@ -27,12 +27,12 @@
     "contact_form_action": "",
     "tag_manager_id": "",
     "footer_content": "Lorem ipsum dolor sit amet, consectetur elit. Consjat tristique eget amet, tempus eu at cttur.",
-    "copyright": "Designed and Developed By [Themefisher](https://themefisher.com/)"
+    "copyright": "Designed and Developed By [Aldorax](https://github.com/Aldorax/)"
   },
 
   "metadata": {
-    "meta_author": "Themefisher",
+    "meta_author": "Felojey",
     "meta_image": "/images/og-image.png",
-    "meta_description": "astro boilerplate"
+    "meta_description": "Felojey Agro solutions"
   }
 }
