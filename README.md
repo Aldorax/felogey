@@ -1,107 +1,34 @@
-<h1 align=center>Bigspring Light Astro</h1>
-<p align=center>Bigspring is a highly customizable Astro theme designed specifically for SaaS & marketing websites.  
-</p>
-<h2 align="center"> <a target="_blank" href="https://bigspring-light-astro.vercel.app/" rel="nofollow">👀Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fbigspring-light-astro.vercel.app%2F&form_factor=desktop">Page Speed (100%)🚀</a>
-</h2>
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-<p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%402.0.11" alt="Contributors">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=2.0&color=000&logo=astro" />
-  </a>
+## Getting Started
 
-  <a href="https://github.com/themefisher/bigspring-light-astro/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/themefisher/bigspring-light-astro" alt="license"></a>
+First, run the development server:
 
-  <img src="https://img.shields.io/github/languages/code-size/themefisher/bigspring-light-astro" alt="code size">
-
-  <a href="https://github.com/themefisher/bigspring-light-astro/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/themefisher/bigspring-light-astro" alt="contributors"></a>
-</p>
-
-![bigspring-light](https://demo.gethugothemes.com/thumbnails/bigspring-light.png)
-
-Bigspring is a beautifully designed & highly customizable Astro theme created specifically for SaaS & marketing websites.  Users can customize the color scheme, fonts, menu, social links,  etc. and update the content easily based on their requirements. Bigspring is the perfect theme for showcasing your SaaS products or services and connecting with customers.
-
-
-## 🔑Key Features
-- 📄 10+ Pre-Designed Pages
-- ✨ Highly Customizable (Color, Font, Menu, Social Links, SEO Meta Tags, etc.)
-- ⚡ Fast by Default (95+ Google PageSpeed Score)
-- ⚙️ Netlify Settings Pre-configured
-- 📬 Contact Form Support
-- 💰 Pricing Table
-- 🌅 Support OG Image
-- ✍️ Write and Update Content in Markdown / MDX
-- 📚 MDX Components Auto Import
-- 📝 Includes Draft Pages and Posts
-- 🚀 Built with Tailwind CSS Framework
-- 📱 Fully Responsive on Desktops, Tablets, and Smartphones
-- 🔍 SEO Friendly
-
-## 📄 10+ Pre-Designed Pages
-
-- 🏠 Home Page
-- 📚 Blog Page
-- 📝 Blog Single Page
-- 💰 Pricing Page
-- 📞 Contact
-- ❓ FAQ Page
-- 🎨 Elements Page
-- 🔒 Privacy Policy
-- 📜 Terms & Conditions
-- 🚧 404 Page
-<!-- installation -->
-## ⚙️Installation
-
-After downloading the template, you have some prerequisites to install. Then you can run it on your localhost. You can view the package.json file to see which scripts are included.
-
-### 🔧Install prerequisites (once for a machine)
-
-- **Node Installation:** [Install node js](https://nodejs.org/en/download/) [Recommended LTS version]
-
-### 🖥️Local setup
-
-After successfully installing those dependencies, open this template with any IDE [[VS Code](https://code.visualstudio.com/) recommended], and then open the internal terminal of IDM [vs code shortcut <code>ctrl/cmd+\`</code>]
-
-- 👉Install dependencies
-
-```
-npm install
-```
-
-- 👉Run locally
-
-```
+```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-After that, it will open up a preview of the template in your default browser, watch for changes to source files, and live-reload the browser when changes are saved.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🔨Production Build
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-After finishing all the customization, you can create a production build by running this command.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-```
-npm run build
-```
+## Learn More
 
-<!-- reporting issue -->
-## 🐞Reporting Issues
+To learn more about Next.js, take a look at the following resources:
 
-We use GitHub Issues as the official bug tracker for this Template. Please Search [existing issues](https://github.com/themefisher/bigspring-light-astro/issues). It’s possible someone has already reported the same problem.
-If your problem or idea has not been addressed yet, feel free to [open a new issue](https://github.com/themefisher/bigspring-light-astro/issues).
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-<!-- licence -->
-## 📄License
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Copyright (c) 2016 - Present, Designed & Developed by [Themefisher](https://themefisher.com)
+## Deploy on Vercel
 
-👉**Code License:** Released under the [MIT](https://github.com/themefisher/bigspring-light-astro/blob/main/LICENSE) license.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-👉**Image license:** The images are only for demonstration purposes. They have their license, we don't have permission to share those images.
-
-## 👨‍💻Need Custom Development Services?
-
-Besides developing beautifully designed and blazing-fast themes, we help businesses create fast, performance-focused, scalable & secure websites based on NextJs, Hugo, Astro, etc.
-
-If you need a custom theme, theme customization, or complete website development services from scratch you can [Hire Us](https://themefisher.com/contact). 
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
