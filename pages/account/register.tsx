@@ -32,6 +32,8 @@ const RegisterPage: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
+  console.log(sessionStorage);
+
   const registerUser = async () => {
     setLoading(true); // Show the loader
 
