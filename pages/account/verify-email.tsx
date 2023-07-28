@@ -128,11 +128,11 @@ const VerifyEmail: React.FC = () => {
                 <input
                   className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Otp:"
-                  type="email"
+                  type="text"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
-                  id="email"
-                  title="email"
+                  id="otp"
+                  title="otp"
                 />
               </div>
               <button
