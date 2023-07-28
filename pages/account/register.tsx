@@ -46,7 +46,7 @@ const RegisterPage: React.FC = () => {
         };
 
         const resp = await httpClient.post(
-          "http://localhost:5000/user/register",
+          "https://enetworks.onrender.com/user/register",
           data,
           {
             withCredentials: true,

@@ -55,7 +55,7 @@ const VerifyEmail: React.FC = () => {
         }
 
         const resp = await httpClient.post(
-          "http://localhost:5000/verify-email",
+          "https://enetworks.onrender.com/verify-email",
           data.toString(),
           {
             headers: headers,
@@ -96,7 +96,7 @@ const VerifyEmail: React.FC = () => {
       ] = `Bearer ${accessToken}`;
 
       await httpClient.post(
-        "http://localhost:5000/resend-otp",
+        "https://enetworks.onrender.com/resend-otp",
         {},
         {
           headers: headers,

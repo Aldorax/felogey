@@ -38,7 +38,9 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
     const fetchReferralActivity = async () => {
       try {
-        const response = await httpClient.get("http://localhost:5000/admins");
+        const response = await httpClient.get(
+          "https://enetworks.onrender.com/admins"
+        );
         setReferralActivity(response.data);
       } catch (error) {
         console.log("Error fetching referral activity:", error);
@@ -64,7 +66,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          "http://localhost:5000/dashboard",
+          "https://enetworks.onrender.com/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -85,9 +87,12 @@ const Activities: React.FC<DashoardProps> = ({}) => {
     localStorage.removeItem("access_token");
 
     // Make the logout request
-    const resp = await httpClient.post("http://localhost:5000/logout", {
-      withCredentials: true, // Include cookies in the request
-    });
+    const resp = await httpClient.post(
+      "https://enetworks.onrender.com/logout",
+      {
+        withCredentials: true, // Include cookies in the request
+      }
+    );
 
     // Redirect to the desired location
     window.location.href = "/";
@@ -106,7 +111,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
       console.log(formData);
 
       httpClient
-        .post("http://localhost:5000/update_profile_image", formData, {
+        .post("https://enetworks.onrender.com/update_profile_image", formData, {
           headers: {
             Authorization: `Bearer ${access_token}`,
           },
@@ -135,7 +140,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        "http://localhost:5000/pay/",
+        "https://enetworks.onrender.com/pay/",
         {},
         {
           headers: {

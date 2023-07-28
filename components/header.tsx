@@ -60,7 +60,7 @@ const Header = () => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          "http://localhost:5000/dashboard",
+          "https://enetworks.onrender.com/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -81,9 +81,12 @@ const Header = () => {
     localStorage.removeItem("accessToken");
 
     // Make the logout request
-    const resp = await httpClient.post("http://localhost:5000/logout", {
-      withCredentials: true, // Include cookies in the request
-    });
+    const resp = await httpClient.post(
+      "https://enetworks.onrender.com/logout",
+      {
+        withCredentials: true, // Include cookies in the request
+      }
+    );
 
     // Redirect to the desired location
     window.location.href = "/account/login";

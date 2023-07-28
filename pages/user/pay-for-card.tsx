@@ -10,7 +10,7 @@ const PaymentButton = () => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        "http://localhost:5000/pay/",
+        "https://enetworks.onrender.com/pay/",
         {},
         {
           headers: {

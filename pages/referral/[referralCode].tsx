@@ -48,7 +48,7 @@ const ReferralRegisterPage = () => {
         // Replace the following with your registration form data
 
         const response = await httpClient.post(
-          `http://localhost:5000/referral/${referralCode}`,
+          `https://enetworks.onrender.com/referral/${referralCode}`,
           data,
           {
             withCredentials: true,

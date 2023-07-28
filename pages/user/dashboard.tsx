@@ -46,7 +46,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          "http://localhost:5000/dashboard",
+          "https://enetworks.onrender.com/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -67,9 +67,12 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
     localStorage.removeItem("access_token");
 
     // Make the logout request
-    const resp = await httpClient.post("http://localhost:5000/logout", {
-      withCredentials: true, // Include cookies in the request
-    });
+    const resp = await httpClient.post(
+      "https://enetworks.onrender.com/logout",
+      {
+        withCredentials: true, // Include cookies in the request
+      }
+    );
 
     // Redirect to the desired location
     window.location.href = "/";
@@ -98,7 +101,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
       console.log(formData);
 
       httpClient
-        .post("http://localhost:5000/update_profile_image", formData, {
+        .post("https://enetworks.onrender.com/update_profile_image", formData, {
           headers: {
             Authorization: `Bearer ${access_token}`,
           },
@@ -127,7 +130,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        "http://localhost:5000/pay/",
+        "https://enetworks.onrender.com/pay/",
         {},
         {
           headers: {
@@ -184,7 +187,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     ) : (
                       <div className="mx-4 my-auto">
                         <img
-                          src={`http://localhost:5000/profile_images/${user.profile_image}`}
+                          src={`https://enetworks.onrender.com/profile_images/${user.profile_image}`}
                           alt="Profile"
                           className="md:h-full md:w-full h-[60px] w-[80px] md:mx-auto md:rounded-2xl rounded-full"
                         />
