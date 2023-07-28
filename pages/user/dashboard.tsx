@@ -4,13 +4,14 @@ import { ReferredUser, User } from "@/app/types";
 import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
 import type { Metadata } from "next";
-import Header from "@/components/header";
+// import Header from "@/components/header";
 import Link from "next/link";
 import router from "next/router";
 import Image from "next/image";
 import image from "@/app/favicon.ico";
 import LeftSide from "@/components/LeftSide";
 import axios from "axios";
+import "@/app/globals.css";
 
 interface DashoardProps {
   user: User;
@@ -34,7 +35,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
         if (!access_token) {
           console.log("Not authorized");
-          navigate.push("/login");
+          navigate.push("/account/login");
           return;
         }
 
@@ -63,7 +64,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
   const logoutUser = async () => {
     // Clear the access token from local storage
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem("access_token");
 
     // Make the logout request
     const resp = await httpClient.post("http://localhost:5000/logout", {
@@ -109,7 +110,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
             }
             return null;
           });
-          window.location.href = "/dashboard";
+          window.location.href = "/user/dashboard";
         })
         .catch((error) => {
           console.log(error);
@@ -147,16 +148,16 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
   return (
     <div className="max-w-screen overflow-x-hidden">
-      <Header />
+      {/* <Header /> */}
       <div className="min-h-screen h-auto max-w-screen">
         {user ? (
           <div className="flex">
             <LeftSide />
             {/*  */}
-            <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]">hello</div>
-            <div className="pt-10 flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-green-500/25 max-screen md:max-w-[80vw] min-h-screen">
-              <div className="flex flex-col md:flex-row items-center justify-center mt-10 mb-5 md:mt-20 md:mb-10 w-full h-auto my-auto">
-                <div className="md:max-w-[500px] w-full h-auto flex md:flex-row justify-between md:justify-center items-center mb-10 border-b-2 md:border-b-transparent border-b-black pb-3 ">
+            <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
+            <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-green-500/25 max-screen md:max-w-[80vw] min-h-screen">
+              <div className="flex flex-col md:flex-row items-center justify-center mb-5 md:mt-20 md:mb-10 w-full h-auto my-auto">
+                <div className="md:max-w-[500px] w-full h-auto flex md:flex-row justify-between md:justify-center items-center mb-3 border-b-2 md:border-b-transparent border-b-white pb-3 ">
                   <div className="md:p-5 p-3 mx-1 md:mx-3 my-1 md:my-3 md:hidden visible">
                     <p className="text-md md:text-xl text-gray-300 font-semibold uppercase">
                       {user.first_name} {user.last_name}
@@ -191,10 +192,10 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     )}
                   </div>
                 </div>
-
-                <div className="flex flex-col">
-                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl">
-                    {/* <div className="md:p-5 p-3 bg-green-900/100 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
+              </div>
+              <div className="flex flex-col w-full">
+                <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl">
+                  {/* <div className="md:p-5 p-3 bg-green-900/100 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
                       <h1 className="text-xl md:text-2xl underline underline-offset-4 font-extrabold">
                         Full Name
                       </h1>
@@ -202,113 +203,114 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                         {user.first_name} {user.last_name}
                       </p>
                     </div> */}
-                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
-                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
-                        Email Address
-                      </h1>
-                      <p className="text-sm md:text-xl text-black font-normal">
-                        {user.email}
-                      </p>
-                    </div>
-                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
-                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
-                        Phone Number
-                      </h1>
-                      <p className="text-sm md:text-xl text-black font-normal">
-                        {user.phone_number}
-                      </p>
-                    </div>
-                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
-                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
-                        Referral Code
-                      </h1>
-                      <p className="text-sm md:text-xl text-black font-normal">
-                        {user.referral_code}
-                      </p>
-                    </div>
+                  <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
+                    <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
+                      Email Address
+                    </h1>
+                    <p className="text-sm md:text-xl text-black font-normal">
+                      {user.email}
+                    </p>
+                  </div>
+                  <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
+                    <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
+                      Phone Number
+                    </h1>
+                    <p className="text-sm md:text-xl text-black font-normal">
+                      {user.phone_number}
+                    </p>
+                  </div>
+                  <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
+                    <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
+                      Referral Code
+                    </h1>
+                    <p className="text-sm md:text-xl text-black font-normal">
+                      {user.referral_code}
+                    </p>
+                  </div>
 
-                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
-                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
-                        Referral Link
-                      </h1>
-                      <p className="text-sm md:text-xl text-black font-normal">
-                        {user.referral_link}
-                      </p>
-                    </div>
-                    <div className="md:p-5 p-3 bg-white text-black rounded-md mx-1 md:mx-3 my-1 md:my-3">
-                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold">
-                        Paid for ID
-                      </h1>
-                      <p className="text-md md:text-xl text-black font-semibold uppercase">
-                        {user.has_paid === "True" ? (
-                          "Yes"
-                        ) : (
+                  <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full">
+                    <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
+                      Referral Link
+                    </h1>
+                    <p className="text-sm md:text-xl text-black font-normal word-wrap-break">
+                      {user.referral_link}
+                    </p>
+                  </div>
+                  <div className="md:p-5 p-3 bg-white text-black rounded-md mx-1 md:mx-3 my-1 md:my-3">
+                    <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold">
+                      Paid for ID
+                    </h1>
+                    <p className="text-md md:text-xl text-black font-semibold uppercase">
+                      {user.has_paid === "True" ? (
+                        "Yes"
+                      ) : (
+                        <div>
                           <div>
-                            <div>
-                              {paymentUrl ? (
-                                <a
-                                  href={paymentUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <button
-                                    type="button"
-                                    onClick={() => !loading} // Prevent multiple clicks while loading
-                                    className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-1 bg-green-600 ${
-                                      loading ? "cursor-not-allowed" : ""
-                                    }`}
-                                  >
-                                    {loading ? (
-                                      <div className="spinner"></div>
-                                    ) : (
-                                      "Proceed"
-                                    )}
-                                  </button>
-                                </a>
-                              ) : (
+                            {paymentUrl ? (
+                              <a
+                                href={paymentUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
                                 <button
                                   type="button"
-                                  onClick={() => !loading && handlePayment()} // Prevent multiple clicks while loading
-                                  className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-green-600 ${
+                                  onClick={() => !loading} // Prevent multiple clicks while loading
+                                  className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-1 bg-green-600 ${
                                     loading ? "cursor-not-allowed" : ""
                                   }`}
                                 >
                                   {loading ? (
                                     <div className="spinner"></div>
                                   ) : (
-                                    "Make Payment"
+                                    "Proceed"
                                   )}
                                 </button>
-                              )}
-                            </div>
+                              </a>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => !loading && handlePayment()} // Prevent multiple clicks while loading
+                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-green-600 ${
+                                  loading ? "cursor-not-allowed" : ""
+                                }`}
+                              >
+                                {loading ? (
+                                  <div className="spinner"></div>
+                                ) : (
+                                  "Make Payment"
+                                )}
+                              </button>
+                            )}
                           </div>
-                        )}
-                      </p>
-                    </div>
+                        </div>
+                      )}
+                    </p>
                   </div>
                 </div>
               </div>
-              <div>
-                <div className="md:p-5 p-3 bg-white rounded-xl mx-1 md:mx-3 my-1 md:my-3 text-black mb-4">
+              <div className="flex flex-col w-full items-center justify-center">
+                <div className="md:p-5 p-3 bg-white rounded-xl mx-1 md:mx-3 my-1 md:my-3 text-black mt-2 mb-2 w-full">
                   Copy and share the referral to onboard users
                 </div>
-                <div className="md:p-5 p-3 bg-white rounded-xl mx-1 md:mx-3 my-1 md:my-3 text-black mb-4">
+                <div className="md:p-5 p-3 bg-white rounded-xl mx-1 md:mx-3 my-1 md:my-3 text-black mb-2 w-full">
                   {user.has_paid === "True"
                     ? "You have paid for your Card successfully"
                     : "You need to pay for your E-network card"}
                 </div>
-                <div className="md:p-5 p-3 bg-white rounded-xl mx-1 md:mx-3 my-1 md:my-3 text-black mb-4 w-full">
+                {/* <div className="md:p-5 p-3 bg-white rounded-xl mx-1 md:mx-3 my-1 md:my-3 text-black mb-4 w-full">
                   <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold">
                     Earnings
                   </h1>
                   <p className="text-md md:text-xl text-black font-semibold uppercase">
                     <span className=" line-through">N</span> {user.earnings}
                   </p>
-                </div>
+                </div> */}
               </div>
 
               <div className="p-3 bg-white text-black h-[50vh] w-full rounded-xl">
-                <h3 className="text-3xl font-extrabold">Referral Activity</h3>
+                <h3 className="text-xl md:text-3xl font-extrabold p-2 border-b-2 border-black">
+                  Referral Activity
+                </h3>
                 <ul>
                   {user.referral_list.map((referredUser: ReferredUser) => (
                     <li
@@ -323,6 +325,15 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </li>
                   ))}
                 </ul>
+              </div>
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={logoutUser}
+                  className="px-3 py-4 my-auto md:px-8 md:py-3 rounded-lg text-white uppercase bg-green-800 mx-1 md:mx-3 text-sm md:text-current font-bold"
+                >
+                  Logout
+                </button>
               </div>
             </div>
           </div>

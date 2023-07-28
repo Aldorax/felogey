@@ -49,3 +49,17 @@ body {
   height: 120px;
   animation: spin 1s linear infinite;
 }
+
+.flex-wrap-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.word-wrap-break {
+  word-wrap: break-word;
+}
+
+/* Apply the updated class to the parent container */
+.flex-wrap-container .word-wrap-break {
+  flex-shrink: 0;
+}

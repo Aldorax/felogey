@@ -24,4 +24,5 @@ export interface ReferredUser {
   id: string;
   email: string;
   has_paid: string;
+  profile_image: string; // Change the type to include "null"
 }

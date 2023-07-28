@@ -14,19 +14,19 @@ const Services = () => {
           transition={{ duration: 1 }}
         >
           <AnimatedText
-            text="What you will get!"
-            className="md:mb-16 mb-7 pt-10"
+            text="What our Agents recieve!"
+            className="md:mb-16 mb-4 pt-10"
           />
         </motion.div>
       </div>
-      <div className="p-10 text-2xl font-normal">
+      <div className="p-4 md:p-10 text-lg md:text-2xl font-normal">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-start  md:items-center gap-2">
             <FontAwesomeIcon icon={faDotCircle} />
             <p> All Agents will be trained for free</p>
           </div>
           <br />
-          <div className="flex items-center gap-2">
+          <div className="flex items-start  md:items-center gap-2">
             <FontAwesomeIcon icon={faDotCircle} />
             <p>
               They will be engaged for a one month probationary HANDS-ON
@@ -35,7 +35,7 @@ const Services = () => {
             </p>
           </div>
           <br />
-          <div className="flex items-center gap-2">
+          <div className="flex items-start  md:items-center gap-2">
             <FontAwesomeIcon icon={faDotCircle} />
             <p>
               {" "}
@@ -44,7 +44,7 @@ const Services = () => {
             </p>
           </div>
           <br />
-          <div className="flex items-start justify-center gap-2">
+          <div className="flex items-start  md:items-center gap-2">
             <FontAwesomeIcon icon={faDotCircle} />
             <p>
               {" "}
@@ -59,12 +59,12 @@ const Services = () => {
             </p>
           </div>
           <br />
-          <div className="flex items-center gap-2">
+          <div className="flex items-start  md:items-center gap-2">
             <FontAwesomeIcon icon={faDotCircle} />
             <p> They will also have a 3 months moratorium</p>
           </div>
           <br />
-          <div className="flex items-center gap-2">
+          <div className="flex items-start  md:items-center gap-2">
             <FontAwesomeIcon icon={faDotCircle} />
             <p>
               {" "}
@@ -84,8 +84,8 @@ const Services = () => {
           </motion.div>
         </div>
       </div>
-      <div className="px-10 pb-10 text-2xl font-normal">
-        <div className="flex items-center gap-2">
+      <div className="p-4 md:p-10 text-lg md:text-2xl font-normal">
+        <div className="flex items-start  md:items-center gap-2">
           <FontAwesomeIcon icon={faDotCircle} />
           <p>
             {" "}
@@ -94,7 +94,7 @@ const Services = () => {
           </p>
         </div>
         <br />
-        <div className="flex items-center gap-2">
+        <div className="flex items-start  md:items-center gap-2">
           <FontAwesomeIcon icon={faDotCircle} />
           <p>
             {" "}

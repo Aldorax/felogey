@@ -84,32 +84,32 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-evenly items-center bg-white text-black w-screen h-screen">
+    <main className="flex flex-col md:flex-row min-h-screen min-w-screen items-center justify-center bg-white">
       <Header />
-      <main className="flex min-h-screen items-center justify-between">
-        <div className="min-w-screen max-w-screen min-h-screen flex flex-col justify-center items-center mx-auto border border-white text-black bg-white">
+      <div className="flex items-center justify-center">
+        <div className="flex flex-col justify-center items-center mx-auto border border-white text-black bg-white mt-20 mb-5">
           <div>
             <h1 className="px-3 text-4xl font-bold mb-2">Welcome Back!</h1>
             <p className="px-3 text-lg font-normal mb-4">
-              Log In to your Dashboard
+              Login to your account
             </p>
-            <form className="flex flex-col justify-center md:items-start items-center">
-              <div className="p-3 md:p-2">
+            <form className="flex flex-col justify-center md:items-start items-center p-2 min-w-screen">
+              <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="py-6 px-10 border border-gray-400 rounded-xl my-1 min-w-[370px] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Email:"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  id=""
+                  id="email"
                   title="email"
                 />
               </div>
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="py-6 px-10 border border-gray-400 rounded-xl my-1 min-w-[370px] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Password:"
                   type="password"
                   value={password}
@@ -121,7 +121,7 @@ const LoginPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => !loading && logInUser()} // Prevent multiple clicks while loading
-                className={`py-6 px-3 min-w-[370px] md:min-w-[400px] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
+                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
                   loading ? "cursor-not-allowed" : ""
                 }`}
               >
@@ -137,11 +137,11 @@ const LoginPage: React.FC = () => {
             </p>
           </div>
         </div>
-      </main>
+      </div>
 
       {/* Toast Container */}
       <ToastContainer />
-    </div>
+    </main>
   );
 };
 
