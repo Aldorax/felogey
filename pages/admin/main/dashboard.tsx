@@ -108,7 +108,6 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
     if (file) {
       const formData = new FormData();
       formData.append("profile_image", file); // Use the correct field name "profile_image"
-      console.log(formData);
 
       httpClient
         .post("https://enetworks.onrender.com/update_profile_image", formData, {
@@ -157,8 +156,6 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
       .catch((error) => {
         console.log(error);
       });
-
-    console.log(referralActivity);
   };
 
   return (

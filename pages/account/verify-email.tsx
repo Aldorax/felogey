@@ -47,8 +47,6 @@ const VerifyEmail: React.FC = () => {
         const headers: AxiosRequestConfig["headers"] = {
           "Content-Type": "application/x-www-form-urlencoded",
         };
-        console.log("data", data);
-        console.log("data", accessToken);
 
         if (accessToken) {
           headers["Authorization"] = `Bearer ${accessToken}`;

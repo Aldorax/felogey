@@ -39,8 +39,6 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
           return;
         }
 
-        // console.log(`Bearer ${access_token}`);
-
         httpClient.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${access_token}`;
@@ -98,7 +96,6 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
     if (file) {
       const formData = new FormData();
       formData.append("profile_image", file); // Use the correct field name "profile_image"
-      console.log(formData);
 
       httpClient
         .post("https://enetworks.onrender.com/update_profile_image", formData, {

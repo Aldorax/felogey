@@ -47,8 +47,6 @@ const LoginPage: React.FC = () => {
             withCredentials: true, // Include cookies in the request
           }
         );
-        // toast.success("User registered successfully");
-        // console.log(email, password);
 
         // Retrieve the access token from the response data
         const accessToken = resp.data.access_token;
