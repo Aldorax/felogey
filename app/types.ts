@@ -15,6 +15,7 @@ export interface User {
   referral_code: string;
   referral_link: string;
   referred_me: string;
+  total_referred_users: number;
 }
 
 export interface ReferredUser {

@@ -6,6 +6,14 @@ import "@/app/globals.css";
 import { User } from "@/app/types";
 import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faRocket,
+  faUserAlt,
+  faUserAstronaut,
+} from "@fortawesome/free-solid-svg-icons";
+import logo from "@/public/images/e-logo .png";
+import Image from "next/image";
 
 type props = {
   href: string;
@@ -35,7 +43,12 @@ const CustomLink = ({ href, title, className = "" }: props) => {
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useRouter();
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prevValue) => !prevValue);
+  };
 
   // const router = useRouter();
 
@@ -93,84 +106,122 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-screen px-2 md:px-32 py-2 md:py-1 font-sm md:font-medium flex items-start md:items-center justify-around md:justify-evenly bg-white text-black z-50 border-b-2 border-black">
-      <h1 className="p-3 relative md:inherit left-10 md:left-0">
-        <Link href={"/"}>E-networks</Link>
+    <div className="fixed top-0 left-0 min-w-screen max-w-screen w-full px-2 md:px-32 py-2 md:py-1 font-sm md:font-medium flex items-center md:items-center justify-between bg-white text-black z-50 border-b-2 border-black">
+      <h1 className="p-3 relative ">
+        <Link href={"/"}>
+          <Image
+            src={logo}
+            alt="logo"
+            width={50}
+            height={50}
+            className="h-full max-w-30"
+          />
+        </Link>
       </h1>
-      <nav className="min-w-screen flex justify-center items-center md:p-3 px-1 py-2 mx-auto gap-x-1 md:gap-x-6 md:gap-0">
-        {isMobileMenuOpen && (
-          <div className="flex flex-col text-center justify-center min-w-screen w-full items-center uppercase">
-            {user ? (
-              <div className="md:hidden md:px-12 flex flex-col items-center justify-center  text-black min-h-screen text-5xl font-bold min-w-screen">
-                <div className="flex flex-col items-center">
-                  <h1 className="mx-3 px-2 py-5 min-w-full max-w-[80vw] border rounded-xl bg-green-800 text-white text-3xl my-2">
-                    Welcome, {user.first_name}
-                  </h1>
-                  <Link
-                    href={"/user/dashboard"}
-                    className="mx-3 px-5 py-4 min-w-full max-w-[80vw] border rounded-xl bg-green-800 text-white text-3xl my-2"
-                  >
-                    Dashboard
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={logoutUser}
-                    className="px-3 py-4 my-auto md:px-8 md:py-3 rounded-lg text-black uppercase bg-green-500 mx-1 md:mx-3 text-sm md:text-current"
-                  >
-                    Logout
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="md:hidden md:px-12 flex flex-col items-center justify-center  text-black min-h-screen text-5xl font-bold min-w-screen">
+      <nav className="flex justify-center items-center md:p-3 px-1 py-2 gap-x-1 md:gap-x-6 md:gap-0 text-black">
+        <div className="relative">
+          <button
+            onClick={toggleDropdown}
+            className="mx-6 min-w-full max-w-[40vw] rounded-xl text-black my-2 flex gap-3 items-center justify-between text-black"
+          >
+            <h1 className="text-black">Menu</h1>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`h-4 w-4 absolute top-3 right-1 md:right-1 ${
+                isDropdownOpen ? "transform rotate-180" : ""
+              }`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+          {isDropdownOpen && (
+            <div className="absolute mt-8 right-0 bg-white rounded-lg w-[94vw] h-[80vh] md:w-[200px] md:h-full border border-black max-w-screen">
+              <div className="flex gap-2 items-center border-b-2 border-black">
+                <FontAwesomeIcon
+                  icon={faRocket}
+                  width={50}
+                  height={50}
+                  scale={10}
+                />
                 <Link
-                  href={"/account/register"}
-                  className="mx-3 px-4 py-5 min-w-full max-w-[80vw] border rounded-xl bg-green-800 text-white text-xl md:text-3xl my-2"
+                  href={"/interns/register"}
+                  className="block w-full p-2 hover:bg-gray-500"
                 >
-                  <h1>Register</h1>
-                </Link>
-                <Link
-                  href={"/account/login"}
-                  className="mx-3 px-2 py-4 min-w-full max-w-[80vw] border rounded-xl bg-green-800 text-white text-xl md:text-3xl my-2"
-                >
-                  <h1>Login</h1>
+                  <h1>Register as Intern</h1>
                 </Link>
               </div>
-            )}
+              <div className="flex gap-2 items-center border-b-2 border-black">
+                <FontAwesomeIcon
+                  icon={faRocket}
+                  width={50}
+                  height={50}
+                  scale={10}
+                />
+                <Link
+                  href={"/mobilizer/register"}
+                  className="block w-full p-2 hover:bg-gray-500"
+                >
+                  <h1>Register as Mobilizer</h1>
+                </Link>
+              </div>
+              <div className="flex gap-2 items-center border-b-2 border-black">
+                <FontAwesomeIcon
+                  icon={faUserAstronaut}
+                  width={50}
+                  height={50}
+                  scale={10}
+                />
+                <Link
+                  href={"/interns/login"}
+                  className="block w-full p-2 hover:bg-gray-500"
+                >
+                  <h1>Login Intern</h1>
+                </Link>
+              </div>
+              <div className="flex gap-2 items-center">
+                <FontAwesomeIcon
+                  icon={faUserAstronaut}
+                  width={50}
+                  height={50}
+                  scale={10}
+                />
+                <Link
+                  href={"/mobilizer/login"}
+                  className="block w-full p-2 hover:bg-gray-500"
+                >
+                  <h1>Login Mobilizer</h1>
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+        {user ? (
+          <div className="hidden md:flex text-center justify-center items-center">
+            <p>Welcome, {user.first_name}</p>
+            <button
+              type="button"
+              onClick={logoutUser}
+              className="px-3 py-2 my-auto md:px-8 md:py-3 rounded-lg text-black uppercase bg-green-800 mx-1 md:mx-3 text-sm md:text-current"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <div className="hidden md:flex text-center justify-center items-center">
+            <Link href={"/account/login"} className="mx-3">
+              <h1></h1>
+            </Link>
           </div>
         )}
       </nav>
-      <div className="md:hidden relative right-10">
-        <button
-          className="text-white focus:outline-none p-3 rounded-md bg-green-800 text-center"
-          onClick={toggleMobileMenu}
-        >
-          {isMobileMenuOpen ? "Close" : "Menu"}
-        </button>
-      </div>
-      {user ? (
-        // If user is logged in, show the user's name
-        <div className="hidden md:flex text-center justify-center items-center">
-          <p>Welcome, {user.first_name}</p>
-          <button
-            type="button"
-            onClick={logoutUser}
-            className="px-3 py-2 my-auto md:px-8 md:py-3 rounded-lg text-black uppercase bg-green-500 mx-1 md:mx-3 text-sm md:text-current"
-          >
-            Logout
-          </button>
-        </div>
-      ) : (
-        // If user is not logged in, show the login and register options
-        <div className="hidden md:flex text-center justify-center items-center">
-          <Link href={"/account/register"} className="mx-3">
-            <h1>Register</h1>
-          </Link>
-          <Link href={"/account/login"} className="mx-3">
-            <h1>Login</h1>
-          </Link>
-        </div>
-      )}
     </div>
   );
 };

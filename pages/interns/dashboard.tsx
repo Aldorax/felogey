@@ -1,5 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import {
+  faUser,
+  faMessage,
+  faPerson,
+  faBell,
+  faPeopleArrows,
+  faSquareCheck,
+  faMoneyBillTransfer,
+  faMoneyBill,
+  faSms,
+} from "@fortawesome/free-solid-svg-icons";
 import { ReferredUser, User } from "@/app/types";
 import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
@@ -12,6 +23,7 @@ import image from "@/app/favicon.ico";
 import LeftSide from "@/components/LeftSide";
 import axios from "axios";
 import "@/app/globals.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface DashoardProps {
   user: User;
@@ -35,7 +47,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
         if (!access_token) {
           console.log("Not authorized");
-          navigate.push("/account/login");
+          navigate.push("/interns/login");
           return;
         }
 
@@ -53,7 +65,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
         setUser(response.data);
       } catch (error) {
-        navigate.push("/account/login");
+        navigate.push("/interns/login");
         console.log("Not Authorized");
       }
     };
@@ -78,7 +90,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   };
 
   const refresh = () => {
-    window.location.href = "/user/dashboard";
+    window.location.href = "/interns/dashboard";
   };
 
   const isEmailVerified = user?.is_email_verified === "True";
@@ -86,8 +98,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   useEffect(() => {
     if (user && !isEmailVerified) {
       navigate.push(
-        // "https://www.enetworksagencybanking.com.ng/account/verify-email"
-        "https://enetworksagencybanking.com.ng/account/verify-email"
+        // "https://www.enetworksagencybanking.com.ng/interns/verify-email"
+        "https://enetworksagencybanking.com.ng/interns/verify-email"
       );
     }
   }, [user, isEmailVerified, navigate]);
@@ -97,8 +109,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   useEffect(() => {
     if (user && !isPaid) {
       navigate.push(
-        // "https://www.enetworksagencybanking.com.ng/account/verify-email"
-        "https://enetworksagencybanking.com.ng/user/pay-for-card"
+        // "https://www.enetworksagencybanking.com.ng/interns/verify-email"
+        "https://enetworksagencybanking.com.ng/interns/pay-for-card"
       );
     }
   }, [user, isEmailVerified, navigate]);
@@ -123,7 +135,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
             }
             return null;
           });
-          window.location.href = "/user/dashboard";
+          window.location.href = "/interns/dashboard";
         })
         .catch((error) => {
           console.log(error);
@@ -161,7 +173,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   };
 
   return (
-    <div className="max-w-screen overflow-x-hidden">
+    <div className="max-w-screen overflow-x-hidden bg-gray-100">
       {/* <Header /> */}
       <div className="min-h-screen h-auto max-w-screen">
         {user ? (
@@ -171,15 +183,10 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
             </div>
             {/*  */}
             <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
-            <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-300 max-screen md:max-w-[80vw] min-h-screen">
+            <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-full">
               <div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mt-20 md:mb-10 w-full h-auto my-auto">
-                <div className="md:max-w-[500px] w-full h-auto flex md:flex-row justify-between md:justify-center items-center pb-3 ">
-                  <div className="md:p-5 p-3 mx-1 md:mx-3 my-1 md:my-3 md:hidden visible">
-                    <p className="text-md md:text-xl text-black font-semibold uppercase">
-                      {user.first_name}
-                    </p>
-                  </div>
-                  <div>
+                <div className="md:max-w-[500px] w-full h-auto flex md:flex-row items-center pb-3 ">
+                  <div className="flex items-center">
                     {user.profile_image === "None" ? (
                       <div className="flex flex-col">
                         <input
@@ -207,6 +214,17 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                         />
                       </div>
                     )}
+                    <div className="text-black">
+                      <div className="flex">
+                        <p className="text-sm md:text-xl text-black font-semibold">
+                          {user.first_name}
+                        </p>
+                        <div className="text-[8px] p-1 bg-green-500 font-bold rounded-md text-white ml-2">
+                          Activated
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-800">{user.email}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -214,10 +232,10 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                 <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl">
                   <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
                     <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
-                      Email Address
+                      Full Name
                     </h1>
                     <p className="text-sm md:text-xl text-black font-normal">
-                      {user.email}
+                      {user.first_name} {user.last_name}
                     </p>
                   </div>
                   <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
@@ -229,107 +247,162 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3">
-                  <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
-                    <div></div>
-                    <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
-                      Referral Code
-                    </h1>
-                    <p className="text-sm md:text-xl text-black font-normal">
-                      {user.referral_code}
-                    </p>
-                  </div>
-
-                  <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full">
-                    <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
-                      Referral Link
-                    </h1>
-                    <p className="text-sm md:text-xl text-black font-normal word-wrap-break">
-                      {user.referral_link}
-                    </p>
+                <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative">
+                  <FontAwesomeIcon
+                    icon={faPeopleArrows}
+                    width={50}
+                    height={50}
+                    scale={10}
+                  />
+                  <div className="mx-3">
+                    <h3 className="text-sm md:text-3xl mb-2">
+                      Total Interns referred
+                    </h3>
+                    <div className="flex gap-2 items-center">
+                      <h4>{user.total_referred_users}</h4>
+                    </div>
                   </div>
                 </div>
-                <div className="md:p-5 p-3 bg-white text-black rounded-xl mx-1 md:mx-3 my-3 md:my-3">
-                  <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold">
-                    Paid for ID
-                  </h1>
-                  <p className="text-md md:text-xl text-black font-semibold uppercase">
-                    {user.has_paid === "True" ? (
-                      "Yes"
-                    ) : (
-                      <div>
+                <Link
+                  className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
+                  href={"/interns/referral-details"}
+                >
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    width={50}
+                    height={50}
+                    scale={10}
+                  />
+                  <div className="mx-3">
+                    <h3 className="text-sm md:text-3xl mb-2">Referral</h3>
+                    <h1 className="font-normal text-sm">
+                      Invite Interns to register
+                    </h1>
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-6 w-6 absolute top-6 right-10 md:right-1 transform -rotate-90`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </Link>
+                <Link
+                  className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
+                  href={"/interns/referralList"}
+                >
+                  <FontAwesomeIcon
+                    icon={faBell}
+                    width={50}
+                    height={50}
+                    scale={10}
+                  />
+                  <div className="mx-3">
+                    <h3 className="text-sm md:text-3xl mb-2">
+                      Referral History
+                    </h3>
+                    <h1 className="font-normal text-sm">Click to view</h1>
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-6 w-6 absolute top-6 right-10 md:right-1 transform -rotate-90`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </Link>
+                <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative mb-3">
+                  <FontAwesomeIcon
+                    icon={faSquareCheck}
+                    width={50}
+                    height={50}
+                    scale={10}
+                  />
+                  <div className="mx-3">
+                    <h1 className="text-sm md:text-2xl mb-2">Paid for ID</h1>
+                    <p className="font-normal text-sm">
+                      {user.has_paid === "True" ? (
+                        <p>Yes</p>
+                      ) : (
                         <div>
-                          {paymentUrl ? (
-                            <a
-                              href={paymentUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
+                          <div>
+                            {paymentUrl ? (
+                              <a
+                                href={paymentUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <button
+                                  type="button"
+                                  onClick={() => !loading} // Prevent multiple clicks while loading
+                                  className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-1 bg-green-600 ${
+                                    loading ? "cursor-not-allowed" : ""
+                                  }`}
+                                >
+                                  {loading ? (
+                                    <div className="spinner"></div>
+                                  ) : (
+                                    "Proceed"
+                                  )}
+                                </button>
+                              </a>
+                            ) : (
                               <button
                                 type="button"
-                                onClick={() => !loading} // Prevent multiple clicks while loading
-                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-1 bg-green-600 ${
+                                onClick={() => !loading && handlePayment()} // Prevent multiple clicks while loading
+                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-green-600 ${
                                   loading ? "cursor-not-allowed" : ""
                                 }`}
                               >
                                 {loading ? (
                                   <div className="spinner"></div>
                                 ) : (
-                                  "Proceed"
+                                  "Make Payment"
                                 )}
                               </button>
-                            </a>
-                          ) : (
-                            <button
-                              type="button"
-                              onClick={() => !loading && handlePayment()} // Prevent multiple clicks while loading
-                              className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-green-600 ${
-                                loading ? "cursor-not-allowed" : ""
-                              }`}
-                            >
-                              {loading ? (
-                                <div className="spinner"></div>
-                              ) : (
-                                "Make Payment"
-                              )}
-                            </button>
-                          )}
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </p>
+                      )}
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col w-full items-center justify-center ">
-                <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 md:my-3 text-white mb-2 w-full bg-green-500">
-                  <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold text-black">
+              <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl p-3 relative mb-3 w-full">
+                <FontAwesomeIcon
+                  icon={faSms}
+                  width={50}
+                  height={50}
+                  scale={10}
+                />
+                <div className="mx-3">
+                  <h1 className="text-sm md:text-2xl mb-2">
                     Transaction History
                   </h1>
-                  <p>You Paid for E-networks Digital Card</p>
-                  <p>
+                  <p className="font-normal text-sm">
+                    You Paid for E-networks Digital Card
+                  </p>
+                  <p className="font-normal text-sm">
                     Total Amount:{" "}
-                    <span className="font-bold">
+                    <span className="">
                       <span className="line-through">N</span>1500
                     </span>
                   </p>
                 </div>
-                {/* <div className="md:p-5 p-3 bg-white rounded-xl mx-1 md:mx-3 my-1 md:my-3 text-black mb-4 w-full">
-                  <h1 className="text-md md:text-2xl underline underline-offset-4 font-extrabold">
-                    Earnings
-                  </h1>
-                  <p className="text-md md:text-xl text-black font-semibold uppercase">
-                    <span className=" line-through">N</span> {user.earnings}
-                  </p>
-                </div> */}
-              </div>
-
-              <div className="p-3 bg-white text-black h-full w-full rounded-xl">
-                <h3 className="text-xl md:text-3xl font-extrabold p-2 border-b-2 border-black">
-                  Referral Activity
-                </h3>
-                <Link className="font-normal" href={"/user/activities"}>
-                  Click to see them
-                </Link>
               </div>
               <div className="mt-4">
                 <button

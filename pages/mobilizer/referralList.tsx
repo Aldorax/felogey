@@ -4,6 +4,8 @@ import { ReferredUser, User } from "@/app/types";
 import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
 import type { Metadata } from "next";
+// import Header from "@/components/header";
+import { faUser, faMessage, faPerson } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import router from "next/router";
 import Image from "next/image";
@@ -11,6 +13,7 @@ import image from "@/app/favicon.ico";
 import LeftSide from "@/components/LeftSide";
 import axios from "axios";
 import "@/app/globals.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface DashoardProps {
   user: User;
@@ -21,33 +24,19 @@ export const metadata: Metadata = {
   description: "User dashboard",
 };
 
-const Activities: React.FC<DashoardProps> = ({}) => {
+const ReferralList: React.FC<DashoardProps> = ({}) => {
   const navigate = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [paymentUrl, setPaymentUrl] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [referralActivity, setReferralActivity] = useState<ReferredUser[]>([]);
+  const [isUserMobilizer, setIsMobilizer] = useState(false);
 
   useEffect(() => {
     // ... Fetch user data as you did before ...
 
     // Check if the user is an admin or super admin
-    const isUserAdmin = user?.role === "Admin" || user?.role === "Super Admin";
-    setIsAdmin(isUserAdmin);
-
-    const fetchReferralActivity = async () => {
-      try {
-        const response = await httpClient.get(
-          "https://enetworks.onrender.com/admins"
-        );
-        setReferralActivity(response.data);
-      } catch (error) {
-        console.log("Error fetching referral activity:", error);
-      }
-    };
-
-    fetchReferralActivity();
+    const isUserMobilizer = user?.role === "Mobilizer";
+    setIsMobilizer(isUserMobilizer);
   }, [user]);
 
   useEffect(() => {
@@ -57,7 +46,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
         if (!access_token) {
           console.log("Not authorized");
-          navigate.push("/Admin/login");
+          navigate.push("/mobilizer/login");
           return;
         }
 
@@ -66,6 +55,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
+          // "https://enetworks.onrender.com/dashboard",
           "https://enetworks.onrender.com/dashboard",
           {
             withCredentials: true, // Include cookies in the request
@@ -74,7 +64,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
         setUser(response.data);
       } catch (error) {
-        navigate.push("/Admin/login");
+        navigate.push("/mobilizer/login");
         console.log("Not Authorized");
       }
     };
@@ -99,8 +89,19 @@ const Activities: React.FC<DashoardProps> = ({}) => {
   };
 
   const refresh = () => {
-    window.location.href = "/user/dashboard";
+    window.location.href = "/mobilizer/dashboard";
   };
+
+  const isEmailVerified = user?.is_email_verified === "True";
+
+  useEffect(() => {
+    if (user && !isEmailVerified) {
+      navigate.push(
+        // "https://www.enetworksagencybanking.com.ng/mobilizer/verify-email"
+        "http://localhost:3000/mobilizer/verify-email"
+      );
+    }
+  }, [user, isEmailVerified, navigate]);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const access_token = localStorage.getItem("access_token");
@@ -122,7 +123,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
             }
             return null;
           });
-          window.location.href = "/user/dashboard";
+          window.location.href = "/mobilizer/dashboard";
         })
         .catch((error) => {
           console.log(error);
@@ -139,6 +140,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
+        // "https://enetworks.onrender.com/pay/",
         "https://enetworks.onrender.com/pay/",
         {},
         {
@@ -160,43 +162,80 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
   return (
     <div className="max-w-screen overflow-x-hidden">
-      {isAdmin ? (
-        <div className="min-h-screen h-auto max-w-screen">
+      {isUserMobilizer ? (
+        <div className="min-h-screen bg-white h-auto max-w-screen">
           {user ? (
-            <div className="flex">
-              <LeftSide />
+            <div className="flex flex-col">
+              <div className="hidden">
+                <LeftSide />
+              </div>
               {/*  */}
               <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
-              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-green-500/25 max-screen md:max-w-[80vw] min-h-screen">
-                <div className="p-3 bg-white text-black min-h-[10vh] h-auto w-full rounded-xl">
-                  <h3 className="text-xl md:text-3xl font-extrabold p-2 border-b-2 border-black">
-                    Referral Activity
-                  </h3>
-                  <ul>
-                    {user.referral_list.map((referredUser: ReferredUser) => (
-                      <li
-                        key={referredUser.id}
-                        className="p-4 bg-green-800 border border-black m-4 rounded-xl text-white"
-                      >
-                        <p>Email: {referredUser.email}</p>
-                        <p>
-                          Has Paid:{" "}
-                          {referredUser.has_paid === "True" ? "Yes" : "No"}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    onClick={logoutUser}
-                    className="px-3 py-4 my-auto md:px-8 md:py-3 rounded-lg text-white uppercase bg-green-800 mx-1 md:mx-3 text-sm md:text-current font-bold"
+              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-full">
+                <div className="flex flex-col w-full">
+                  <Link
+                    className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-green-300 text-black rounded-2xl mt-3 px-3 py-6 relative w-full"
+                    href={"/mobilizer/dashboard"}
                   >
-                    Logout
-                  </button>
+                    <FontAwesomeIcon icon={faPerson} />
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={`h-6 w-6 absolute top-3.5 left-6 md:right-1 transform rotate-90 mr-10`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                  </Link>
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-start justify-start bg-white text-black rounded-2xl mt-3 p-3 relative">
+                    <div>
+                      <h3 className="text-sm md:text-3xl mb-2">
+                        Referral History
+                      </h3>
+                      <h1 className="font-normal text-sm">
+                        This are your Referrals
+                      </h1>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`h-6 w-6 absolute top-6 right-10 md:right-1 transform rotate-360`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
+              <ul>
+                {user.referral_list.map((referredUser: ReferredUser) => (
+                  <li
+                    key={referredUser.id}
+                    className="p-4 bg-green-800 border border-black m-4 rounded-xl text-white"
+                  >
+                    <p>Email: {referredUser.email}</p>
+                    <p>
+                      Has Paid:{" "}
+                      {referredUser.has_paid === "True" ? "Yes" : "No"}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <h2 className="text-black">Hello</h2>
             </div>
           ) : (
             <div className="min-w-screen min-h-screen flex items-center justify-center">
@@ -214,4 +253,4 @@ const Activities: React.FC<DashoardProps> = ({}) => {
   );
 };
 
-export default Activities;
+export default ReferralList;

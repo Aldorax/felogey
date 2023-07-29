@@ -26,28 +26,15 @@ const Activities: React.FC<DashoardProps> = ({}) => {
   const [user, setUser] = useState<User | null>(null);
   const [paymentUrl, setPaymentUrl] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [referralActivity, setReferralActivity] = useState<ReferredUser[]>([]);
+  const [isUserinterns, setIsinterns] = useState(false);
 
   useEffect(() => {
     // ... Fetch user data as you did before ...
 
     // Check if the user is an admin or super admin
-    const isUserAdmin = user?.role === "Admin" || user?.role === "Super Admin";
-    setIsAdmin(isUserAdmin);
-
-    const fetchReferralActivity = async () => {
-      try {
-        const response = await httpClient.get(
-          "https://enetworks.onrender.com/admins"
-        );
-        setReferralActivity(response.data);
-      } catch (error) {
-        console.log("Error fetching referral activity:", error);
-      }
-    };
-
-    fetchReferralActivity();
+    const isUserinterns = user?.role === "Interns";
+    setIsinterns(isUserinterns);
   }, [user]);
 
   useEffect(() => {
@@ -57,7 +44,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
         if (!access_token) {
           console.log("Not authorized");
-          navigate.push("/Admin/login");
+          navigate.push("/interns/login");
           return;
         }
 
@@ -66,6 +53,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
+          //   "https://enetworks.onrender.com/dashboard",
           "https://enetworks.onrender.com/dashboard",
           {
             withCredentials: true, // Include cookies in the request
@@ -74,7 +62,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
         setUser(response.data);
       } catch (error) {
-        navigate.push("/Admin/login");
+        navigate.push("/interns/login");
         console.log("Not Authorized");
       }
     };
@@ -160,14 +148,14 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
   return (
     <div className="max-w-screen overflow-x-hidden">
-      {isAdmin ? (
+      {isUserinterns ? (
         <div className="min-h-screen h-auto max-w-screen">
           {user ? (
             <div className="flex">
               <LeftSide />
               {/*  */}
               <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
-              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-green-500/25 max-screen md:max-w-[80vw] min-h-screen">
+              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-white max-screen md:max-w-[80vw] min-h-screen">
                 <div className="p-3 bg-white text-black min-h-[10vh] h-auto w-full rounded-xl">
                   <h3 className="text-xl md:text-3xl font-extrabold p-2 border-b-2 border-black">
                     Referral Activity

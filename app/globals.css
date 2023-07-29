@@ -2,30 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: decimal;
+}
+/* Remove blue highlight on click for all elements */
+*:focus {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  /* For iOS Safari */
+  user-select: none;
+  /* For modern browsers */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* If you want to apply it only to specific elements, use their respective selectors */
+button:focus,
+a:focus,
+input:focus {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  /* For iOS Safari */
+  user-select: none;
+  /* For modern browsers */
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 /* spinner.css */
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.3);
@@ -62,4 +63,10 @@ body {
 /* Apply the updated class to the parent container */
 .flex-wrap-container .word-wrap-break {
   flex-shrink: 0;
+}
+
+
+/* Remove blue highlight on click for all elements */
+*:focus {
+  outline: none;
 }

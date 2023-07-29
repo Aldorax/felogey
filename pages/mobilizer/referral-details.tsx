@@ -21,34 +21,12 @@ export const metadata: Metadata = {
   description: "User dashboard",
 };
 
-const Activities: React.FC<DashoardProps> = ({}) => {
+const ReferralDetails: React.FC<DashoardProps> = ({}) => {
   const navigate = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [paymentUrl, setPaymentUrl] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [referralActivity, setReferralActivity] = useState<ReferredUser[]>([]);
-
-  useEffect(() => {
-    // ... Fetch user data as you did before ...
-
-    // Check if the user is an admin or super admin
-    const isUserAdmin = user?.role === "Admin" || user?.role === "Super Admin";
-    setIsAdmin(isUserAdmin);
-
-    const fetchReferralActivity = async () => {
-      try {
-        const response = await httpClient.get(
-          "https://enetworks.onrender.com/admins"
-        );
-        setReferralActivity(response.data);
-      } catch (error) {
-        console.log("Error fetching referral activity:", error);
-      }
-    };
-
-    fetchReferralActivity();
-  }, [user]);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -57,7 +35,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
         if (!access_token) {
           console.log("Not authorized");
-          navigate.push("/Admin/login");
+          navigate.push("/mobilizer/login");
           return;
         }
 
@@ -66,6 +44,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
+          //   "https://enetworks.onrender.com/dashboard",
           "https://enetworks.onrender.com/dashboard",
           {
             withCredentials: true, // Include cookies in the request
@@ -74,7 +53,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
         setUser(response.data);
       } catch (error) {
-        navigate.push("/Admin/login");
+        navigate.push("/mobilizer/login");
         console.log("Not Authorized");
       }
     };
@@ -159,59 +138,58 @@ const Activities: React.FC<DashoardProps> = ({}) => {
   };
 
   return (
-    <div className="max-w-screen overflow-x-hidden">
-      {isAdmin ? (
-        <div className="min-h-screen h-auto max-w-screen">
-          {user ? (
-            <div className="flex">
-              <LeftSide />
-              {/*  */}
-              <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
-              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-green-500/25 max-screen md:max-w-[80vw] min-h-screen">
-                <div className="p-3 bg-white text-black min-h-[10vh] h-auto w-full rounded-xl">
-                  <h3 className="text-xl md:text-3xl font-extrabold p-2 border-b-2 border-black">
-                    Referral Activity
-                  </h3>
-                  <ul>
-                    {user.referral_list.map((referredUser: ReferredUser) => (
-                      <li
-                        key={referredUser.id}
-                        className="p-4 bg-green-800 border border-black m-4 rounded-xl text-white"
-                      >
-                        <p>Email: {referredUser.email}</p>
-                        <p>
-                          Has Paid:{" "}
-                          {referredUser.has_paid === "True" ? "Yes" : "No"}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    onClick={logoutUser}
-                    className="px-3 py-4 my-auto md:px-8 md:py-3 rounded-lg text-white uppercase bg-green-800 mx-1 md:mx-3 text-sm md:text-current font-bold"
-                  >
-                    Logout
-                  </button>
-                </div>
+    <div className="max-w-screen overflow-x-hidden flex flex-wrap bg-gray-100">
+      <div className="min-h-screen h-auto w-full">
+        {user ? (
+          <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-auto">
+            <Link
+              className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-green-300 text-black rounded-2xl mt-3 px-3 py-6 relative w-full"
+              href={"/mobilizer/dashboard"}
+            >
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-6 w-6 absolute top-3.5 left-6 md:right-1 transform rotate-90 mr-10`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+            </Link>
+            <div className="w-full h-[70vh] flex flex-col justify-center items-center">
+              <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-gray-200">
+                <h1 className="text-md md:text-2xl font-extrabold text-black px-2 py-4">
+                  Referral Code
+                </h1>
+                <p className="text-sm md:text-xl text-black font-normal word-wrap-break p-4 bg-white rounded-xl">
+                  {user.referral_code}
+                </p>
+              </div>
+              <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-gray-200">
+                <h1 className="text-md md:text-2xl font-extrabold text-black px-2 py-4">
+                  Referral Link
+                </h1>
+                <p className="text-sm md:text-xl text-black font-normal word-wrap-break p-4 bg-white rounded-xl">
+                  {user.referral_link}
+                </p>
               </div>
             </div>
-          ) : (
-            <div className="min-w-screen min-h-screen flex items-center justify-center">
-              <div className="spinner2"></div>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="w-screen h-screen flex justify-center items-center">
-          <h1>You are not authorized to access this page.</h1>
-          {/* Add a button or link to redirect the user to another page */}
-        </div>
-      )}
+          </div>
+        ) : (
+          <div className="min-w-screen min-h-screen flex items-center justify-center">
+            <div className="spinner2"></div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default Activities;
+export default ReferralDetails;

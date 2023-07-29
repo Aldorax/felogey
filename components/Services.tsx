@@ -6,22 +6,19 @@ import { faDotCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Services = () => {
   return (
-    <main className="flex min-w-screen min-h-[50vh] h-full flex-col items-start justify-start text-black bg-white">
-      <div className="flex min-w-screen w-full max-h-screen h-full flex-col items-center justify-start text-black bg-white">
+    <main className="flex min-w-screen min-h-[50vh] h-full flex-col items-start justify-start text-white bg-white bg-orange-800">
+      <div className="flex min-w-screen w-full max-h-screen h-full flex-col items-center justify-start text-white">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <AnimatedText
-            text="What our Agents recieve!"
-            className="md:mb-16 mb-4 pt-10"
-          />
+          <AnimatedText text="Our Agents!" className="" />
         </motion.div>
       </div>
-      <div className="p-4 md:p-10 text-lg md:text-2xl font-normal">
+      <div className="p-4 md:p-10 text-sm md:text-2xl font-normal">
         <div>
-          <div className="flex items-start  md:items-center gap-2">
+          <div className="flex items-start md:items-center gap-2">
             <FontAwesomeIcon icon={faDotCircle} />
             <p> All Agents will be trained for free</p>
           </div>
@@ -36,7 +33,12 @@ const Services = () => {
           </div>
           <br />
           <div className="flex items-start  md:items-center gap-2">
-            <FontAwesomeIcon icon={faDotCircle} />
+            <FontAwesomeIcon
+              icon={faDotCircle}
+              width={30}
+              height={30}
+              scale={10}
+            />
             <p>
               {" "}
               They will be paid daily stipidens for basic upkeep during the one
@@ -45,7 +47,12 @@ const Services = () => {
           </div>
           <br />
           <div className="flex items-start  md:items-center gap-2">
-            <FontAwesomeIcon icon={faDotCircle} />
+            <FontAwesomeIcon
+              icon={faDotCircle}
+              width={30}
+              height={30}
+              scale={10}
+            />
             <p>
               {" "}
               After a successful one month hands-on pratical probation
@@ -65,44 +72,18 @@ const Services = () => {
           </div>
           <br />
           <div className="flex items-start  md:items-center gap-2">
-            <FontAwesomeIcon icon={faDotCircle} />
+            <FontAwesomeIcon
+              icon={faDotCircle}
+              width={30}
+              height={30}
+              scale={10}
+            />
             <p>
               {" "}
               They will start repayment of the loan for 12 months after the
               first 3 months moratorium
             </p>
           </div>
-        </div>
-
-        <div className="flex min-w-screen w-full max-h-screen h-full flex-col items-center justify-start text-black bg-white">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <AnimatedText text="What We Require!" className="pt-10" />
-          </motion.div>
-        </div>
-      </div>
-      <div className="p-4 md:p-10 text-lg md:text-2xl font-normal">
-        <div className="flex items-start  md:items-center gap-2">
-          <FontAwesomeIcon icon={faDotCircle} />
-          <p>
-            {" "}
-            They will own their E-Naira/Regular POS buisness forthwith as AGENTS
-            in E-Networks Technologies Smart Agency Banking
-          </p>
-        </div>
-        <br />
-        <div className="flex items-start  md:items-center gap-2">
-          <FontAwesomeIcon icon={faDotCircle} />
-          <p>
-            {" "}
-            They will be required to procure their E-Networks Cash Card for
-            their Training at a cost of{" "}
-            <span className="font-bold">N1,500</span> only during enrollment and
-            registeration
-          </p>
         </div>
       </div>
     </main>

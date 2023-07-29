@@ -6,7 +6,7 @@ import router from "next/router";
 
 const LeftSide = () => {
   return (
-    <div className="min-w-0 max-w-0 md:min-w-[20vw] md:max-w-[30vw] h-0 md:min-h-screen text-transparent md:text-white">
+    <div className="min-w-0 max-w-0 md:min-w-[20vw] md:max-w-[30vw] h-0 max-h-0 md:min-h-screen text-transparent md:text-white">
       {/*  */}
       <div className="min-w-0 max-w-0 md:min-w-[20vw] md:max-w-[30vw] h-0 md:min-h-screen bg-green-800 p-0 md:p-5 items-center justify-center flex flex-col text-center fixed">
         <div className="flex flex-col w-full items-center justify-center">

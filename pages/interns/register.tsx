@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import httpClient from "@/components/charts/httpClient";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,6 +14,7 @@ interface RegisterRequest {
   first_name: string;
   last_name: string;
   phone_number: string;
+  profile_image: File | null; // Add the profile_image field as a File or null
 }
 
 interface ErrorResponse {
@@ -22,22 +23,20 @@ interface ErrorResponse {
 
 const MAX_IMAGE_SIZE_MB = 3;
 
-const ReferralRegisterPage = () => {
-  const router = useRouter();
-  const { referralCode } = router.query; // Access the referral code from the URL
+const RegisterPage: React.FC = () => {
+  const navigate = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  // const [loading, setLoading] = useState(false);
 
-  const handleRegister = async () => {
-    setIsLoading(true);
+  const registerUser = async () => {
+    setLoading(true); // Show the loader
 
     setTimeout(async () => {
       try {
@@ -46,7 +45,7 @@ const ReferralRegisterPage = () => {
           const fileSizeInMB = selectedImage.size / (1024 * 1024); // Convert to MB
           if (fileSizeInMB > MAX_IMAGE_SIZE_MB) {
             toast.error("Image size exceeds the maximum limit (3MB).");
-            setIsLoading(false); // Hide the loader
+            setLoading(false); // Hide the loader
             return;
           }
         }
@@ -61,36 +60,35 @@ const ReferralRegisterPage = () => {
           data.append("profile_image", selectedImage);
         }
 
-        // Replace the following with your registration form data
-
-        const response = await httpClient.post(
-          `https://enetworks.onrender.com/referral/${referralCode}`,
+        const resp = await httpClient.post(
+          // Replace "https://enetworks.onrender.com/intern/register" with your backend API endpoint
+          "https://enetworks.onrender.com/intern/register",
           data,
           {
             withCredentials: true,
           }
         );
 
-        const { otp } = response.data;
+        const { otp } = resp.data;
 
         // Save the access_token and otp to the local storage
         localStorage.setItem("otp", otp);
 
-        if ("error" in response.data) {
+        if ("error" in resp.data) {
           // Registration failed
-          const errorResponse: ErrorResponse = response.data;
+          const errorResponse: ErrorResponse = resp.data;
           toast.error(errorResponse.error);
         } else {
           // Registration successful
           toast.success("User registered successfully");
-          router.push("/interns/verify-email");
+          navigate.push("/interns/verify-email");
         }
       } catch (error) {
         console.log("An error occurred during registration");
         console.log(error);
         toast.error("An error occurred during registration");
       } finally {
-        setIsLoading(false); // Hide the loader after registration attempt
+        setLoading(false); // Hide the loader after registration attempt
       }
     }, 2000);
   };
@@ -190,7 +188,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Email:"
                   type="email"
                   value={email}
@@ -202,7 +200,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Password:"
                   type="password"
                   value={password}
@@ -214,7 +212,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Phone Number:"
                   type="text"
                   value={phoneNumber}
@@ -226,7 +224,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Full Name:"
                   type="text"
                   value={firstName}
@@ -238,7 +236,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Last Name:"
                   type="text"
                   value={lastName}
@@ -250,12 +248,12 @@ const ReferralRegisterPage = () => {
               </div>
               <button
                 type="button"
-                onClick={() => !isLoading && handleRegister()} // Prevent multiple clicks while loading
-                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[90vw] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
-                  isLoading ? "cursor-not-allowed" : ""
+                onClick={() => !loading && registerUser()} // Prevent multiple clicks while loading
+                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
+                  loading ? "cursor-not-allowed" : ""
                 }`}
               >
-                {isLoading ? <div className="spinner"></div> : "Submit"}
+                {loading ? <div className="spinner"></div> : "Submit"}
               </button>
             </form>
             <p className="text-center">
@@ -273,4 +271,5 @@ const ReferralRegisterPage = () => {
   );
 };
 
-export default ReferralRegisterPage;
+export default RegisterPage;
+// export default register;
