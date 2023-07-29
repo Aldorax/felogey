@@ -6,7 +6,7 @@ import { faDotCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Services = () => {
   return (
-    <main className="flex min-w-screen min-h-[50vh] h-full flex-col items-start justify-start text-white bg-white bg-orange-800">
+    <main className="flex min-w-screen min-h-[50vh] h-full flex-col items-start justify-start text-white bg-orange-800">
       <div className="flex min-w-screen w-full max-h-screen h-full flex-col items-center justify-start text-white">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
