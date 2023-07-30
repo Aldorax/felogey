@@ -172,7 +172,7 @@ const RegisterPage: React.FC = () => {
                   onChange={handleImageChange}
                   id="profileImage"
                   title="profileImage"
-                  className="p-5 max-w-40 max-h-40 bg-green-800 rounded-md text-sm"
+                  className="p-5 max-w-40 max-h-40 bg-green-600 rounded-md text-sm"
                   placeholder="Upload"
                 />
                 {imagePreview && (
@@ -249,7 +249,7 @@ const RegisterPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => !loading && registerUser()} // Prevent multiple clicks while loading
-                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
+                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-600 rounded-xl my-4 text-white ${
                   loading ? "cursor-not-allowed" : ""
                 }`}
               >

@@ -87,7 +87,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
   };
 
   const refresh = () => {
-    window.location.href = "/user/dashboard";
+    window.location.href = "/interns/dashboard";
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,7 +110,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
             }
             return null;
           });
-          window.location.href = "/user/dashboard";
+          window.location.href = "/interns/dashboard";
         })
         .catch((error) => {
           console.log(error);

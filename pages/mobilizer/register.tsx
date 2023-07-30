@@ -172,8 +172,7 @@ const RegisterPage: React.FC = () => {
                   onChange={handleImageChange}
                   id="profileImage"
                   title="profileImage"
-                  className="p-5 max-w-40 max-h-40 bg-green-800 rounded-md text-sm"
-                  placeholder="Upload"
+                  className="p-5 max-w-40 max-h-20 bg-green-800 rounded-md text-sm text-white flex flex-col"
                 />
                 {imagePreview && (
                   <div className="mt-2">
@@ -186,7 +185,7 @@ const RegisterPage: React.FC = () => {
                 )}
               </div>
               <div className="p-1 md:p-2">
-                <label className="text-md font-bold text-black"></label>
+                <label className="text-md font-bold text-black">e</label>
                 <input
                   className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Email:"

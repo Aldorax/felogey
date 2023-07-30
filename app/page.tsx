@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Footer from "@/components/Footer";
 import Howto from "@/components/Howto";
-import Require from "@/components/Require";
+// import Require from "@/components/Require";
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
           <Hero />
           <Howto />
           <Services />
-          <Require />
+          {/* <Require /> */}
           <Footer />
         </div>
       </main>

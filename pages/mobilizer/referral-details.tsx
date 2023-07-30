@@ -78,7 +78,7 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
   };
 
   const refresh = () => {
-    window.location.href = "/user/dashboard";
+    window.location.href = "/mobilizer/dashboard";
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +101,7 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
             }
             return null;
           });
-          window.location.href = "/user/dashboard";
+          window.location.href = "/mobilizer/dashboard";
         })
         .catch((error) => {
           console.log(error);
