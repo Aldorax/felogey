@@ -81,7 +81,7 @@ const RegisterPage: React.FC = () => {
         } else {
           // Registration successful
           toast.success("User registered successfully");
-          navigate.push("/interns/verify-email");
+          navigate.push("/interns/login");
         }
       } catch (error) {
         console.log("An error occurred during registration");
