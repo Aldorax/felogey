@@ -12,14 +12,14 @@ import LeftSide from "@/components/LeftSide";
 import axios from "axios";
 import "@/app/globals.css";
 
+export const metadata: Metadata = {
+  title: "Referral Details Page",
+  description: "Want to make a referral, click and share your referral code",
+};
+
 interface DashoardProps {
   user: User;
 }
-
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "User dashboard",
-};
 
 const ReferralDetails: React.FC<DashoardProps> = ({}) => {
   const navigate = useRouter();

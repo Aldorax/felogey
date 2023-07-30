@@ -1,14 +1,14 @@
 import React from "react";
 import AnimatedText from "./AnimatedText";
 import Link from "next/link";
+import Logo from "@/public/images/home.jpg";
+import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="min-h-[45vh] max-h-[94vh] min-w-screen max-w-screen flex flex-col justify-center items-start bg-white">
-      <AnimatedText
-        text="1 Million E-NAIRA AND REGULAR P.O.S AGENT INTERNS NEEDED URGENTLY"
-        className="md:mb-16 mb-1 text-black p-2"
-      />
+    <div className="min-h-[45vh] max-h-[94vh] min-w-screen max-w-screen flex flex-col justify-center items-start bg-white mt-[4.5vh] md:mt-[10vh]">
+      <Image src={Logo} alt="p" />
+
       <div className="flex p-3 items-center">
         <Link
           href={"/interns/register"}

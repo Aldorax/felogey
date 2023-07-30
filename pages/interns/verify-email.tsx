@@ -9,12 +9,11 @@ import { useRouter } from "next/router";
 import type { Metadata } from "next";
 import { AxiosRequestConfig } from "axios";
 
-// ... rest of the code
-
 export const metadata: Metadata = {
-  title: "Verify your Email",
-  description: "Enter your Otp and verify your email to activate your account",
+  title: "Email Verification",
+  description: "Verify your email to activate your account",
 };
+
 interface RegisterRequest {
   otp: string;
 }

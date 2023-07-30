@@ -14,7 +14,6 @@ import {
 import { ReferredUser, User } from "@/app/types";
 import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
-import type { Metadata } from "next";
 // import Header from "@/components/header";
 import Link from "next/link";
 import router from "next/router";
@@ -24,15 +23,16 @@ import LeftSide from "@/components/LeftSide";
 import axios from "axios";
 import "@/app/globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "E-networks Intern Dashboard Page",
+  description: "View your user information",
+};
 
 interface DashoardProps {
   user: User;
 }
-
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "User dashboard",
-};
 
 const Dashboard: React.FC<DashoardProps> = ({}) => {
   const navigate = useRouter();

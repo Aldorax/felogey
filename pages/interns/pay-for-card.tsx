@@ -4,6 +4,12 @@ import "@/app/globals.css";
 import { useRouter } from "next/router";
 import { ToastContainer } from "react-toastify";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "E-networks Intern DIGITAL CARD purchase",
+  description: "Get your Digital Card to complete your registration process",
+};
 
 const PaymentButton = () => {
   const navigate = useRouter();

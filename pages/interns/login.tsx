@@ -11,8 +11,8 @@ import Header from "@/components/header";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Login to your account",
-  description: "Enter your detaila and log inato your account",
+  title: "E-networks Intern Login Page",
+  description: "Login to view your data from your dashboard",
 };
 
 interface ErrorResponse {

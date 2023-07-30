@@ -7,6 +7,13 @@ import "@/app/globals.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "@/components/header";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "E-networks Intern Registration Page",
+  description:
+    "Create an account and become an intern of E-networks Technologies",
+};
 
 interface RegisterRequest {
   email: string;
