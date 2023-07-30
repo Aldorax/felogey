@@ -175,9 +175,8 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                 <div className="flex flex-col w-full">
                   <Link
                     className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-green-300 text-black rounded-2xl mt-3 px-3 py-6 relative w-full"
-                    href={"/mobilizer/dashboard"}
+                    href={"/interns/dashboard"}
                   >
-                    <FontAwesomeIcon icon={faPerson} />
                     <div>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -195,6 +194,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                       </svg>
                     </div>
                   </Link>
+                  d
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-start justify-start bg-white text-black rounded-2xl mt-3 p-3 relative">
                     <div>
                       <h3 className="text-sm md:text-3xl mb-2">
@@ -235,7 +235,6 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                   </li>
                 ))}
               </ul>
-              <h2 className="text-black">Hello</h2>
             </div>
           ) : (
             <div className="min-w-screen min-h-screen flex items-center justify-center">
@@ -245,7 +244,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
         </div>
       ) : (
         <div className="w-screen h-screen flex justify-center items-center">
-          <h1>You are not authorized to access this page.</h1>
+          <div className="spinner2">Loading</div>
           {/* Add a button or link to redirect the user to another page */}
         </div>
       )}

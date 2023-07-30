@@ -185,7 +185,7 @@ const RegisterPage: React.FC = () => {
                 )}
               </div>
               <div className="p-1 md:p-2">
-                <label className="text-md font-bold text-black">e</label>
+                <label className="text-md font-bold text-black"></label>
                 <input
                   className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Email:"
