@@ -15,8 +15,8 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-center">
         <div className="mt-10 text-black">
           <Hero />
-          <Howto />
           <Services />
+          <Howto />
           {/* <Require /> */}
           <Footer />
         </div>
