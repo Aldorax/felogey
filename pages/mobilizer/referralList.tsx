@@ -175,7 +175,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                 <div className="flex flex-col w-full">
                   <Link
                     className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-green-300 text-black rounded-2xl mt-3 px-3 py-6 relative w-full"
-                    href={"/interns/dashboard"}
+                    href={"/mobilizer/dashboard"}
                   >
                     <div>
                       <svg
