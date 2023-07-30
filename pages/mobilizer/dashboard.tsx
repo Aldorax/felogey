@@ -12,6 +12,12 @@ import image from "@/app/favicon.ico";
 import LeftSide from "@/components/LeftSide";
 import axios from "axios";
 import "@/app/globals.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBell,
+  faPeopleArrows,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface DashoardProps {
   user: User;
@@ -233,19 +239,33 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex flex-grow flex-grow-1 flex-wrap items-start justify-start bg-white text-black rounded-2xl mt-3 p-3 relative">
-                    <div>
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative">
+                    <FontAwesomeIcon
+                      icon={faPeopleArrows}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
                       <h3 className="text-sm md:text-3xl mb-2">
                         Total Interns referred
                       </h3>
-                      <h4>10</h4>
+                      <div className="flex gap-2 items-center">
+                        <h4>{user.total_referred_users}</h4>
+                      </div>
                     </div>
                   </div>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-start justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
                     href={"/mobilizer/referral-details"}
                   >
-                    <div>
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
                       <h3 className="text-sm md:text-3xl mb-2">Referral</h3>
                       <h1 className="font-normal text-sm">
                         Invite Interns to register
@@ -267,10 +287,16 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </svg>
                   </Link>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-start justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
-                    href={"/mobilizer/referralList"}
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
+                    href={"/interns/referralList"}
                   >
-                    <div>
+                    <FontAwesomeIcon
+                      icon={faBell}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
                       <h3 className="text-sm md:text-3xl mb-2">
                         Referral History
                       </h3>
