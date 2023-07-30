@@ -288,7 +288,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                   </Link>
                   <Link
                     className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
-                    href={"/interns/referralList"}
+                    href={"/mobilizer/referralList"}
                   >
                     <FontAwesomeIcon
                       icon={faBell}
