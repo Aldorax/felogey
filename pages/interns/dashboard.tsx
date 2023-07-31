@@ -65,8 +65,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          // "https://enetworks.onrender.com/dashboard",
-          "https://enetworks.onrender.com/dashboard",
+          // "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -88,7 +88,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
     // Make the logout request
     const resp = await httpClient.post(
-      "https://enetworks.onrender.com/logout",
+      "https://enetworks-tovimikailu.koyeb.app/logout",
       {
         withCredentials: true, // Include cookies in the request
       }
@@ -132,11 +132,15 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
       formData.append("profile_image", file); // Use the correct field name "profile_image"
 
       httpClient
-        .post("https://enetworks.onrender.com/update_profile_image", formData, {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
+        .post(
+          "https://enetworks-tovimikailu.koyeb.app/update_profile_image",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
+        )
         .then((response) => {
           setUser((prevUser) => {
             if (prevUser) {
@@ -161,8 +165,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        // "https://enetworks.onrender.com/pay/",
-        "https://enetworks.onrender.com/pay/",
+        // "https://enetworks-tovimikailu.koyeb.app/pay/",
+        "https://enetworks-tovimikailu.koyeb.app/pay/",
         {},
         {
           headers: {
@@ -216,8 +220,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       ) : (
                         <div className="mx-4 my-auto">
                           <img
-                            src={`https://enetworks.onrender.com/profile_images/${user.profile_image}`}
-                            // src={`https://enetworks.onrender.com/profile_images/${user.profile_image}`}
+                            src={`https://enetworks-tovimikailu.koyeb.app/profile_images/${user.profile_image}`}
+                            // src={`https://enetworks-tovimikailu.koyeb.app/profile_images/${user.profile_image}`}
                             alt="Profile"
                             className="md:h-full md:w-full h-[50px] w-[50px] md:mx-auto md:rounded-2xl rounded-full"
                           />

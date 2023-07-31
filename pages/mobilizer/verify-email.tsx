@@ -41,7 +41,7 @@ const VerifyEmail: React.FC = () => {
     setTimeout(async () => {
       try {
         const accessToken = localStorage.getItem("access_token");
-        const otp = localStorage.getItem("otp");
+        // const otp = localStorage.getItem("otp");
         const headers: AxiosRequestConfig["headers"] = {
           "Content-Type": "application/x-www-form-urlencoded",
         };
@@ -49,12 +49,13 @@ const VerifyEmail: React.FC = () => {
         if (accessToken) {
           headers["Authorization"] = `Bearer ${accessToken}`;
         }
-        const data = { otp };
+        const data = new FormData();
+        data.append("otp", otp);
         console.log(data);
 
         const resp = await httpClient.post(
-          // "https://enetworks.onrender.com/verify-email",
-          "https://enetworks.onrender.com/verify-email",
+          "https://enetworks-tovimikailu.koyeb.app/verify-email",
+          // "http://localhost:5000/verify-email",
           data,
           {
             headers: headers,
@@ -95,7 +96,8 @@ const VerifyEmail: React.FC = () => {
       ] = `Bearer ${accessToken}`;
 
       await httpClient.post(
-        "https://enetworks.onrender.com/resend-otp",
+        "https://enetworks-tovimikailu.koyeb.app/resend-otp",
+        // "http://localhost:5000/resend-otp",
         {},
         {
           headers: headers,

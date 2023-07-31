@@ -12,10 +12,10 @@ const Footer = () => {
             <b>Enquires</b>: 08128880362
           </p>
           <p>
-            <b>Orientation Starts</b>: 28th - 29th July, 2023
+            <b>Orientation Starts</b>: Ongoing
           </p>
           <p>
-            <b>First Batch Training Starts</b>: 4th - 5th August, 2023
+            <b>First Batch Training Starts</b>: Ongoing
           </p>
         </div>
       </div>

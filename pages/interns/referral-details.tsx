@@ -44,8 +44,8 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          //   "https://enetworks.onrender.com/dashboard",
-          "https://enetworks.onrender.com/dashboard",
+          //   "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -67,7 +67,7 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
 
     // Make the logout request
     const resp = await httpClient.post(
-      "https://enetworks.onrender.com/logout",
+      "https://enetworks-tovimikailu.koyeb.app/logout",
       {
         withCredentials: true, // Include cookies in the request
       }
@@ -89,11 +89,15 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
       formData.append("profile_image", file); // Use the correct field name "profile_image"
 
       httpClient
-        .post("https://enetworks.onrender.com/update_profile_image", formData, {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
+        .post(
+          "https://enetworks-tovimikailu.koyeb.app/update_profile_image",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
+        )
         .then((response) => {
           setUser((prevUser) => {
             if (prevUser) {
@@ -118,7 +122,7 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        "https://enetworks.onrender.com/pay/",
+        "https://enetworks-tovimikailu.koyeb.app/pay/",
         {},
         {
           headers: {
@@ -164,7 +168,7 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
               </div>
             </Link>
             <div className="w-full h-[70vh] flex flex-col justify-center items-center">
-              <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-gray-200">
+              <div className="md:p-5 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-gray-200">
                 <h1 className="text-md md:text-2xl font-extrabold text-black px-2 py-4">
                   Referral Code
                 </h1>
@@ -172,7 +176,7 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
                   {user.referral_code}
                 </p>
               </div>
-              <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-gray-200">
+              <div className="md:p-5 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-gray-200">
                 <h1 className="text-md md:text-2xl font-extrabold text-black px-2 py-4">
                   Referral Link
                 </h1>

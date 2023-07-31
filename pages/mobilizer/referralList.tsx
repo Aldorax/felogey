@@ -55,8 +55,8 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          // "https://enetworks.onrender.com/dashboard",
-          "https://enetworks.onrender.com/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          // "http://localhost:5000/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -78,7 +78,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
 
     // Make the logout request
     const resp = await httpClient.post(
-      "https://enetworks.onrender.com/logout",
+      "https://enetworks-tovimikailu.koyeb.app/logout",
       {
         withCredentials: true, // Include cookies in the request
       }
@@ -98,7 +98,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
     if (user && !isEmailVerified) {
       navigate.push(
         // "https://www.enetworksagencybanking.com.ng/mobilizer/verify-email"
-        "https://enetworksagencybanking.com.ng/mobilizer/verify-email"
+        "http://localhost:3000/mobilizer/verify-email"
       );
     }
   }, [user, isEmailVerified, navigate]);
@@ -111,11 +111,15 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
       formData.append("profile_image", file); // Use the correct field name "profile_image"
 
       httpClient
-        .post("https://enetworks.onrender.com/update_profile_image", formData, {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
+        .post(
+          "https://enetworks-tovimikailu.koyeb.app/update_profile_image",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
+        )
         .then((response) => {
           setUser((prevUser) => {
             if (prevUser) {
@@ -140,8 +144,8 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        // "https://enetworks.onrender.com/pay/",
-        "https://enetworks.onrender.com/pay/",
+        // "https://enetworks-tovimikailu.koyeb.app/pay/",
+        "https://enetworks-tovimikailu.koyeb.app/pay/",
         {},
         {
           headers: {
@@ -244,8 +248,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
         </div>
       ) : (
         <div className="w-screen h-screen flex justify-center items-center">
-          <div className="spinner2">Loading</div>
-          {/* Add a button or link to redirect the user to another page */}
+          <div className="spinner2"></div>
         </div>
       )}
     </div>

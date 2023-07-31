@@ -68,8 +68,8 @@ const RegisterPage: React.FC = () => {
         }
 
         const resp = await httpClient.post(
-          // Replace "https://enetworks.onrender.com/intern/register" with your backend API endpoint
-          "https://enetworks.onrender.com/intern/register",
+          // Replace "https://enetworks-tovimikailu.koyeb.app/intern/register" with your backend API endpoint
+          "https://enetworks-tovimikailu.koyeb.app/intern/register",
           data,
           {
             withCredentials: true,
@@ -137,7 +137,7 @@ const RegisterPage: React.FC = () => {
 
         // Now you can use formData to send the image to the backend
         await httpClient.post(
-          "https://enetworks.onrender.com/update_profile_image",
+          "https://enetworks-tovimikailu.koyeb.app/update_profile_image",
           formData,
           {
             withCredentials: true,

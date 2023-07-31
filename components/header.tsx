@@ -73,7 +73,7 @@ const Header = () => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          "https://enetworks.onrender.com/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -95,7 +95,7 @@ const Header = () => {
 
     // Make the logout request
     const resp = await httpClient.post(
-      "https://enetworks.onrender.com/logout",
+      "https://enetworks-tovimikailu.koyeb.app/logout",
       {
         withCredentials: true, // Include cookies in the request
       }
@@ -122,7 +122,7 @@ const Header = () => {
         <div className="relative">
           <button
             onClick={toggleDropdown}
-            className="mx-6 min-w-full max-w-[40vw] rounded-xl text-black my-2 flex gap-3 items-center justify-between text-black"
+            className="mx-6 min-w-full max-w-[40vw] rounded-xl my-2 flex gap-3 items-center justify-between text-black"
           >
             <h1 className="text-black">Menu</h1>
             <svg

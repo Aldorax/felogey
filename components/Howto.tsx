@@ -13,7 +13,7 @@ const Howto = () => {
           <li>
             Click the{" "}
             <i>
-              <span className="font-semibold bg-orange-600 p-1">Account</span>
+              <span className="font-semibold bg-orange-600 p-1">Menu</span>
             </i>{" "}
             on the top corner of the screen.
           </li>
@@ -21,15 +21,15 @@ const Howto = () => {
           <li>
             Click on register as{" "}
             <i>
-              <span className="font-semibold bg-orange-600 p-1">Intern</span>
+              <span className="font-semibold bg-orange-600 p-1">an Intern</span>
             </i>
           </li>
-          <li>You will be redirected to a register page.</li>
+          <li>You will be redirected to a the Intern Registration page.</li>
           <li>
             Fill the details in and upload your profile image. (
             <span className="font-semibold">
               NOTE: Profile Image should be an image of yourself only! Any other
-              Image can cause your acccount to be flagged or permanently removed
+              image can cause your acccount to be flagged or permanently removed
             </span>
             ).
           </li>
@@ -38,20 +38,20 @@ const Howto = () => {
             <i className="font-semibold bg-orange-600 p-1">Login </i>
             page.
           </li>
-          <li>Put the details used during register and log in.</li>
+          <li>Input the details used during registration and log in.</li>
           <li>
             You will be redirected to verify your account, check your email for
-            your mail.{" "}
+            your Otp.{" "}
             <span className="font-semibold">
-              (If you do not see the emial, check your spam for the mail. It
+              (If you do not see the email, check your spam for the email. It
               could be there.).
             </span>
           </li>
-          <li>Copy the verification code and verify your account.</li>
+          <li>Copy the OTP code and verify your account.</li>
           <li>
             You will be taken to a checkout page to pay for your{" "}
             <span className="font-bold bg-orange-600 p-1">
-              E-Networks Digital card.
+              E-Networks Digital cash card.
             </span>
           </li>
           <li>

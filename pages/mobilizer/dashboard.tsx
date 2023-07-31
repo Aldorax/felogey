@@ -15,6 +15,8 @@ import "@/app/globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,
+  faDollar,
+  faMoneyBill,
   faPeopleArrows,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
@@ -59,8 +61,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          // "https://enetworks.onrender.com/dashboard",
-          "https://enetworks.onrender.com/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          // "http://localhost:5000/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -82,7 +84,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
     // Make the logout request
     const resp = await httpClient.post(
-      "https://enetworks.onrender.com/logout",
+      "https://enetworks-tovimikailu.koyeb.app/logout",
       {
         withCredentials: true, // Include cookies in the request
       }
@@ -115,11 +117,15 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
       formData.append("profile_image", file); // Use the correct field name "profile_image"
 
       httpClient
-        .post("https://enetworks.onrender.com/update_profile_image", formData, {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
+        .post(
+          "https://enetworks-tovimikailu.koyeb.app/update_profile_image",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
+        )
         .then((response) => {
           setUser((prevUser) => {
             if (prevUser) {
@@ -144,8 +150,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        // "https://enetworks.onrender.com/pay/",
-        "https://enetworks.onrender.com/pay/",
+        "https://enetworks-tovimikailu.koyeb.app/pay/",
+        // "http://localhost:5000/pay/",
         {},
         {
           headers: {
@@ -167,7 +173,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   return (
     <div className="max-w-screen overflow-x-hidden">
       {isUserMobilizer ? (
-        <div className="min-h-screen h-auto max-w-screen bg-gray-100">
+        <div className="min-h-screen h-auto max-w-screen bg-orange-500">
           {user ? (
             <div className="flex">
               <div className="hidden">
@@ -175,7 +181,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
               </div>
               {/*  */}
               <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
-              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-full">
+              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-orange-500 max-w-screen md:max-w-[80vw] min-h-full">
                 <div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mt-20 md:mb-10 w-full h-auto my-auto">
                   <div className="md:max-w-[500px] w-full h-auto flex md:flex-row items-center pb-3 ">
                     <div className="flex items-center">
@@ -199,8 +205,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       ) : (
                         <div className="mx-4 my-auto">
                           <img
-                            src={`https://enetworks.onrender.com/profile_images/${user.profile_image}`}
-                            // src={`https://enetworks.onrender.com/profile_images/${user.profile_image}`}
+                            // src={`http://localhost:5000/profile_images/${user.profile_image}`}
+                            src={`https://enetworks-tovimikailu.koyeb.app/profile_images/${user.profile_image}`}
                             alt="Profile"
                             className="md:h-full md:w-full h-[50px] w-[50px] md:mx-auto md:rounded-2xl rounded-full"
                           />
@@ -211,7 +217,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                           <p className="text-sm md:text-xl text-black font-semibold">
                             {user.first_name}
                           </p>
-                          <div className="text-[8px] p-1 bg-green-500 font-bold rounded-md text-white ml-2">
+                          <div className="text-[8px] p-1 bg-blue-500 rounded-md text-white ml-2">
                             Activated
                           </div>
                         </div>
@@ -222,24 +228,24 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                 </div>
                 <div className="flex flex-col w-full">
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl">
-                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
-                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-bold text-black">
+                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-blue-500 text-white">
+                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-bold">
                         Full Name
                       </h1>
-                      <p className="text-sm md:text-xl text-black font-normal">
+                      <p className="text-sm md:text-xl font-normal">
                         {user.first_name} {user.last_name}
                       </p>
                     </div>
-                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3">
-                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-bold text-black">
+                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-blue-500 text-white">
+                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-bold ">
                         Phone Number
                       </h1>
-                      <p className="text-sm md:text-xl text-black font-normal">
+                      <p className="text-sm md:text-xl font-normal">
                         {user.phone_number}
                       </p>
                     </div>
                   </div>
-                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative">
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-500 rounded-2xl mt-3 p-3 relative">
                     <FontAwesomeIcon
                       icon={faPeopleArrows}
                       width={50}
@@ -256,7 +262,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                   </div>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-500 rounded-2xl mt-3 p-3 relative"
                     href={"/mobilizer/referral-details"}
                   >
                     <FontAwesomeIcon
@@ -273,7 +279,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`h-6 w-6 absolute top-6 right-10 md:right-1 transform -rotate-90`}
+                      className={`h-4 w-4 absolute top-3 md:top-6 right-10 md:right-1 transform -rotate-90`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -287,7 +293,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </svg>
                   </Link>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-500 rounded-2xl mt-3 p-3 relative"
                     href={"/mobilizer/referralList"}
                   >
                     <FontAwesomeIcon
@@ -304,7 +310,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`h-6 w-6 absolute top-6 right-10 md:right-1 transform -rotate-90`}
+                      className={`h-4 w-4 absolute top-4 md:top-6 right-10 md:right-1 transform -rotate-90`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -318,11 +324,90 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </svg>
                   </Link>
                 </div>
+                <div className="w-full bg-white h-full text-sm text-black mt-3 rounded-2xl">
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl">
+                    {user.has_paid === "True" ? (
+                      <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl p-3">
+                        <FontAwesomeIcon
+                          icon={faMoneyBill}
+                          width={50}
+                          height={50}
+                          scale={10}
+                        />
+                        <div className="mx-3">
+                          <h3 className="text-sm md:text-3xl mb-2">
+                            Paid for Cash Card
+                          </h3>
+                          <h1 className="font-normal text-sm">Yes</h1>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <h1 className="font-bold text-lg underline underline-offset-8">
+                          Notice
+                        </h1>
+                        <br />
+                        <div>
+                          <h1>
+                            Dear <b>MOBILIZER</b>,
+                          </h1>
+                          <br />
+                          <p>
+                            Please be informed that you will be <b>required</b>{" "}
+                            to access your{" "}
+                            <b>
+                              PROVISIONAL BENEFITS AND STATUS AS AN AGGREGATOR
+                            </b>{" "}
+                            as a result of your mobilising for the internship
+                            program with your <b>E-NETWORKS CASH CARD NUMBER</b>
+                            . Ensure that you have one but if you do not have,
+                            Click the button below to pay and book for it.
+                          </p>
+                          {paymentUrl ? (
+                            <a
+                              href={paymentUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <button
+                                type="button"
+                                onClick={() => !loading} // Prevent multiple clicks while loading
+                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-1 bg-green-600 ${
+                                  loading ? "cursor-not-allowed" : ""
+                                }`}
+                              >
+                                {loading ? (
+                                  <div className="spinner"></div>
+                                ) : (
+                                  "Proceed"
+                                )}
+                              </button>
+                            </a>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => !loading && handlePayment()} // Prevent multiple clicks while loading
+                              className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-green-600 ${
+                                loading ? "cursor-not-allowed" : ""
+                              }`}
+                            >
+                              {loading ? (
+                                <div className="spinner"></div>
+                              ) : (
+                                "Make Payment"
+                              )}
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <div className="mt-4">
                   <button
                     type="button"
                     onClick={logoutUser}
-                    className="px-3 py-3 my-auto md:px-8 md:py-3 rounded-lg text-white uppercase bg-green-500 mx-1 md:mx-3 text-sm md:text-current font-bolsemibold"
+                    className="min-w-[100px] px-3 py-2 my-auto md:px-8 md:py-3 rounded-lg text-white uppercase bg-blue-600 mx-1 md:mx-3 text-sm md:text-current font-semibold"
                   >
                     Logout
                   </button>
@@ -337,7 +422,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         </div>
       ) : (
         <div className="w-screen h-screen flex justify-center items-center">
-          <h1>You are not authorized to access this page.</h1>
+          <div className="spinner2"></div>
           {/* Add a button or link to redirect the user to another page */}
         </div>
       )}

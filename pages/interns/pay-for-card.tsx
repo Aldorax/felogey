@@ -21,8 +21,8 @@ const PaymentButton = () => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        // "https://enetworks.onrender.com/pay/",
-        "https://enetworks.onrender.com/pay/",
+        // "https://enetworks-tovimikailu.koyeb.app/pay/",
+        "https://enetworks-tovimikailu.koyeb.app/pay/",
         {},
         {
           headers: {
