@@ -147,7 +147,7 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
         {user ? (
           <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-auto">
             <Link
-              className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-green-300 text-black rounded-2xl mt-3 px-3 py-6 relative w-full"
+              className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-blue-500 text-black rounded-2xl mt-3 px-3 py-6 relative w-full"
               href={"/mobilizer/dashboard"}
             >
               <div>
@@ -168,19 +168,19 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
               </div>
             </Link>
             <div className="w-full h-[70vh] flex flex-col justify-center items-center">
-              <div className="md:p-5 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-gray-200">
-                <h1 className="text-md md:text-2xl font-extrabold text-black px-2 py-4">
+              <div className="md:p-5 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-blue-500">
+                <h1 className="text-md md:text-2xl font-extrabold text-white px-2 py-4">
                   Referral Code
                 </h1>
-                <p className="text-sm md:text-xl text-black font-normal word-wrap-break p-4 bg-white rounded-xl">
+                <p className="text-sm md:text-xl text-white font-semibold word-wrap-break p-4 bg-blue-400 rounded-xl">
                   {user.referral_code}
                 </p>
               </div>
-              <div className="md:p-5 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-gray-200">
-                <h1 className="text-md md:text-2xl font-extrabold text-black px-2 py-4">
+              <div className="md:p-5 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-blue-500">
+                <h1 className="text-md md:text-2xl font-extrabold text-white px-2 py-4">
                   Referral Link
                 </h1>
-                <p className="text-sm md:text-xl text-black font-normal word-wrap-break p-4 bg-white rounded-xl">
+                <p className="text-sm md:text-xl text-white font-semibold word-wrap-break p-4 bg-blue-400 rounded-xl">
                   {user.referral_link}
                 </p>
               </div>

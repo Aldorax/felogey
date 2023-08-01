@@ -63,6 +63,7 @@ const RegisterPage: React.FC = () => {
         const resp = await httpClient.post(
           // Replace "https://enetworks-tovimikailu.koyeb.app/mobilizer/register" with your backend API endpoint
           "https://enetworks-tovimikailu.koyeb.app/mobilizer/register",
+          // "http://localhost:5000/mobilizer/register",
           data,
           {
             withCredentials: true,
@@ -119,67 +120,38 @@ const RegisterPage: React.FC = () => {
     setSelectedImage(file);
   };
 
-  const handleImageUpload = async () => {
-    const access_token = localStorage.getItem("access_token");
-    if (selectedImage) {
-      try {
-        // Perform the image upload using httpClient or any other method you have
-        // For example:
-        const formData = new FormData();
-        formData.append("profile_image", selectedImage);
-
-        // Now you can use formData to send the image to the backend
-        await httpClient.post(
-          "https://enetworks-tovimikailu.koyeb.app/update_profile_image",
-          formData,
-          {
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-            },
-          }
-        );
-
-        // Handle success after image upload
-        toast.success("Profile image uploaded successfully");
-      } catch (error) {
-        console.log("An error occurred during image upload");
-        console.log(error);
-        toast.error("An error occurred during image upload");
-      }
-    } else {
-      // Handle the case when no image is selected
-      toast.error("Please select an image to upload.");
-    }
-  };
-
   return (
     <main className="flex flex-col md:flex-row min-h-screen min-w-screen items-center justify-center bg-white">
       <Header />
       <div className="flex items-center justify-center">
         <div className="flex flex-col justify-center items-center mx-auto border border-white text-black bg-white mt-20 mb-5">
           <div>
-            <h1 className="px-3 text-4xl font-bold mb-2">Hello!</h1>
-            <p className="px-3 text-lg font-normal mb-4">
-              Sign Up to Get Started
+            <h1 className="px-3 text-3xl font-bold mb-2">Hello!</h1>
+            <p className="px-3 text-lg mb-4 font-semibold">
+              Sign Up to become a mobilizer!
             </p>
             <form className="flex flex-col justify-center md:items-start items-center p-2 min-w-screen">
               <div className="p-1 md:p-2 flex flex-col items-center justify-center">
-                <label className="text-md font-bold text-black"></label>
+                <label
+                  htmlFor="profileImage"
+                  className="cursor-pointer text-md font-bold bg-blue-500 px-3 py-4 rounded-xl text-white min-w-[80vw] md:min-w-[400px] text-center"
+                >
+                  Upload Passport Photograph
+                </label>
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
                   id="profileImage"
                   title="profileImage"
-                  className="p-5 max-w-40 max-h-20 bg-green-800 rounded-md text-sm text-white flex flex-col"
+                  className="hidden p-5"
                 />
                 {imagePreview && (
                   <div className="mt-2">
                     <img
                       src={imagePreview}
                       alt="Profile Preview"
-                      className="max-h-40 mx-auto"
+                      className="max-h-40 max-w-40 mx-auto"
                     />
                   </div>
                 )}
@@ -248,7 +220,7 @@ const RegisterPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => !loading && registerUser()} // Prevent multiple clicks while loading
-                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
+                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-blue-500 rounded-xl my-4 text-white font-semibold ${
                   loading ? "cursor-not-allowed" : ""
                 }`}
               >

@@ -220,8 +220,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       ) : (
                         <div className="mx-4 my-auto">
                           <img
-                            src={`https://enetworks-tovimikailu.koyeb.app/profile_images/${user.profile_image}`}
-                            // src={`https://enetworks-tovimikailu.koyeb.app/profile_images/${user.profile_image}`}
+                            src={user.profile_image}
                             alt="Profile"
                             className="md:h-full md:w-full h-[50px] w-[50px] md:mx-auto md:rounded-2xl rounded-full"
                           />

@@ -64,7 +64,8 @@ const ReferralRegisterPage = () => {
         // Replace the following with your registration form data
 
         const response = await httpClient.post(
-          `https://enetworks.onrender.com/referral/${referralCode}`,
+          `https://enetworks-tovimikailu.koyeb.app/referral/${referralCode}`,
+          // `http://localhost:5000/referral/${referralCode}`,
           data,
           {
             withCredentials: true,
@@ -121,68 +122,38 @@ const ReferralRegisterPage = () => {
     setSelectedImage(file);
   };
 
-  const handleImageUpload = async () => {
-    const access_token = localStorage.getItem("access_token");
-    if (selectedImage) {
-      try {
-        // Perform the image upload using httpClient or any other method you have
-        // For example:
-        const formData = new FormData();
-        formData.append("profile_image", selectedImage);
-
-        // Now you can use formData to send the image to the backend
-        await httpClient.post(
-          "https://enetworks.onrender.com/update_profile_image",
-          formData,
-          {
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-            },
-          }
-        );
-
-        // Handle success after image upload
-        toast.success("Profile image uploaded successfully");
-      } catch (error) {
-        console.log("An error occurred during image upload");
-        console.log(error);
-        toast.error("An error occurred during image upload");
-      }
-    } else {
-      // Handle the case when no image is selected
-      toast.error("Please select an image to upload.");
-    }
-  };
-
   return (
     <main className="flex flex-col md:flex-row min-h-screen min-w-screen items-center justify-center bg-white">
       <Header />
       <div className="flex items-center justify-center">
         <div className="flex flex-col justify-center items-center mx-auto border border-white text-black bg-white mt-20 mb-5">
           <div>
-            <h1 className="px-3 text-4xl font-bold mb-2">Hello!</h1>
-            <p className="px-3 text-lg font-normal mb-4">
-              Sign Up to Get Started
+            <h1 className="px-3 text-3xl font-bold mb-2">Hello!</h1>
+            <p className="px-3 text-lg mb-4 font-semibold">
+              Sign Up to become an Intern!
             </p>
             <form className="flex flex-col justify-center md:items-start items-center p-2 min-w-screen">
               <div className="p-1 md:p-2 flex flex-col items-center justify-center">
-                <label className="text-md font-bold text-black"></label>
+                <label
+                  htmlFor="profileImage"
+                  className="cursor-pointer text-md font-bold bg-green-500 px-3 py-4 rounded-xl text-white min-w-[80vw] md:min-w-[400px] text-center"
+                >
+                  Upload Passport Photograph
+                </label>
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
                   id="profileImage"
                   title="profileImage"
-                  className="p-5 max-w-40 max-h-40 bg-green-800 rounded-md text-sm"
-                  placeholder="Upload"
+                  className="hidden p-5"
                 />
                 {imagePreview && (
                   <div className="mt-2">
                     <img
                       src={imagePreview}
                       alt="Profile Preview"
-                      className="max-h-40 mx-auto"
+                      className="max-h-40 max-w-40 mx-auto"
                     />
                   </div>
                 )}
@@ -190,7 +161,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Email:"
                   type="email"
                   value={email}
@@ -202,7 +173,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Password:"
                   type="password"
                   value={password}
@@ -214,7 +185,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Phone Number:"
                   type="text"
                   value={phoneNumber}
@@ -226,7 +197,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Full Name:"
                   type="text"
                   value={firstName}
@@ -238,7 +209,7 @@ const ReferralRegisterPage = () => {
               <div className="p-1 md:p-2">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[90vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
                   placeholder="Enter your Last Name:"
                   type="text"
                   value={lastName}
@@ -251,7 +222,7 @@ const ReferralRegisterPage = () => {
               <button
                 type="button"
                 onClick={() => !isLoading && handleRegister()} // Prevent multiple clicks while loading
-                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[90vw] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
+                className={`md:py-5 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-500 rounded-xl my-4 text-white font-semibold ${
                   isLoading ? "cursor-not-allowed" : ""
                 }`}
               >

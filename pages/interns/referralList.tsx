@@ -12,6 +12,8 @@ import image from "@/app/favicon.ico";
 import LeftSide from "@/components/LeftSide";
 import axios from "axios";
 import "@/app/globals.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "View Your Referrals",
@@ -169,17 +171,17 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                 <LeftSide />
               </div>
               {/*  */}
-              <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
+              <div className="w-0 md:min-w-[green] md:max-w-[green]"></div>
               <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-full">
                 <div className="flex flex-col w-full">
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-green-300 text-black rounded-2xl mt-3 px-3 py-6 relative w-full"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-blue-500 text-white rounded-2xl mt-3 px-3 py-6 relative w-full"
                     href={"/interns/dashboard"}
                   >
                     <div>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className={`h-6 w-6 absolute top-3.5 left-6 md:right-1 transform rotate-90 mr-10`}
+                        className={`h-6 w-6 absolute top-3 left-6 md:right-1 transform rotate-90 mr-10`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -193,6 +195,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                       </svg>
                     </div>
                   </Link>
+                  d
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-start justify-start bg-white text-black rounded-2xl mt-3 p-3 relative">
                     <div>
                       <h3 className="text-sm md:text-3xl mb-2">
@@ -219,20 +222,35 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                   </div>
                 </div>
               </div>
-              <ul>
+              <div>
                 {user.referral_list.map((referredUser: ReferredUser) => (
-                  <li
+                  <div
                     key={referredUser.id}
-                    className="p-4 bg-green-800 border border-black m-4 rounded-xl text-white"
+                    className="p-4 bg-blue-800 border border-black m-4 rounded-xl text-white text-sm mb-2"
                   >
-                    <p>Email: {referredUser.email}</p>
-                    <p>
-                      Has Paid:{" "}
-                      {referredUser.has_paid === "True" ? "Yes" : "No"}
-                    </p>
-                  </li>
+                    <div className="flex items-center gap-2">
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        width={50}
+                        height={50}
+                        scale={10}
+                        className="rounded-xl py-10 px-4 bg-blue-500"
+                      />
+                      <div className="flex flex-col gap-2">
+                        <p>
+                          Full Name: {referredUser.first_name}{" "}
+                          {referredUser.last_name}
+                        </p>
+                        <p>Email: {referredUser.email}</p>
+                        <p>
+                          Account Verified:{" "}
+                          {referredUser.has_paid === "True" ? "Yes" : "No"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           ) : (
             <div className="min-w-screen min-h-screen flex items-center justify-center">

@@ -166,28 +166,32 @@ const RegisterPage: React.FC = () => {
       <div className="flex items-center justify-center">
         <div className="flex flex-col justify-center items-center mx-auto border border-white text-black bg-white mt-20 mb-5">
           <div>
-            <h1 className="px-3 text-4xl font-bold mb-2">Hello!</h1>
-            <p className="px-3 text-lg font-normal mb-4">
-              Sign Up to Get Started
+            <h1 className="px-3 text-3xl font-bold mb-2">Hello!</h1>
+            <p className="px-3 text-lg mb-4 font-semibold">
+              Sign Up to become an Intern!
             </p>
             <form className="flex flex-col justify-center md:items-start items-center p-2 min-w-screen">
               <div className="p-1 md:p-2 flex flex-col items-center justify-center">
-                <label className="text-md font-bold text-black"></label>
+                <label
+                  htmlFor="profileImage"
+                  className="cursor-pointer text-md font-bold bg-green-500 px-3 py-4 rounded-xl text-white min-w-[80vw] text-center"
+                >
+                  Upload Passport Photograph
+                </label>
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
                   id="profileImage"
                   title="profileImage"
-                  className="p-5 max-w-40 max-h-40 bg-green-600 rounded-md text-sm"
-                  placeholder="Upload"
+                  className="hidden p-5"
                 />
                 {imagePreview && (
                   <div className="mt-2">
                     <img
                       src={imagePreview}
                       alt="Profile Preview"
-                      className="max-h-40 mx-auto"
+                      className="max-h-40 max-w-40 mx-auto"
                     />
                   </div>
                 )}
@@ -256,7 +260,7 @@ const RegisterPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => !loading && registerUser()} // Prevent multiple clicks while loading
-                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-600 rounded-xl my-4 text-white ${
+                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-500 rounded-xl my-4 text-white font-semibold ${
                   loading ? "cursor-not-allowed" : ""
                 }`}
               >

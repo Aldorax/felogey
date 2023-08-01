@@ -11,8 +11,8 @@ import Header from "@/components/header";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "E-networks Intern Login Page",
-  description: "Login to view your data from your dashboard",
+  title: "Login to your account",
+  description: "Enter your detaila and log inato your account",
 };
 
 interface ErrorResponse {
@@ -41,8 +41,7 @@ const LoginPage: React.FC = () => {
         };
 
         const resp = await httpClient.post(
-          // "https://enetworks-tovimikailu.koyeb.app/login",
-          "https://enetworks-tovimikailu.koyeb.ap/login",
+          "https://enetworks-tovimikailu.koyeb.app/login",
           data,
           {
             withCredentials: true, // Include cookies in the request
@@ -65,7 +64,7 @@ const LoginPage: React.FC = () => {
         } else {
           // Registration successful
           toast.success("User Logged in successfully");
-          navigate.push("/interns/dashboard");
+          navigate.push("/admin/main/dashboard");
         }
         // console.log("Response Headers:", responseHeaders);
       } catch (error: any) {
@@ -86,7 +85,7 @@ const LoginPage: React.FC = () => {
       <div className="flex items-center justify-center">
         <div className="flex flex-col justify-center items-center mx-auto border border-white text-black bg-white mt-20 mb-5">
           <div>
-            <h1 className="px-3 text-4xl font-bold mb-2">Welcome Back!</h1>
+            <h1 className="px-3 text-4xl font-bold mb-2">Admin Panel!</h1>
             <p className="px-3 text-lg font-normal mb-4">
               Login to your account
             </p>
@@ -118,20 +117,13 @@ const LoginPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => !loading && logInUser()} // Prevent multiple clicks while loading
-                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-500 rounded-xl my-4 text-white ${
+                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-orange-500 rounded-xl my-4 text-white font-semibold ${
                   loading ? "cursor-not-allowed" : ""
                 }`}
               >
                 {loading ? <div className="spinner"></div> : "Submit"}
               </button>
             </form>
-            ;
-            <p className="text-center">
-              Don't have an account?{" "}
-              <Link href={"/interns/register"} className="text-blue-700">
-                Create an account
-              </Link>
-            </p>
           </div>
         </div>
       </div>

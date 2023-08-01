@@ -173,7 +173,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   return (
     <div className="max-w-screen overflow-x-hidden">
       {isUserMobilizer ? (
-        <div className="min-h-screen h-auto max-w-screen bg-orange-500">
+        <div className="min-h-screen h-auto max-w-screen bg-orange-600">
           {user ? (
             <div className="flex">
               <div className="hidden">
@@ -181,7 +181,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
               </div>
               {/*  */}
               <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
-              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-orange-500 max-w-screen md:max-w-[80vw] min-h-full">
+              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-orange-600 max-w-screen md:max-w-[80vw] min-h-full">
                 <div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mt-20 md:mb-10 w-full h-auto my-auto">
                   <div className="md:max-w-[500px] w-full h-auto flex md:flex-row items-center pb-3 ">
                     <div className="flex items-center">
@@ -205,30 +205,30 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       ) : (
                         <div className="mx-4 my-auto">
                           <img
-                            // src={`http://localhost:5000/profile_images/${user.profile_image}`}
-                            src={`https://enetworks-tovimikailu.koyeb.app/profile_images/${user.profile_image}`}
+                            src={user.profile_image}
+                            // src={`https://enetworks-tovimikailu.koyeb.app/profile_images/${user.profile_image}`}
                             alt="Profile"
                             className="md:h-full md:w-full h-[50px] w-[50px] md:mx-auto md:rounded-2xl rounded-full"
                           />
                         </div>
                       )}
-                      <div className="text-black">
+                      <div className="text-white">
                         <div className="flex">
-                          <p className="text-sm md:text-xl text-black font-semibold">
+                          <p className="text-sm md:text-xl font-semibold">
                             {user.first_name}
                           </p>
-                          <div className="text-[8px] p-1 bg-blue-500 rounded-md text-white ml-2">
+                          <div className="text-[8px] p-1 bg-blue-500 rounded-md ml-2">
                             Activated
                           </div>
                         </div>
-                        <p className="text-sm text-gray-800">{user.email}</p>
+                        <p className="text-sm text-gray-200">{user.email}</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-col w-full">
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl">
-                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-blue-500 text-white">
+                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-orange-400 text-white">
                       <h1 className="text-md md:text-2xl underline underline-offset-4 font-bold">
                         Full Name
                       </h1>
@@ -236,7 +236,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                         {user.first_name} {user.last_name}
                       </p>
                     </div>
-                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-blue-500 text-white">
+                    <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-orange-400 text-white">
                       <h1 className="text-md md:text-2xl underline underline-offset-4 font-bold ">
                         Phone Number
                       </h1>
@@ -245,7 +245,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-500 rounded-2xl mt-3 p-3 relative">
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-orange-400 rounded-2xl mt-3 p-3 relative">
                     <FontAwesomeIcon
                       icon={faPeopleArrows}
                       width={50}
@@ -262,7 +262,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                   </div>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-500 rounded-2xl mt-3 p-3 relative"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-orange-400 rounded-2xl mt-3 p-3 relative"
                     href={"/mobilizer/referral-details"}
                   >
                     <FontAwesomeIcon
@@ -293,7 +293,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </svg>
                   </Link>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-500 rounded-2xl mt-3 p-3 relative"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-orange-400 rounded-2xl mt-3 p-3 relative"
                     href={"/mobilizer/referralList"}
                   >
                     <FontAwesomeIcon
@@ -342,7 +342,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                         </div>
                       </div>
                     ) : (
-                      <div>
+                      <div className="p-3">
                         <h1 className="font-bold text-lg underline underline-offset-8">
                           Notice
                         </h1>
@@ -372,7 +372,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                               <button
                                 type="button"
                                 onClick={() => !loading} // Prevent multiple clicks while loading
-                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-1 bg-green-600 ${
+                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-1 bg-orange-600 ${
                                   loading ? "cursor-not-allowed" : ""
                                 }`}
                               >
@@ -387,7 +387,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                             <button
                               type="button"
                               onClick={() => !loading && handlePayment()} // Prevent multiple clicks while loading
-                              className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-green-600 ${
+                              className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-orange-600 ${
                                 loading ? "cursor-not-allowed" : ""
                               }`}
                             >
@@ -407,7 +407,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                   <button
                     type="button"
                     onClick={logoutUser}
-                    className="min-w-[100px] px-3 py-2 my-auto md:px-8 md:py-3 rounded-lg text-white uppercase bg-blue-600 mx-1 md:mx-3 text-sm md:text-current font-semibold"
+                    className="min-w-[100px] px-3 py-2 my-auto md:px-8 md:py-3 rounded-lg text-white uppercase bg-orange-400 mx-1 md:mx-3 text-sm md:text-current font-semibold"
                   >
                     Logout
                   </button>

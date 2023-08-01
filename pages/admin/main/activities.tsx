@@ -39,7 +39,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
     const fetchReferralActivity = async () => {
       try {
         const response = await httpClient.get(
-          "https://enetworks.onrender.com/admins"
+          "https://enetworks-tovimikailu.koyeb.app/admins"
         );
         setReferralActivity(response.data);
       } catch (error) {
@@ -57,7 +57,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
         if (!access_token) {
           console.log("Not authorized");
-          navigate.push("/Admin/login");
+          navigate.push("/admin/main/login");
           return;
         }
 
@@ -66,7 +66,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          "https://enetworks.onrender.com/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -88,7 +88,7 @@ const Activities: React.FC<DashoardProps> = ({}) => {
 
     // Make the logout request
     const resp = await httpClient.post(
-      "https://enetworks.onrender.com/logout",
+      "https://enetworks-tovimikailu.koyeb.app/logout",
       {
         withCredentials: true, // Include cookies in the request
       }
@@ -99,63 +99,11 @@ const Activities: React.FC<DashoardProps> = ({}) => {
   };
 
   const refresh = () => {
-    window.location.href = "/user/dashboard";
-  };
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const access_token = localStorage.getItem("access_token");
-    const file = event.target.files?.[0];
-    if (file) {
-      const formData = new FormData();
-      formData.append("profile_image", file); // Use the correct field name "profile_image"
-
-      httpClient
-        .post("https://enetworks.onrender.com/update_profile_image", formData, {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
-        .then((response) => {
-          setUser((prevUser) => {
-            if (prevUser) {
-              return { ...prevUser, profile_pic: response.data };
-            }
-            return null;
-          });
-          window.location.href = "/user/dashboard";
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    window.location.href = "/admin/main/dashboard";
   };
 
   const parseProfilePic = (profilePic: string | "null"): string | null => {
     return profilePic === "null" ? null : profilePic;
-  };
-
-  const handlePayment = () => {
-    setLoading(true); // Show the loader
-    const access_token = localStorage.getItem("access_token");
-    axios
-      .post(
-        "https://enetworks.onrender.com/pay/",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      )
-      .then((response) => {
-        const { payment_url } = response.data;
-        setPaymentUrl(payment_url);
-        setLoading(false); // Hide the loader after registration attempt
-        navigate.push(paymentUrl);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   return (

@@ -118,14 +118,13 @@ const LoginPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => !loading && logInUser()} // Prevent multiple clicks while loading
-                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
+                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-blue-500 rounded-xl my-4 text-white font-semibold ${
                   loading ? "cursor-not-allowed" : ""
                 }`}
               >
                 {loading ? <div className="spinner"></div> : "Submit"}
               </button>
             </form>
-            ;
             <p className="text-center">
               Don't have an account?{" "}
               <Link href={"/mobilizer/register"} className="text-blue-700">
