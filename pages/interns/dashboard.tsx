@@ -434,8 +434,9 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
           )}
         </div>
       ) : (
-        <div className="w-screen h-screen flex justify-center items-center">
-          <h1>You are not authorized to access this page.</h1>
+        <div className="w-screen h-screen flex flex-col justify-center items-center">
+          <div>Verifying</div>
+          <div className="spinner2"></div>
           {/* Add a button or link to redirect the user to another page */}
         </div>
       )}

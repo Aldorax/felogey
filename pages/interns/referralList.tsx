@@ -4,7 +4,6 @@ import { ReferredUser, User } from "@/app/types";
 import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
 import type { Metadata } from "next";
-// import Header from "@/components/header";
 import Link from "next/link";
 import router from "next/router";
 import Image from "next/image";
@@ -175,7 +174,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
               <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-full">
                 <div className="flex flex-col w-full">
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-blue-500 text-white rounded-2xl mt-3 px-3 py-6 relative w-full"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-green-500 text-white rounded-2xl mt-3 px-3 py-6 relative w-full"
                     href={"/interns/dashboard"}
                   >
                     <div>
@@ -226,7 +225,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                 {user.referral_list.map((referredUser: ReferredUser) => (
                   <div
                     key={referredUser.id}
-                    className="p-4 bg-blue-800 border border-black m-4 rounded-xl text-white text-sm mb-2"
+                    className="p-4 bg-green-800 border border-black m-4 rounded-xl text-white text-sm mb-2"
                   >
                     <div className="flex items-center gap-2">
                       <FontAwesomeIcon
@@ -234,7 +233,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                         width={50}
                         height={50}
                         scale={10}
-                        className="rounded-xl py-10 px-4 bg-blue-500"
+                        className="rounded-xl py-10 px-4 bg-green-500"
                       />
                       <div className="flex flex-col gap-2">
                         <p>
@@ -260,7 +259,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
         </div>
       ) : (
         <div className="w-screen h-screen flex justify-center items-center">
-          <div className="spinner2">Loading</div>
+          <div className="spinner2"></div>
           {/* Add a button or link to redirect the user to another page */}
         </div>
       )}

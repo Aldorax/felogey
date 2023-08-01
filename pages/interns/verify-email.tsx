@@ -164,26 +164,3 @@ const VerifyEmail: React.FC = () => {
 };
 
 export default VerifyEmail;
-
-{
-  /* <button
-                type="button"
-                onClick={() => !loading && verifyOtp()} // Prevent multiple clicks while loading
-                className={`py-6 px-3 min-w-[360px]  md:min-w-[400px] flex items-center justify-center bg-green-600 rounded-xl my-4 text-white ${
-                  loading ? "cursor-not-allowed" : ""
-                }`}
-              >
-                {loading ? <div className="spinner"></div> : "Submit"}
-              </button>
-            </form>
-            ;
-            <button
-              type="button"
-              onClick={resendOTP}
-              className={`py-6 px-3 min-w-[360px]  md:min-w-[400px] flex items-center justify-center bg-green-600 rounded-xl my-4 text-white ${
-                loading ? "cursor-not-allowed" : ""
-              }`}
-            >
-              {loading ? <div className="spinner"></div> : "Resend OTP"}
-            </button> */
-}
