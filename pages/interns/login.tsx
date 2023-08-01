@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
 
         const resp = await httpClient.post(
           // "https://enetworks-tovimikailu.koyeb.app/login",
-          "https://enetworks-tovimikailu.koyeb.ap/login",
+          "https://enetworks-tovimikailu.koyeb.app/login",
           data,
           {
             withCredentials: true, // Include cookies in the request
@@ -125,7 +125,6 @@ const LoginPage: React.FC = () => {
                 {loading ? <div className="spinner"></div> : "Submit"}
               </button>
             </form>
-            ;
             <p className="text-center">
               Don't have an account?{" "}
               <Link href={"/interns/register"} className="text-blue-700">
