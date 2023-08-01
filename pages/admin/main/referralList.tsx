@@ -4,9 +4,6 @@ import { ReferralHistory, ReferredUser, User } from "@/app/types";
 import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
 import type { Metadata } from "next";
-// import Header from "@/components/header";
-import Link from "next/link";
-import router from "next/router";
 import Image from "next/image";
 import image from "@/app/favicon.ico";
 import LeftSide from "@/components/LeftSide";
@@ -14,10 +11,11 @@ import axios from "axios";
 import "@/app/globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "View Your Referrals",
-  description: "See all the users you have registered",
+  title: "View All Referrals",
+  description: "See all the users Registered through a referral",
 };
 
 interface DashoardProps {

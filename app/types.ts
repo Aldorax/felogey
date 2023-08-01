@@ -36,7 +36,8 @@ export interface ReferralHistory {
   id: string;
   email: string;
   has_paid: string;
-  // Add the missing properties from ReferredUser
-  is_email_verified: string;
-  profile_image: string;
+  // Add the missing properties
+  date: string;
+  referred: string;
+  referrer: string;
 }
