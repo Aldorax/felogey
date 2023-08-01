@@ -147,7 +147,9 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
               <div>
                 <ul>
                   {referralActivity.length === 0 ? (
-                    <li>No Referral Registration history data available.</li>
+                    <li className="p-3">
+                      No Referral Registration history data available.
+                    </li>
                   ) : (
                     referralActivity.map((referral, index) => (
                       <li
