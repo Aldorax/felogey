@@ -84,7 +84,7 @@ const ReferralRegisterPage = () => {
         } else {
           // Registration successful
           toast.success("User registered successfully");
-          router.push("/interns/verify-email");
+          router.push("/interns/login");
         }
       } catch (error) {
         console.log("An error occurred during registration");
