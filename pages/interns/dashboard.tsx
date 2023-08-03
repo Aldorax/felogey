@@ -229,14 +229,14 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       )}
                       <div className="text-black">
                         <div className="flex">
-                          <p className="text-sm md:text-xl text-black font-semibold">
+                          <p className="text-sm md:text-xl text-white font-semibold">
                             {user.first_name}
                           </p>
                           <div className="text-[8px] p-1 bg-green-500 font-bold rounded-md text-white ml-2">
                             Activated
                           </div>
                         </div>
-                        <p className="text-sm text-gray-800">{user.email}</p>
+                        <p className="text-sm text-gray-200">{user.email}</p>
                       </div>
                     </div>
                   </div>
