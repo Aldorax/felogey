@@ -436,7 +436,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         </div>
       ) : (
         <div className="w-screen h-screen flex flex-col justify-center items-center">
-          <div>Verifying</div>
+          <div></div>
           <div className="spinner2"></div>
           {/* Add a button or link to redirect the user to another page */}
         </div>
