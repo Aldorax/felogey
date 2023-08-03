@@ -145,15 +145,15 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
     <div className="max-w-screen overflow-x-hidden flex flex-wrap bg-gray-100">
       <div className="min-h-screen h-auto w-full">
         {user ? (
-          <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-auto">
+          <div className=" flex flex-col justify-center items-start p-3 md:p-6 text-white w-full bg-gray-100 max-w-screen min-h-auto">
             <Link
-              className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-blue-500 text-black rounded-2xl mt-3 px-3 py-6 relative w-full"
+              className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-blue-500 text-white rounded-2xl mt-3 px-3 py-6 relative w-full"
               href={"/mobilizer/dashboard"}
             >
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`h-6 w-6 absolute top-3.5 left-6 md:right-1 transform rotate-90 mr-10`}
+                  className={`h-6 w-6 md:h-10 md:w-10 absolute top-3.5 md:top-1 left-6 md:right-1 transform rotate-90 mr-10`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -168,7 +168,7 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
               </div>
             </Link>
             <div className="w-full h-[70vh] flex flex-col justify-center items-center">
-              <div className="md:p-5 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-blue-500">
+              <div className="md:p-7 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-blue-500">
                 <h1 className="text-md md:text-2xl font-extrabold text-white px-2 py-4">
                   Referral Code
                 </h1>
@@ -176,7 +176,7 @@ const ReferralDetails: React.FC<DashoardProps> = ({}) => {
                   {user.referral_code}
                 </p>
               </div>
-              <div className="md:p-5 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-blue-500">
+              <div className="md:p-7 rounded-xl mx-1 md:mx-3 my-1 md:my-3 w-full p-3 bg-blue-500">
                 <h1 className="text-md md:text-2xl font-extrabold text-white px-2 py-4">
                   Referral Link
                 </h1>

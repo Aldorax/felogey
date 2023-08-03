@@ -42,7 +42,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
 
         if (!access_token) {
           console.log("Not authorized");
-          navigate.push("/interns/login");
+          navigate.push("/mobilizer/login");
           return;
         }
 
@@ -51,8 +51,8 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          // "https://enetworks-tovimikailu.koyeb.app/dashboard",
           "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          // "http://localhost:5000/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -60,7 +60,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
 
         setUser(response.data);
       } catch (error) {
-        navigate.push("/interns/login");
+        navigate.push("/mobilizer/login");
         console.log("Not Authorized");
       }
     };
@@ -170,8 +170,8 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                 <LeftSide />
               </div>
               {/*  */}
-              <div className="w-0 md:min-w-[green] md:max-w-[green]"></div>
-              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-full">
+              {/* <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div> */}
+              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen min-h-full">
                 <div className="flex flex-col w-full">
                   <Link
                     className="flex flex-grow flex-grow-1 flex-wrap items-start justify-around bg-green-500 text-white rounded-2xl mt-3 px-3 py-6 relative w-full"
@@ -206,7 +206,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`h-6 w-6 absolute top-6 right-10 md:right-1 transform rotate-360`}
+                      className={`h-6 w-6 md:w-10 md:h-10 absolute top-6 right-10 md:right-6 transform rotate-360`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"

@@ -67,6 +67,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         const response = await httpClient.get(
           // "https://enetworks-tovimikailu.koyeb.app/dashboard",
           "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          // "http://localhost:5000/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -186,7 +187,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   };
 
   return (
-    <div className="max-w-screen overflow-x-hidden bg-gray-100">
+    <div className="max-w-screen overflow-x-hidden bg-gray-600">
       {isUserIntern ? (
         <div className="min-h-screen h-auto max-w-screen">
           {user ? (
@@ -195,10 +196,10 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                 <LeftSide />
               </div>
               {/*  */}
-              <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
-              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-gray-100 max-w-screen md:max-w-[80vw] min-h-full">
-                <div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mt-20 md:mb-10 w-full h-auto my-auto">
-                  <div className="md:max-w-[500px] w-full h-auto flex md:flex-row items-center pb-3 ">
+              {/* <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div> */}
+              <div className=" flex flex-col justify-center items-start py-3 px-6 text-white w-full bg-gray-600 max-w-screen min-h-full">
+                <div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mt-3 md:mb-10 w-full h-auto my-auto">
+                  <div className="w-full h-auto flex items-center py-3 md:py-6 md:bg-gray-400 bg-transparent rounded-xl">
                     <div className="flex items-center">
                       {user.profile_image === "None" ? (
                         <div className="flex flex-col">
@@ -222,7 +223,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                           <img
                             src={user.profile_image}
                             alt="Profile"
-                            className="md:h-full md:w-full h-[50px] w-[50px] md:mx-auto md:rounded-2xl rounded-full"
+                            className="md:h-40 md:w-40 h-[50px] w-[50px] md:mx-auto md:rounded-full rounded-full bg-center"
                           />
                         </div>
                       )}
@@ -276,7 +277,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                   </div>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative hover:bg-gray-700 hover:text-white"
                     href={"/interns/referral-details"}
                   >
                     <FontAwesomeIcon
@@ -293,7 +294,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`h-6 w-6 absolute top-6 right-10 md:right-1 transform -rotate-90`}
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -307,7 +308,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </svg>
                   </Link>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative hover:bg-gray-700 hover:text-white"
                     href={"/interns/referralList"}
                   >
                     <FontAwesomeIcon
@@ -324,7 +325,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`h-6 w-6 absolute top-6 right-10 md:right-1 transform -rotate-90`}
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"

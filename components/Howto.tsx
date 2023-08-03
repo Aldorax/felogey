@@ -3,11 +3,11 @@ import "@/app/globals.css";
 
 const Howto = () => {
   return (
-    <div className="text-black p-2 bg-white">
+    <div className="text-black p-2 md:p-16 bg-white">
       <h1 className="text-lg font-semibold">How to register</h1>
-      <div className="p-3 text-sm">
+      <div className="p-3 text-sm md:text-lg">
         <div>
-          <h1 className="bg-orange-700 p-2">For Interns</h1>
+          <h1 className="bg-orange-700 p-2 text-white">For Interns</h1>
         </div>
         <ol className="p-2 gap-1 flex flex-col">
           <li>

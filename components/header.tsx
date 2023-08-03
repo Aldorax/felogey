@@ -118,8 +118,8 @@ const Header = () => {
           />
         </Link>
       </h1>
-      <nav className="flex justify-center items-center md:p-3 px-1 py-2 gap-x-1 md:gap-x-6 md:gap-0 text-black">
-        <div className="relative">
+      <nav className="flex justify-center items-center md:p-3 px-1 py-2 gap-x-1 md:gap-x-6 md:gap-0 text-black bg-white">
+        <div className="relative bg-white">
           <button
             onClick={toggleDropdown}
             className="mx-6 min-w-full max-w-[40vw] rounded-xl my-2 flex gap-3 items-center justify-between text-black"
@@ -144,7 +144,7 @@ const Header = () => {
           </button>
           {isDropdownOpen && (
             <div className="absolute mt-8 right-0 bg-white rounded-lg w-[94vw] h-[80vh] md:w-[200px] md:h-full border border-black max-w-screen">
-              <div className="flex gap-2 items-center border-b-2 border-black">
+              <div className="flex gap-2 items-center border-b-2 border-black  bg-white rounded-md">
                 <FontAwesomeIcon
                   icon={faRocket}
                   width={50}
@@ -153,12 +153,12 @@ const Header = () => {
                 />
                 <Link
                   href={"/interns/register"}
-                  className="block w-full p-2 hover:bg-gray-500"
+                  className="block w-full p-2 hover:bg-green-700 hover:text-white"
                 >
                   <h1>Register as Intern</h1>
                 </Link>
               </div>
-              <div className="flex gap-2 items-center border-b-2 border-black">
+              <div className="flex gap-2 items-center border-b-2 border-black  bg-white rounded-md">
                 <FontAwesomeIcon
                   icon={faRocket}
                   width={50}
@@ -167,12 +167,12 @@ const Header = () => {
                 />
                 <Link
                   href={"/mobilizer/register"}
-                  className="block w-full p-2 hover:bg-gray-500"
+                  className="block w-full p-2 hover:bg-green-700 hover:text-white"
                 >
                   <h1>Register as Mobilizer</h1>
                 </Link>
               </div>
-              <div className="flex gap-2 items-center border-b-2 border-black">
+              <div className="flex gap-2 items-center border-b-2 border-black  bg-white rounded-md">
                 <FontAwesomeIcon
                   icon={faUserAstronaut}
                   width={50}
@@ -181,12 +181,12 @@ const Header = () => {
                 />
                 <Link
                   href={"/interns/login"}
-                  className="block w-full p-2 hover:bg-gray-500"
+                  className="block w-full p-2 hover:bg-green-700 hover:text-white"
                 >
                   <h1>Login Intern</h1>
                 </Link>
               </div>
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center bg-white rounded-md">
                 <FontAwesomeIcon
                   icon={faUserAstronaut}
                   width={50}
@@ -195,7 +195,7 @@ const Header = () => {
                 />
                 <Link
                   href={"/mobilizer/login"}
-                  className="block w-full p-2 hover:bg-gray-500"
+                  className="block w-full p-2 hover:bg-green-700 hover:text-white"
                 >
                   <h1>Login Mobilizer</h1>
                 </Link>
@@ -204,7 +204,7 @@ const Header = () => {
           )}
         </div>
         {user ? (
-          <div className="hidden md:flex text-center justify-center items-center">
+          <div className="hidden md:flex text-center justify-center items-center bg-white">
             <p>Welcome, {user.first_name}</p>
             <button
               type="button"

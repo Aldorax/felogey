@@ -177,10 +177,9 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                 <LeftSide />
               </div>
               {/*  */}
-              <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
-              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-blue-600 max-w-screen md:max-w-[80vw] min-h-full">
-                <div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mt-20 md:mb-10 w-full h-auto my-auto">
-                  <div className="md:max-w-[500px] w-full h-auto flex md:flex-row items-center pb-3 ">
+              <div className=" flex flex-col justify-center items-start py-3 px-6 text-white w-full bg-blue-600 max-w-screen min-h-full">
+                <div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mt-3 md:mb-10 w-full h-auto my-auto">
+                  <div className="w-full h-auto flex items-center py-3 md:py-6 md:bg-blue-400 bg-transparent rounded-xl">
                     <div className="flex items-center">
                       {user.profile_image === "None" ? (
                         <div className="flex flex-col">
@@ -205,20 +204,22 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                             src={user.profile_image}
                             // src={`https://enetworks-tovimikailu.koyeb.app/profile_images/${user.profile_image}`}
                             alt="Profile"
-                            className="md:h-full md:w-full h-[50px] w-[50px] md:mx-auto md:rounded-2xl rounded-full"
+                            className="md:h-40 md:w-40 h-[50px] w-[50px] md:mx-auto md:rounded-full rounded-full bg-center"
                           />
                         </div>
                       )}
                       <div className="text-white">
                         <div className="flex">
-                          <p className="text-sm md:text-xl font-semibold">
+                          <p className="text-sm md:text-2xl font-semibold">
                             {user.first_name}
                           </p>
-                          <div className="text-[8px] p-1 bg-orange-500 rounded-md ml-2">
+                          <div className="text-[8px] md:text-lg p-1 bg-orange-500 rounded-md ml-2">
                             Activated
                           </div>
                         </div>
-                        <p className="text-sm text-gray-200">{user.email}</p>
+                        <p className="text-sm md:text-xl text-gray-200">
+                          {user.email}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -234,7 +235,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       </p>
                     </div>
                     <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-blue-400 text-white">
-                      <h1 className="text-md md:text-2xl underline underline-offset-4 font-bold ">
+                      <h1 className="text-md md:text-2xl md:min-w-[82vw] underline underline-offset-4 font-bold ">
                         Phone Number
                       </h1>
                       <p className="text-sm md:text-xl font-normal">
@@ -259,7 +260,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                   </div>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-400 rounded-2xl mt-3 p-3 relative"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-400 rounded-2xl mt-3 p-3 relative hover:bg-blue-800"
                     href={"/mobilizer/referral-details"}
                   >
                     <FontAwesomeIcon
@@ -276,7 +277,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`h-4 w-4 absolute top-3 md:top-6 right-10 md:right-1 transform -rotate-90`}
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -290,7 +291,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </svg>
                   </Link>
                   <Link
-                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-400 rounded-2xl mt-3 p-3 relative"
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-400 rounded-2xl mt-3 p-3 relative hover:bg-blue-800"
                     href={"/mobilizer/referralList"}
                   >
                     <FontAwesomeIcon
@@ -307,7 +308,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`h-4 w-4 absolute top-4 md:top-6 right-10 md:right-1 transform -rotate-90`}
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"

@@ -174,7 +174,7 @@ const RegisterPage: React.FC = () => {
               <div className="p-1 md:p-2 flex flex-col items-center justify-center">
                 <label
                   htmlFor="profileImage"
-                  className="cursor-pointer text-md font-bold bg-green-500 px-3 py-4 rounded-xl text-white min-w-[80vw] text-center"
+                  className="cursor-pointer text-md font-bold bg-green-500 px-3 py-4 rounded-xl text-white min-w-[80vw] md:min-w-[400px] text-center"
                 >
                   Upload Passport Photograph
                 </label>

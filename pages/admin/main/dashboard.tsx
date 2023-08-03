@@ -277,7 +277,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     />
                     <div className="mx-3">
                       <h3 className="text-sm md:text-3xl mb-2">
-                        All Users Referral History
+                        Referral History
                       </h3>
                       <h1 className="font-normal text-sm">Click to view</h1>
                     </div>
