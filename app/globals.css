@@ -17,6 +17,13 @@
   /* For modern browsers */
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  /* Remove default margin */
+}
+
 /* If you want to apply it only to specific elements, use their respective selectors */
 button:focus,
 a:focus,

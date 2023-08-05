@@ -17,7 +17,9 @@ import {
   faBell,
   faDollar,
   faMoneyBill,
+  faMoneyBill1Wave,
   faPeopleArrows,
+  faPerson,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -214,7 +216,9 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                             {user.first_name}
                           </p>
                           <div className="text-[8px] md:text-lg p-1 bg-orange-500 rounded-md ml-2">
-                            Activated
+                            {user.total_referred_users >= 200
+                              ? " Verified"
+                              : " Newbie"}
                           </div>
                         </div>
                         <p className="text-sm md:text-xl text-gray-200">
@@ -224,6 +228,19 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                   </div>
                 </div>
+                {user.total_referred_users >= 200 ? (
+                  ""
+                ) : (
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mb-3 p-8 relative hover:bg-blue w-full md:text-lg font-semibold text-black cursor-pointer text-sm md:text-md">
+                    <h1>
+                      Note: Before you can become a verified mobilizer of
+                      Enetworks Agency Banking, you need to meet the minimum
+                      target of <b>200 users</b>. This will unlock the ability
+                      to withdraw your earnings and also access future benefits
+                      of Enetworks.
+                    </h1>
+                  </div>
+                )}
                 <div className="flex flex-col w-full">
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl">
                     <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-blue-400 text-white">
@@ -235,7 +252,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       </p>
                     </div>
                     <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-blue-400 text-white">
-                      <h1 className="text-md md:text-2xl md:min-w-[82vw] underline underline-offset-4 font-bold ">
+                      <h1 className="text-md md:text-2xl md:min-w-[80vw] underline underline-offset-4 font-bold ">
                         Phone Number
                       </h1>
                       <p className="text-sm md:text-xl font-normal">
@@ -243,6 +260,40 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       </p>
                     </div>
                   </div>
+                  <Link
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black"
+                    href={"/mobilizer/edit-data"}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPerson}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">
+                        Edit account details
+                      </h3>
+                      <div className="flex gap-2 items-center text-sm md:text-md">
+                        <h4>Click to edit your account details</h4>{" "}
+                        {/* Display total_registeblue_users */}
+                      </div>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </Link>
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-400 rounded-2xl mt-3 p-3 relative">
                     <FontAwesomeIcon
                       icon={faPeopleArrows}
@@ -255,7 +306,24 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                         Total Interns referred
                       </h3>
                       <div className="flex gap-2 items-center">
-                        <h4>{user.total_referred_users}</h4>
+                        <h4>{user.total_referred_users} / 200</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black">
+                    <FontAwesomeIcon
+                      icon={faDollar}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">Earnings</h3>
+                      <div className="flex gap-2 items-center">
+                        <h4>
+                          <span className="line-through">N</span>
+                          {user.earnings}
+                        </h4>
                       </div>
                     </div>
                   </div>
@@ -401,6 +469,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     )}
                   </div>
                 </div>
+
                 <div className="mt-4">
                   <button
                     type="button"

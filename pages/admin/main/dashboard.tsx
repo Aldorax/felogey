@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { ReferredUser, User } from "@/app/types";
+import { User, Intern, Mobilizer, Referral } from "@/app/AdminTypes";
 import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
 import type { Metadata } from "next";
@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,
   faPeopleArrows,
+  faPerson,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -33,7 +34,6 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   const [paymentUrl, setPaymentUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [referralActivity, setReferralActivity] = useState<ReferredUser[]>([]);
 
   useEffect(() => {
     // ... Fetch user data as you did before ...
@@ -41,19 +41,6 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
     // Check if the user is an admin or super admin
     const isUserAdmin = user?.role === "Admin" || user?.role === "Super Admin";
     setIsAdmin(isUserAdmin);
-
-    const fetchReferralActivity = async () => {
-      try {
-        const response = await httpClient.get(
-          "https://enetworks-tovimikailu.koyeb.app/admins"
-        );
-        setReferralActivity(response.data);
-      } catch (error) {
-        console.log("Error fetching referral activity:", error);
-      }
-    };
-
-    fetchReferralActivity();
   }, [user]);
 
   useEffect(() => {
@@ -72,7 +59,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/admin-dashboard",
+          // "http://localhost:5000/admin-dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -150,12 +138,12 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         <div className="min-h-screen h-auto max-w-screen">
           {user ? (
             <div className="flex">
-              <LeftSide />
+              {/* <LeftSide /> */}
               {/*  */}
-              <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div>
-              <div className=" flex flex-col justify-center items-start p-3 md:p-32 text-white w-full bg-orange-600 max-w-screen md:max-w-[80vw] min-h-full">
-                <div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mt-20 md:mb-10 w-full h-auto my-auto">
-                  <div className="md:max-w-[500px] w-full h-auto flex md:flex-row items-center pb-3 ">
+              {/* <div className="w-0 md:min-w-[20vw] md:max-w-[20vw]"></div> */}
+              <div className=" flex flex-col justify-center items-start py-3 px-6 text-white w-full bg-orange-600 max-w-screen min-h-full">
+                <div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mt-3 md:mb-10 w-full h-auto my-auto">
+                  <div className="w-full h-auto flex items-center py-3 md:py-6 md:bg-orange-400 bg-transparent rounded-xl">
                     <div className="flex items-center">
                       {user.profile_image === "None" ? (
                         <div className="flex flex-col">
@@ -180,14 +168,14 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                             src={user.profile_image}
                             // src={`https://enetworks-tovimikailu.koyeb.app/profile_images/${user.profile_image}`}
                             alt="Profile"
-                            className="md:h-full md:w-full h-[50px] w-[50px] md:mx-auto md:rounded-2xl rounded-full"
+                            className="md:h-40 md:w-40 h-[50px] w-[50px] md:mx-auto md:rounded-full rounded-full bg-center"
                           />
                         </div>
                       )}
                       <div className="text-white">
                         <div className="flex">
                           <p className="text-sm md:text-xl font-semibold">
-                            {user.first_name}
+                            {user.name}
                           </p>
                           <div className="text-[8px] p-1 bg-blue-500 rounded-md ml-2">
                             Activated
@@ -205,7 +193,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                         Full Name
                       </h1>
                       <p className="text-sm md:text-xl font-normal">
-                        {user.first_name} {user.last_name}
+                        {user.name}
                       </p>
                     </div>
                     <div className="md:p-5 p-3 rounded-xl mx-1 md:mx-3 my-1 md:my-3 bg-orange-400 text-white">
@@ -217,6 +205,40 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       </p>
                     </div>
                   </div>
+                  <Link
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black"
+                    href={"/admin/main/edit-data"}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPerson}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">
+                        Edit account details
+                      </h3>
+                      <div className="flex gap-2 items-center text-sm md:text-md">
+                        <h4>Click to edit your account details</h4>{" "}
+                        {/* Display total_registeblue_users */}
+                      </div>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </Link>
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-orange-400 rounded-2xl mt-3 p-3 relative">
                     <FontAwesomeIcon
                       icon={faPeopleArrows}
@@ -226,14 +248,135 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     />
                     <div className="mx-3">
                       <h3 className="text-sm md:text-3xl mb-2">
-                        Total Registeblue Users
+                        Total Registered Users
                       </h3>
                       <div className="flex gap-2 items-center">
-                        <h4>{user.total_registered_users}</h4>{" "}
+                        <h4>{user.total_users}</h4>{" "}
                         {/* Display total_registeblue_users */}
                       </div>
                     </div>
                   </div>
+                  <Link
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-orange-400 rounded-2xl mt-3 p-3 relative"
+                    href={"/admin/main/interns"}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPeopleArrows}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">
+                        Total Registered Interns
+                      </h3>
+                      <div className="flex gap-2 items-center">
+                        <h4>{user.total_interns}</h4>{" "}
+                        {/* Display total_registeblue_users */}
+                      </div>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </Link>
+                  <Link
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-orange-400 rounded-2xl mt-3 p-3 relative"
+                    href={"/admin/main/mobilizer"}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPeopleArrows}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">
+                        Total Registered Mobilizers
+                      </h3>
+                      <div className="flex gap-2 items-center">
+                        <h4>{user.total_mobilizers}</h4>{" "}
+                        {/* Display total_registeblue_users */}
+                      </div>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </Link>
+                  <Link
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-orange-400 rounded-2xl mt-3 p-3 relative"
+                    href={"/admin/main/executive"}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPeopleArrows}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">
+                        Total Registered Executives
+                      </h3>
+                      <div className="flex gap-2 items-center">
+                        <h4>{user.total_executives}</h4>{" "}
+                        {/* Display total_registeblue_users */}
+                      </div>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </Link>
+
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-orange-400 rounded-2xl mt-3 p-3 relative">
+                    <FontAwesomeIcon
+                      icon={faPeopleArrows}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">
+                        Global Mobilizer Referral Value
+                      </h3>
+                      <div className="flex gap-2 items-center">
+                        <h4>{user.total_referrals}</h4>{" "}
+                        {/* Display total_registeblue_users */}
+                      </div>
+                    </div>
+                  </div>
+
                   <Link
                     className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-orange-400 rounded-2xl mt-3 p-3 relative"
                     href={"/admin/main/referral-details"}

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { ReferralHistory, ReferredUser, User } from "@/app/types";
+import { Intern, User } from "@/app/AdminTypes";
 import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
 import type { Metadata } from "next";
@@ -22,13 +22,11 @@ interface DashoardProps {
   user: User;
 }
 
-const ReferralList: React.FC<DashoardProps> = ({}) => {
+const Interns: React.FC<DashoardProps> = ({}) => {
   const navigate = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [isUserAdmin, setIsAdmin] = useState(false);
-  const [referralActivity, setReferralActivity] = useState<ReferralHistory[]>(
-    []
-  );
+  const [referralActivity, setReferralActivity] = useState<Intern | null>(null);
 
   useEffect(() => {
     const isUserAdmin = user?.role === "Admin";
@@ -39,8 +37,8 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
     const fetchReferralHistory = async () => {
       try {
         const response = await axios.get(
-          "https://enetworks-tovimikailu.koyeb.app/referral-history"
-          // "http://localhost:5000/referral-history"
+          "https://enetworks-tovimikailu.koyeb.app/admin-dashboard"
+          //   "http://localhost:5000/admin-dashboard"
         );
         console.log("Response from server:", response.data); // Check the response from the server
         setReferralActivity(response.data);
@@ -69,7 +67,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
 
         const response = await httpClient.get(
           "https://enetworks-tovimikailu.koyeb.app/admin-dashboard",
-          // "http://localhost:5000/admin-dashboard",
+          //   "http://localhost:5000/admin-dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -123,10 +121,10 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-start justify-start bg-white text-black rounded-2xl mt-3 p-3 relative">
                     <div>
                       <h3 className="text-sm md:text-3xl mb-2">
-                        Referral Registration History
+                        Interns User Data
                       </h3>
                       <h1 className="font-normal text-sm">
-                        This are all the Referral registrations
+                        This are all the Register Interns of Enetworks
                       </h1>
                     </div>
                     <svg
@@ -150,27 +148,35 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                 <table className="p-4 rounded-xs w-full text-sm md:text-md">
                   <thead>
                     <tr className="bg-orange-500 text-white">
-                      <th className="px-2 py-6">Referrer</th>
-                      <th className="px-2 py-6">Referred</th>
-                      <th className="px-2 py-6">Date</th>
+                      <th className="px-2 py-6">Name</th>
+                      <th className="px-2 py-6">Email</th>
+                      <th className="px-2 py-6">Phone Number</th>
+                      <th className="px-2 py-6">Address</th>
+                      <th className="px-2 py-6">State</th>
+                      <th className="px-2 py-6">Has Paid</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {referralActivity.length === 0 ? (
+                    {user.interns_data.length === 0 ? (
                       <tr>
-                        <td colSpan={3} className="p-3">
-                          No Referral Registration history data available.
+                        <td colSpan={6} className="p-3">
+                          No intern data available.
                         </td>
                       </tr>
                     ) : (
-                      referralActivity.map((referral, index) => (
+                      user.interns_data.map((intern, index) => (
                         <tr
                           key={index}
                           className="text-black font-bold text-center border-b-2 border-black"
                         >
-                          <td className="px-2 py-6">{referral.referrer}</td>
-                          <td className="px-2 py-6">{referral.referred}</td>
-                          <td className="px-2 py-6">{referral.date}</td>
+                          <td className="px-2 py-6">{intern.name}</td>
+                          <td className="px-2 py-6">{intern.email}</td>
+                          <td className="px-2 py-6">{intern.phone_number}</td>
+                          <td className="px-2 py-6">{intern.address}</td>
+                          <td className="px-2 py-6">{intern.state}</td>
+                          <td className="px-2 py-6">
+                            {intern.has_paid ? "Yes" : "No"}
+                          </td>
                         </tr>
                       ))
                     )}
@@ -194,4 +200,4 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
   );
 };
 
-export default ReferralList;
+export default Interns;

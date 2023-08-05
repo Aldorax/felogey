@@ -120,7 +120,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
     if (user && !isPaid) {
       navigate.push(
         // "https://www.enetworksagencybanking.com.ng/interns/verify-email"
-        "https://enetworksagencybanking.com.ng/interns/pay-for-card"
+        "/interns/pay-for-card"
       );
     }
   }, [user, isEmailVerified, navigate]);
@@ -260,6 +260,40 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       </p>
                     </div>
                   </div>
+                  <Link
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black"
+                    href={"/interns/edit-data"}
+                  >
+                    <FontAwesomeIcon
+                      icon={faPerson}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">
+                        Edit account details
+                      </h3>
+                      <div className="flex gap-2 items-center text-sm md:text-md">
+                        <h4>Click to edit your account details</h4>{" "}
+                        {/* Display total_registeblue_users */}
+                      </div>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`h-4 w-4 md:w-10 md:h-10 absolute top-3 md:top-6 right-10 md:right-6 transform -rotate-90`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </Link>
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white text-black rounded-2xl mt-3 p-3 relative">
                     <FontAwesomeIcon
                       icon={faPeopleArrows}

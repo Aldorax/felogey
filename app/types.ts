@@ -16,7 +16,7 @@ export interface User {
   referral_link: string;
   referred_me: string;
   total_referred_users: number;
-  total_registered_users: number; // Total registered users
+  total_users: number; // Total registered users
   recent_referral_history: ReferralHistory[]; // Recent referral history
 }
 
@@ -28,6 +28,7 @@ export interface ReferredUser {
   email: string;
   has_paid: string;
   profile_image: string; // Change the type to include "null"
+  created_at: string;
 }
 
 export interface ReferralHistory {

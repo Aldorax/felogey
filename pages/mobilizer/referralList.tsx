@@ -96,10 +96,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
 
   useEffect(() => {
     if (user && !isEmailVerified) {
-      navigate.push(
-        "https://www.enetworksagencybanking.com.ng/mobilizer/verify-email"
-        // "http://localhost:3000/mobilizer/verify-email"
-      );
+      navigate.push("/mobilizer/verify-email");
     }
   }, [user, isEmailVerified, navigate]);
 
@@ -167,7 +164,7 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
   return (
     <div className="max-w-screen overflow-x-hidden">
       {isUserMobilizer ? (
-        <div className="min-h-screen bg-white h-auto max-w-screen">
+        <div className="min-h-screen bg-gray-100 h-auto max-w-screen">
           {user ? (
             <div className="flex flex-col">
               <div className="hidden">
@@ -226,33 +223,33 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
                 </div>
               </div>
               <div>
-                {user.referral_list.map((referredUser: ReferredUser) => (
-                  <div
-                    key={referredUser.id}
-                    className="p-4 bg-blue-800 border border-black m-4 rounded-xl text-white text-sm mb-2"
-                  >
-                    <div className="flex items-center gap-2">
-                      <FontAwesomeIcon
-                        icon={faUser}
-                        width={50}
-                        height={50}
-                        scale={10}
-                        className="rounded-xl py-10 px-4 bg-blue-500"
-                      />
-                      <div className="flex flex-col gap-2">
-                        <p>
-                          Full Name: {referredUser.first_name}{" "}
-                          {referredUser.last_name}
-                        </p>
-                        <p>Email: {referredUser.email}</p>
-                        <p>
-                          Account Verified:{" "}
+                <table className="p-4 rounded-xs w-full text-sm md:text-md">
+                  <thead>
+                    <tr className="bg-blue-500 text-white">
+                      <th className="px-2 py-6">Full Name</th>
+                      <th className="px-2 py-6">Email</th>
+                      <th className="px-2 py-6">Verification Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {user.referral_list.map((referredUser: ReferredUser) => (
+                      <tr
+                        key={referredUser.id}
+                        className="text-black font-bold text-center border-b-2 border-black"
+                      >
+                        <td className="px-2 py-6">
+                          <p>
+                            {referredUser.first_name} {referredUser.last_name}
+                          </p>
+                        </td>
+                        <td className="px-2 py-6">{referredUser.email}</td>
+                        <td className="px-2 py-6">
                           {referredUser.has_paid === "True" ? "Yes" : "No"}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           ) : (
