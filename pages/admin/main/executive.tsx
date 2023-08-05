@@ -68,7 +68,7 @@ const ExecutiveComponent: React.FC<DashboardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/admin-dashboard",
           // "http://localhost:5000/admin-dashboard",
           {
             withCredentials: true, // Include cookies in the request
