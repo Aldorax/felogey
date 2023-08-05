@@ -155,7 +155,7 @@ const Header = () => {
                   href={"/interns/register"}
                   className="block w-full p-2 hover:bg-green-700 hover:text-white"
                 >
-                  <h1>Register as Intern</h1>
+                  <h1>Register as an Intern</h1>
                 </Link>
               </div>
               <div className="flex gap-2 items-center border-b-2 border-black  bg-white rounded-md">
@@ -169,7 +169,7 @@ const Header = () => {
                   href={"/mobilizer/register"}
                   className="block w-full p-2 hover:bg-green-700 hover:text-white"
                 >
-                  <h1>Register as Mobilizer</h1>
+                  <h1>Register as a Mobilizer</h1>
                 </Link>
               </div>
               <div className="flex gap-2 items-center border-b-2 border-black  bg-white rounded-md">
@@ -204,14 +204,35 @@ const Header = () => {
           )}
         </div>
         {user ? (
-          <div className="hidden md:flex text-center justify-center items-center bg-white">
-            <p>Welcome, {user.first_name}</p>
+          <div className="hidden md:flex gap-2 text-center justify-center items-center bg-white">
             <button
               type="button"
               onClick={logoutUser}
               className="px-3 py-2 my-auto md:px-8 md:py-3 rounded-lg text-black uppercase bg-green-800 mx-1 md:mx-3 text-sm md:text-current"
             >
               Logout
+            </button>
+            <button
+              onClick={toggleDropdown}
+              className="mx-6 min-w-full max-w-[40vw] rounded-xl my-2 flex gap-3 items-center justify-between text-black"
+            >
+              <h1 className="text-black">Menu</h1>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-4 w-4 absolute top-3 right-1 md:right-1 ${
+                  isDropdownOpen ? "transform rotate-180" : ""
+                }`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
             </button>
           </div>
         ) : (

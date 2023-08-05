@@ -24,9 +24,9 @@ const Howto = () => {
               <span className="font-semibold bg-orange-600 p-1">an Intern</span>
             </i>
           </li>
-          <li>You will be redirected to a the Intern Registration page.</li>
+          <li>You will be redirected to the Intern Registration page.</li>
           <li>
-            Fill the details in and upload your profile image. (
+            Fill in the details and upload your profile image. (
             <span className="font-semibold">
               NOTE: Profile Image should be an image of yourself only! Any other
               image can cause your acccount to be flagged or permanently removed
@@ -49,7 +49,7 @@ const Howto = () => {
           </li>
           <li>Copy the OTP code and verify your account.</li>
           <li>
-            You will be taken to a checkout page to pay for your{" "}
+            You will be taken to the checkout page to pay for your{" "}
             <span className="font-bold bg-orange-600 p-1">
               E-Networks Digital cash card.
             </span>

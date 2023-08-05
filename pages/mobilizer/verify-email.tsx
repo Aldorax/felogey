@@ -105,7 +105,7 @@ const VerifyEmail: React.FC = () => {
         }
       );
 
-      setLoading(false);
+      setLoading1(false);
       toast.success("OTP Resent successfully");
     } catch (error) {
       setLoading1(false);
