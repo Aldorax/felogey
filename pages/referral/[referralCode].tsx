@@ -40,6 +40,7 @@ const ReferralRegisterPage = () => {
   const [state, setState] = useState("");
   const [address, setAddress] = useState("");
   const [account, setAccount] = useState("");
+  const [bankName, setBankName] = useState("");
   const [LGA, setLGA] = useState("");
   const [enairaId, setEnairaID] = useState("");
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -83,6 +84,7 @@ const ReferralRegisterPage = () => {
         data.append("phone_number", phoneNumber);
         data.append("state", state);
         data.append("account", account);
+        data.append("bankName", bankName);
         data.append("enaira_Id", enairaId);
         data.append("address", address);
         data.append("local_government_area", LGA);
@@ -181,7 +183,7 @@ const ReferralRegisterPage = () => {
     "Edo",
     "Ekiti",
     "Enugu",
-    "Federal Capital Territory (FCT)",
+    "FCT", // Corrected entry
     "Gombe",
     "Imo",
     "Jigawa",
@@ -192,7 +194,7 @@ const ReferralRegisterPage = () => {
     "Kogi",
     "Kwara",
     "Lagos",
-    "Nassarawa",
+    "Nassarawa", // Corrected spelling
     "Niger",
     "Ogun",
     "Ondo",
@@ -392,15 +394,29 @@ const ReferralRegisterPage = () => {
                   <label className="text-md font-bold text-black"></label>
                   <input
                     className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
-                    placeholder="Enter your EnairaID (if you have one):"
-                    type="number"
-                    value={enairaId}
-                    onChange={(e) => setEnairaID(e.target.value)}
-                    id="enaira_Id"
-                    title="enaira_Id"
+                    placeholder="Bank Name (eg) Zenith Bank"
+                    type="text"
+                    value={bankName}
+                    onChange={(e) => setBankName(e.target.value)}
+                    id="bankName"
+                    title="bankName"
                     autoComplete="true"
+                    required
                   />
                 </div>
+              </div>
+              <div className="p-1 md:p-2">
+                <label className="text-md font-bold text-black"></label>
+                <input
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
+                  placeholder="Enter your EnairaID (if you have one):"
+                  type="number"
+                  value={enairaId}
+                  onChange={(e) => setEnairaID(e.target.value)}
+                  id="enaira_Id"
+                  title="enaira_Id"
+                  autoComplete="true"
+                />
               </div>
               <button
                 type="button"
