@@ -7,6 +7,7 @@ import "@/app/globals.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "@/components/header";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ const RegisterPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const registerUser = async () => {
     if (!areRequiredFieldsFilled()) {
@@ -265,7 +267,7 @@ const RegisterPage: React.FC = () => {
                     minLength={6}
                   />
                 </div>
-                <div className="p-1 md:p-2">
+                {/* <div className="p-1 md:p-2">
                   <label className="text-md font-bold text-black"></label>
                   <input
                     className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
@@ -278,6 +280,28 @@ const RegisterPage: React.FC = () => {
                     autoComplete="true"
                     required
                   />
+                </div> */}
+                <div className="p-1 md:p-2 relative">
+                  <label className="text-md font-bold text-black"></label>
+                  <input
+                    className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px] custom-password-input"
+                    placeholder="Enter your Password:"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    id="password"
+                    title="password"
+                    autoComplete="true"
+                    required
+                    inputMode="none" // Add this line to disable the default toggle
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute md:top-10 top-7 right-7 cursor-pointer"
+                  >
+                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                  </button>
                 </div>
               </div>
               {/*  */}

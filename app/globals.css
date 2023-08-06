@@ -77,3 +77,23 @@ input:focus {
 *:focus {
   outline: none;
 }
+
+
+.custom-password-input::-ms-reveal,
+.custom-password-input::-ms-clear {
+  display: none;
+  /* Hide the default password visibility toggle for Microsoft Edge */
+}
+
+.custom-password-input::-webkit-credentials-auto-fill-button {
+  display: none;
+  /* Hide the default password visibility toggle for Chrome */
+}
+
+.custom-password-input::-webkit-inner-spin-button,
+.custom-password-input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+/* Hide the spin buttons in Chrome */

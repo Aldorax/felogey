@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React, { useState } from "react";
 import httpClient from "@/components/charts/httpClient";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import "@/app/globals.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -29,6 +30,7 @@ const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const logInUser = async () => {
     setLoading(true); // Show the loader
@@ -103,17 +105,27 @@ const LoginPage: React.FC = () => {
                   title="email"
                 />
               </div>
-              <div className="p-1 md:p-2">
+              <div className="p-1 md:p-2 relative">
                 <label className="text-md font-bold text-black"></label>
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px] custom-password-input"
                   placeholder="Enter your Password:"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  id=""
+                  id="password"
                   title="password"
+                  autoComplete="true"
+                  required
+                  inputMode="none" // Add this line to disable the default toggle
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute md:top-10 top-7 right-7 cursor-pointer"
+                >
+                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                </button>
               </div>
               <button
                 type="button"
