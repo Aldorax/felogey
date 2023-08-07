@@ -293,7 +293,6 @@ const RegisterPage: React.FC = () => {
                     title="password"
                     autoComplete="true"
                     required
-                    inputMode="none" // Add this line to disable the default toggle
                   />
                   <button
                     type="button"
