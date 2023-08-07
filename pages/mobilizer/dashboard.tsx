@@ -14,8 +14,10 @@ import axios from "axios";
 import "@/app/globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBank,
   faBell,
   faDollar,
+  faListNumeric,
   faMoneyBill,
   faMoneyBill1Wave,
   faPeopleArrows,
@@ -259,6 +261,42 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                         {user.phone_number}
                       </p>
                     </div>
+                  </div>
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-400 rounded-2xl mt-3 p-3 relative">
+                    <FontAwesomeIcon
+                      icon={faBank}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">Bank Number</h3>
+                      <div className="flex gap-2 items-center">
+                        <h4>{user.account}</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-400 rounded-2xl mt-3 p-3 relative">
+                    <FontAwesomeIcon
+                      icon={faBank}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">Bank Name</h3>
+                      <div className="flex gap-2 items-center">
+                        <h4>{user.bank_name}</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black">
+                    <FontAwesomeIcon
+                      icon={faDollar}
+                      width={50}
+                      height={50}
+                      scale={10}
+                    />
                   </div>
                   <Link
                     className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black"

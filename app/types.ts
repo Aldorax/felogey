@@ -9,6 +9,8 @@ export interface User {
   is_email_verified: string;
   profile_image: string; // Change the type to include "null"
   modified_at: string;
+  account: number;
+  bank_name: string;
   has_paid: string;
   referral_list: ReferredUser[];
   earnings: number | null;
