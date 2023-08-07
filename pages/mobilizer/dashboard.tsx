@@ -12,6 +12,7 @@ import image from "@/app/favicon.ico";
 import LeftSide from "@/components/LeftSide";
 import axios from "axios";
 import "@/app/globals.css";
+import naira from "@/public/images/nairablack.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBank,
@@ -290,14 +291,6 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black">
-                    <FontAwesomeIcon
-                      icon={faDollar}
-                      width={50}
-                      height={50}
-                      scale={10}
-                    />
-                  </div>
                   <Link
                     className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black"
                     href={"/mobilizer/edit-data"}
@@ -349,11 +342,12 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                   </div>
                   <div className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black">
-                    <FontAwesomeIcon
-                      icon={faDollar}
-                      width={50}
-                      height={50}
-                      scale={10}
+                    <Image
+                      src={naira}
+                      alt="Naira"
+                      width={20}
+                      height={20}
+                      className="mr-3 ml-3 flex items-center justify-center text-center"
                     />
                     <div className="mx-3">
                       <h3 className="text-sm md:text-3xl mb-2">Earnings</h3>
