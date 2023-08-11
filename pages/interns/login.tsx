@@ -73,13 +73,13 @@ const LoginPage: React.FC = () => {
       } catch (error: any) {
         if (error) {
           toast.error(
-            "There was an issue when Logging in. Check your details and try again!"
+            "There was an issue when logging in. Check your details and try again!"
           );
         }
       } finally {
         setLoading(false); // Hide the loader after registration attempt
       }
-    }, 2000);
+    }, 1000);
   };
 
   return (
