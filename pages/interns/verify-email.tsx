@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import httpClient from "@/components/charts/httpClient";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import type { Metadata } from "next";
 import { AxiosRequestConfig } from "axios";
+import "@/global";
 
 export const metadata: Metadata = {
   title: "Email Verification",
@@ -24,58 +24,56 @@ interface ErrorResponse {
 
 interface RequestHeaders {
   "Content-Type": string;
-  Authorization?: string; // Make the Authorization property optional
+  Authorization?: string;
 }
 
-const VerifyEmail: React.FC = () => {
+const VerifyEmail = () => {
   const navigate = useRouter();
 
   const [otp, setOtp] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [loading1, setLoading1] = useState(false);
+  const [loading, setLoading] = useState(false); // Declare loading state
+  const [loading1, setLoading1] = useState(false); // Declare loading1 state
 
   const verifyOtp = async () => {
-    setLoading(true); // Show the loader
+    setLoading(true);
 
-    setTimeout(async () => {
-      try {
-        const accessToken = localStorage.getItem("access_token");
-        const headers: AxiosRequestConfig["headers"] = {
-          "Content-Type": "application/x-www-form-urlencoded",
-        };
+    try {
+      const accessToken = localStorage.getItem("access_token");
+      const headers: AxiosRequestConfig["headers"] = {
+        "Content-Type": "application/x-www-form-urlencoded",
+      };
 
-        if (accessToken) {
-          headers["Authorization"] = `Bearer ${accessToken}`;
-        }
-        const data = new FormData();
-        data.append("otp", otp);
-        console.log(data);
-
-        const resp = await httpClient.post(
-          "https://enetworks-tovimikailu.koyeb.app/verify-email",
-          data,
-          {
-            headers: headers,
-            withCredentials: true,
-          }
-        );
-
-        if ("error" in resp.data) {
-          // Registration failed
-          const errorResponse = resp.data;
-          toast.error(errorResponse.error);
-        } else {
-          // Registration successful
-          toast.success("Email Verified successfully");
-          navigate.push("/interns/dashboard");
-        }
-      } catch (error: any) {
-        toast.error(error);
-        console.log(error);
-      } finally {
-        setLoading(false); // Hide the loader after registration attempt
+      if (accessToken) {
+        headers["Authorization"] = `Bearer ${accessToken}`;
       }
-    }, 2000);
+      const data = new FormData();
+      data.append("otp", otp);
+      console.log(data);
+
+      const resp = await httpClient.post(
+        "https://enetworks-tovimikailu.koyeb.app/verify-email",
+        data,
+        {
+          headers: headers,
+          withCredentials: true,
+        }
+      );
+
+      if ("error" in resp.data) {
+        // Registration failed
+        const errorResponse = resp.data;
+        toast.error(errorResponse.error);
+      } else {
+        // Registration successful
+        toast.success("Email Verified successfully");
+        navigate.push("/interns/dashboard");
+      }
+    } catch (error: any) {
+      toast.error(error);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const resendOTP = async () => {
@@ -112,7 +110,7 @@ const VerifyEmail: React.FC = () => {
   };
 
   return (
-    <main className="flex flex-col md:flex-row min-h-screen min-w-screen items-center justify-center bg-white">
+    <div className="flex flex-col md:flex-row min-h-screen min-w-screen items-center justify-center bg-white">
       <div className="flex items-center justify-center">
         <div className="flex flex-col justify-center items-center mx-auto border border-white text-black bg-white mt-20 mb-5">
           <div>
@@ -130,7 +128,9 @@ const VerifyEmail: React.FC = () => {
                   placeholder="Enter your Otp:"
                   type="text"
                   value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
+                  onChange={(e: { target: { value: any } }) =>
+                    setOtp(e.target.value)
+                  }
                   id="otp"
                   title="otp"
                 />
@@ -159,7 +159,7 @@ const VerifyEmail: React.FC = () => {
       </div>
       {/* Toast Container */}
       <ToastContainer />
-    </main>
+    </div>
   );
 };
 
