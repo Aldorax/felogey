@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import type { Metadata } from "next";
 import { AxiosRequestConfig } from "axios";
-import "@/global";
+// import "@/global";
 
 export const metadata: Metadata = {
   title: "Email Verification",
