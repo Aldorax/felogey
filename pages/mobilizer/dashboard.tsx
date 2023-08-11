@@ -105,8 +105,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   useEffect(() => {
     if (user && !isEmailVerified) {
       navigate.push(
-        // "https://www.enetworksagencybanking.com.ng/mobilizer/verify-email"
-        "https://enetworksagencybanking.com.ng/mobilizer/verify-email"
+        "https://www.enetworksagencybanking.com.ng/mobilizer/verify-email"
+        // "https://enetworksagencybanking.com.ng/mobilizer/verify-email"
       );
     }
   }, [user, isEmailVerified, navigate]);

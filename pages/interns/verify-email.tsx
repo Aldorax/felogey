@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import httpClient from "@/components/charts/httpClient";
 import { ToastContainer, toast } from "react-toastify";
@@ -7,7 +8,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import type { Metadata } from "next";
 import { AxiosRequestConfig } from "axios";
-// import "@/global";
 
 export const metadata: Metadata = {
   title: "Email Verification",
@@ -24,56 +24,59 @@ interface ErrorResponse {
 
 interface RequestHeaders {
   "Content-Type": string;
-  Authorization?: string;
+  Authorization?: string; // Make the Authorization property optional
 }
 
-const VerifyEmail = () => {
+const VerifyEmail: React.FC = () => {
   const navigate = useRouter();
 
   const [otp, setOtp] = useState("");
-  const [loading, setLoading] = useState(false); // Declare loading state
-  const [loading1, setLoading1] = useState(false); // Declare loading1 state
+  const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
 
   const verifyOtp = async () => {
-    setLoading(true);
+    setLoading(true); // Show the loader
 
-    try {
-      const accessToken = localStorage.getItem("access_token");
-      const headers: AxiosRequestConfig["headers"] = {
-        "Content-Type": "application/x-www-form-urlencoded",
-      };
+    setTimeout(async () => {
+      try {
+        const accessToken = localStorage.getItem("access_token");
+        const headers: AxiosRequestConfig["headers"] = {
+          "Content-Type": "application/x-www-form-urlencoded",
+        };
 
-      if (accessToken) {
-        headers["Authorization"] = `Bearer ${accessToken}`;
-      }
-      const data = new FormData();
-      data.append("otp", otp);
-      console.log(data);
-
-      const resp = await httpClient.post(
-        "https://enetworks-tovimikailu.koyeb.app/verify-email",
-        data,
-        {
-          headers: headers,
-          withCredentials: true,
+        if (accessToken) {
+          headers["Authorization"] = `Bearer ${accessToken}`;
         }
-      );
+        const data = new FormData();
+        data.append("otp", otp);
+        console.log(data);
 
-      if ("error" in resp.data) {
-        // Registration failed
-        const errorResponse = resp.data;
-        toast.error(errorResponse.error);
-      } else {
-        // Registration successful
-        toast.success("Email Verified successfully");
-        navigate.push("/interns/dashboard");
+        const resp = await httpClient.post(
+          // "https://enetworks-tovimikailu.koyeb.app/verify-email",
+          "https://enetworks-tovimikailu.koyeb.app/verify-email",
+          data,
+          {
+            headers: headers,
+            withCredentials: true,
+          }
+        );
+
+        if ("error" in resp.data) {
+          // Registration failed
+          const errorResponse = resp.data;
+          toast.error(errorResponse.error);
+        } else {
+          // Registration successful
+          toast.success("Email Verified successfully");
+          navigate.push("/interns/dashboard");
+        }
+      } catch (error: any) {
+        toast.error(error);
+        console.log(error);
+      } finally {
+        setLoading(false); // Hide the loader after registration attempt
       }
-    } catch (error: any) {
-      toast.error(error);
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+    }, 2000);
   };
 
   const resendOTP = async () => {
@@ -91,8 +94,7 @@ const VerifyEmail = () => {
       ] = `Bearer ${accessToken}`;
 
       await httpClient.post(
-        // "https://enetworks-tovimikailu.koyeb.app/resend-otp",
-        "http://localhost:5000/resend-otp",
+        "https://enetworks-tovimikailu.koyeb.app/resend-otp",
         {},
         {
           headers: headers,
@@ -110,7 +112,7 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen min-w-screen items-center justify-center bg-white">
+    <main className="flex flex-col md:flex-row min-h-screen min-w-screen items-center justify-center bg-white">
       <div className="flex items-center justify-center">
         <div className="flex flex-col justify-center items-center mx-auto border border-white text-black bg-white mt-20 mb-5">
           <div>
@@ -128,9 +130,7 @@ const VerifyEmail = () => {
                   placeholder="Enter your Otp:"
                   type="text"
                   value={otp}
-                  onChange={(e: { target: { value: any } }) =>
-                    setOtp(e.target.value)
-                  }
+                  onChange={(e) => setOtp(e.target.value)}
                   id="otp"
                   title="otp"
                 />
@@ -159,7 +159,7 @@ const VerifyEmail = () => {
       </div>
       {/* Toast Container */}
       <ToastContainer />
-    </div>
+    </main>
   );
 };
 

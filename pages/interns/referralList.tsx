@@ -66,7 +66,9 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
 
   useEffect(() => {
     if (user && !isEmailVerified) {
-      navigate.push("/interns/verify-email");
+      navigate.push(
+        "https://www.enetworksagencybanking.com.ng/interns/verify-email"
+      );
     }
   }, [user, isEmailVerified, navigate]);
 
