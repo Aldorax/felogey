@@ -66,8 +66,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
         const response = await httpClient.get(
           // "https://enetworks-tovimikailu.koyeb.app/dashboard",
-          // "https://enetworks-tovimikailu.koyeb.app/dashboard",
-          "http://localhost:5000/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          // "http://localhost:5000/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -107,7 +107,9 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
   useEffect(() => {
     if (user && !isEmailVerified) {
-      navigate.push("/interns/verify-email");
+      navigate.push(
+        "https://www.enetworksagencybanking.com.ng/interns/verify-email"
+      );
     }
   }, [user, isEmailVerified, navigate]);
 
