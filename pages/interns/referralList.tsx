@@ -5,11 +5,7 @@ import httpClient from "@/components/charts/httpClient";
 import { useRouter } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import router from "next/router";
-import Image from "next/image";
-import image from "@/app/favicon.ico";
 import LeftSide from "@/components/LeftSide";
-import axios from "axios";
 import "@/app/globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -26,8 +22,6 @@ interface DashoardProps {
 const ReferralList: React.FC<DashoardProps> = ({}) => {
   const navigate = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const [paymentUrl, setPaymentUrl] = useState("");
-  const [loading, setLoading] = useState(false);
   const [isUserIntern, setIsIntern] = useState(false);
 
   useEffect(() => {
@@ -68,97 +62,13 @@ const ReferralList: React.FC<DashoardProps> = ({}) => {
     fetchUserDetails();
   }, [navigate]);
 
-  const logoutUser = async () => {
-    // Clear the access token from local storage
-    localStorage.removeItem("access_token");
-
-    // Make the logout request
-    const resp = await httpClient.post(
-      "https://enetworks-tovimikailu.koyeb.app/logout",
-      {
-        withCredentials: true, // Include cookies in the request
-      }
-    );
-
-    // Redirect to the desired location
-    window.location.href = "/";
-  };
-
-  const refresh = () => {
-    window.location.href = "/interns/dashboard";
-  };
-
   const isEmailVerified = user?.is_email_verified === "True";
 
   useEffect(() => {
     if (user && !isEmailVerified) {
-      navigate.push(
-        // "https://www.enetworksagencybanking.com.ng/interns/verify-email"
-        "https://enetworksagencybanking.com.ng/interns/verify-email"
-      );
+      navigate.push("/interns/verify-email");
     }
   }, [user, isEmailVerified, navigate]);
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const access_token = localStorage.getItem("access_token");
-    const file = event.target.files?.[0];
-    if (file) {
-      const formData = new FormData();
-      formData.append("profile_image", file); // Use the correct field name "profile_image"
-
-      httpClient
-        .post(
-          "https://enetworks-tovimikailu.koyeb.app/update_profile_image",
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-            },
-          }
-        )
-        .then((response) => {
-          setUser((prevUser) => {
-            if (prevUser) {
-              return { ...prevUser, profile_pic: response.data };
-            }
-            return null;
-          });
-          window.location.href = "/interns/dashboard";
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  };
-
-  const parseProfilePic = (profilePic: string | "null"): string | null => {
-    return profilePic === "null" ? null : profilePic;
-  };
-
-  const handlePayment = () => {
-    setLoading(true); // Show the loader
-    const access_token = localStorage.getItem("access_token");
-    axios
-      .post(
-        // "https://enetworks-tovimikailu.koyeb.app/pay/",
-        "https://enetworks-tovimikailu.koyeb.app/pay/",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      )
-      .then((response) => {
-        const { payment_url } = response.data;
-        setPaymentUrl(payment_url);
-        setLoading(false); // Hide the loader after registration attempt
-        navigate.push(paymentUrl);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   return (
     <div className="max-w-screen overflow-x-hidden">

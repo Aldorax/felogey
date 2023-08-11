@@ -66,8 +66,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
         const response = await httpClient.get(
           // "https://enetworks-tovimikailu.koyeb.app/dashboard",
-          "https://enetworks-tovimikailu.koyeb.app/dashboard",
-          // "http://localhost:5000/dashboard",
+          // "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          "http://localhost:5000/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -107,10 +107,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
   useEffect(() => {
     if (user && !isEmailVerified) {
-      navigate.push(
-        // "https://www.enetworksagencybanking.com.ng/interns/verify-email"
-        "https://enetworksagencybanking.com.ng/interns/verify-email"
-      );
+      navigate.push("/interns/verify-email");
     }
   }, [user, isEmailVerified, navigate]);
 
@@ -118,10 +115,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
   useEffect(() => {
     if (user && !isPaid) {
-      navigate.push(
-        // "https://www.enetworksagencybanking.com.ng/interns/verify-email"
-        "/interns/pay-for-card"
-      );
+      navigate.push("/interns/pay-for-card");
     }
   }, [user, isEmailVerified, navigate]);
 

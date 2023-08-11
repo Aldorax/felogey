@@ -52,7 +52,6 @@ const VerifyEmail: React.FC = () => {
         console.log(data);
 
         const resp = await httpClient.post(
-          // "https://enetworks-tovimikailu.koyeb.app/verify-email",
           "https://enetworks-tovimikailu.koyeb.app/verify-email",
           data,
           {
@@ -94,7 +93,8 @@ const VerifyEmail: React.FC = () => {
       ] = `Bearer ${accessToken}`;
 
       await httpClient.post(
-        "https://enetworks-tovimikailu.koyeb.app/resend-otp",
+        // "https://enetworks-tovimikailu.koyeb.app/resend-otp",
+        "http://localhost:5000/resend-otp",
         {},
         {
           headers: headers,

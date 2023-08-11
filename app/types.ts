@@ -19,7 +19,7 @@ export interface User {
   referred_me: string;
   total_referred_users: number;
   total_users: number; // Total registered users
-  recent_referral_history: ReferralHistory[]; // Recent referral history
+  // recent_referral_history: ReferralHistory[]; // Recent referral history
 }
 
 export interface ReferredUser {
