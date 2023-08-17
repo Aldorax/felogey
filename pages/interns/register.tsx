@@ -240,6 +240,7 @@ const RegisterPage: React.FC = () => {
                   title="profileImage"
                   className="hidden p-5"
                   required
+                  disabled
                 />
                 {imagePreview && (
                   <div className="mt-2">
@@ -264,6 +265,7 @@ const RegisterPage: React.FC = () => {
                     title="email"
                     autoComplete="true"
                     required
+                    disabled
                     minLength={6}
                   />
                 </div>
@@ -293,6 +295,7 @@ const RegisterPage: React.FC = () => {
                     title="password"
                     autoComplete="true"
                     required
+                    disabled
                   />
                   <button
                     type="button"
@@ -317,6 +320,7 @@ const RegisterPage: React.FC = () => {
                     title="pnumber"
                     autoComplete="true"
                     required
+                    disabled
                     minLength={11}
                   />
                 </div>
@@ -332,6 +336,7 @@ const RegisterPage: React.FC = () => {
                     title="firstName"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
               </div>
@@ -349,6 +354,7 @@ const RegisterPage: React.FC = () => {
                     title="lastName"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2">
@@ -359,7 +365,7 @@ const RegisterPage: React.FC = () => {
                     onChange={(e) => setState(e.target.value)}
                     id="state"
                     title="state"
-                    required
+                    disabled
                   >
                     <option value="">Select a state</option>
                     {nigeriaStates.map((state) => (
@@ -384,6 +390,7 @@ const RegisterPage: React.FC = () => {
                     title="local_government_area"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2">
@@ -398,6 +405,7 @@ const RegisterPage: React.FC = () => {
                     title="address"
                     autoComplete="true"
                     required
+                    disabled
                     minLength={5}
                   />
                 </div>
@@ -415,6 +423,7 @@ const RegisterPage: React.FC = () => {
                     title="account"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2">
@@ -429,6 +438,7 @@ const RegisterPage: React.FC = () => {
                     title="bankName"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
               </div>
@@ -443,11 +453,13 @@ const RegisterPage: React.FC = () => {
                   id="enaira_Id"
                   title="enaira_Id"
                   autoComplete="true"
+                  disabled
                 />
               </div>
 
               <button
                 type="button"
+                disabled
                 onClick={() => !loading && registerUser()} // Prevent multiple clicks while loading
                 className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-500 rounded-xl my-4 text-white font-semibold ${
                   loading ? "cursor-not-allowed" : ""

@@ -235,6 +235,7 @@ const ReferralRegisterPage = () => {
                   title="profileImage"
                   className="hidden p-5"
                   required
+                  disabled
                 />
                 {imagePreview && (
                   <div className="mt-2">
@@ -259,6 +260,7 @@ const ReferralRegisterPage = () => {
                     title="email"
                     autoComplete="true"
                     required
+                    disabled
                     minLength={6}
                   />
                 </div>
@@ -274,6 +276,7 @@ const ReferralRegisterPage = () => {
                     title="password"
                     autoComplete="true"
                     required
+                    disabled
                   />
                   <button
                     type="button"
@@ -298,6 +301,7 @@ const ReferralRegisterPage = () => {
                     title="pnumber"
                     autoComplete="true"
                     required
+                    disabled
                     minLength={11}
                   />
                 </div>
@@ -313,6 +317,7 @@ const ReferralRegisterPage = () => {
                     title="firstName"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
               </div>
@@ -330,6 +335,7 @@ const ReferralRegisterPage = () => {
                     title="lastName"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2">
@@ -341,6 +347,7 @@ const ReferralRegisterPage = () => {
                     id="state"
                     title="state"
                     required
+                    disabled
                   >
                     <option value="">Select a state</option>
                     {nigeriaStates.map((state) => (
@@ -365,6 +372,7 @@ const ReferralRegisterPage = () => {
                     title="local_government_area"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2">
@@ -379,6 +387,7 @@ const ReferralRegisterPage = () => {
                     title="address"
                     autoComplete="true"
                     required
+                    disabled
                     minLength={5}
                   />
                 </div>
@@ -396,6 +405,7 @@ const ReferralRegisterPage = () => {
                     title="account"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2">
@@ -410,6 +420,7 @@ const ReferralRegisterPage = () => {
                     title="bankName"
                     autoComplete="true"
                     required
+                    disabled
                   />
                 </div>
               </div>
@@ -424,10 +435,12 @@ const ReferralRegisterPage = () => {
                   id="enaira_Id"
                   title="enaira_Id"
                   autoComplete="true"
+                  disabled
                 />
               </div>
               <button
                 type="button"
+                disabled
                 onClick={() => !isLoading && handleRegister()} // Prevent multiple clicks while loading
                 className={`md:py-5 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-500 rounded-xl my-4 text-white font-semibold ${
                   isLoading ? "cursor-not-allowed" : ""
