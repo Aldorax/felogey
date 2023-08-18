@@ -239,7 +239,6 @@ const RegisterPage: React.FC = () => {
                   id="profileImage"
                   title="profileImage"
                   className="hidden p-5"
-                  disabled
                 />
                 {imagePreview && (
                   <div className="mt-2">
@@ -262,7 +261,6 @@ const RegisterPage: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     id="email"
                     title="email"
-                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2 relative">
@@ -277,7 +275,6 @@ const RegisterPage: React.FC = () => {
                     title="password"
                     autoComplete="true"
                     required
-                    disabled
                   />
                   <button
                     type="button"
@@ -300,7 +297,6 @@ const RegisterPage: React.FC = () => {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     id="pnumber"
                     title="pnumber"
-                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2">
@@ -313,7 +309,6 @@ const RegisterPage: React.FC = () => {
                     onChange={(e) => setFirstName(e.target.value)}
                     id="fname"
                     title="firstName"
-                    disabled
                   />
                 </div>
               </div>
@@ -330,7 +325,6 @@ const RegisterPage: React.FC = () => {
                     id="lname"
                     title="lastName"
                     autoComplete="true"
-                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2">
@@ -342,7 +336,6 @@ const RegisterPage: React.FC = () => {
                     id="state"
                     title="state"
                     required
-                    disabled
                   >
                     <option value="">Select a state</option>
                     {nigeriaStates.map((state) => (
@@ -379,7 +372,6 @@ const RegisterPage: React.FC = () => {
                     id="address"
                     title="address"
                     autoComplete="true"
-                    disabled
                   />
                 </div>
               </div>
@@ -396,7 +388,6 @@ const RegisterPage: React.FC = () => {
                     title="account"
                     autoComplete="true"
                     required
-                    disabled
                   />
                 </div>
                 <div className="p-1 md:p-2">
@@ -411,7 +402,6 @@ const RegisterPage: React.FC = () => {
                     title="bankName"
                     autoComplete="true"
                     required
-                    disabled
                   />
                 </div>
               </div>
@@ -426,7 +416,6 @@ const RegisterPage: React.FC = () => {
                   id="enaira_Id"
                   title="enaira_Id"
                   autoComplete="true"
-                  disabled
                 />
               </div>
               <button
