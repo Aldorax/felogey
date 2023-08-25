@@ -44,3 +44,9 @@ export interface ReferralHistory {
   referred: string;
   referrer: string;
 }
+
+export interface Transfer {
+  account_name: string;
+  account_number: string;
+  bank_name: string;
+}

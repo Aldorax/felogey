@@ -25,6 +25,7 @@ import {
   faPerson,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 interface DashoardProps {
   user: User;
@@ -40,6 +41,7 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   const [user, setUser] = useState<User | null>(null);
   const [paymentUrl, setPaymentUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
   const [isUserMobilizer, setIsMobilizer] = useState(false);
 
   useEffect(() => {
@@ -63,8 +65,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          "https://enetworks-tovimikailu.koyeb.app/dashboard",
-          // "http://localhost:5000/dashboard",
+          // "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          "http://localhost:5000/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -105,8 +107,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   useEffect(() => {
     if (user && !isEmailVerified) {
       navigate.push(
-        "https://www.enetworksagencybanking.com.ng/mobilizer/verify-email"
-        // "https://enetworksagencybanking.com.ng/mobilizer/verify-email"
+        // "https://www.enetworksagencybanking.com.ng/mobilizer/verify-email"
+        "http://localhost:3000/mobilizer/verify-email"
       );
     }
   }, [user, isEmailVerified, navigate]);
@@ -169,6 +171,52 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+
+  const handleVerifyPayment = () => {
+    setLoading1(true); // Show loading spinner
+
+    const access_token = localStorage.getItem("access_token");
+    axios
+      // .get("https://enetworks-tovimikailu.koyeb.app/check-user-payment", {
+      .get("http://localhost:5000/check-user-payment", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+      .then((response) => {
+        setLoading1(false); // Hide loading spinner
+
+        if (response.status === 200) {
+          if (
+            response.data.message ===
+            "Successful payment and earnings distribution done"
+          ) {
+            toast.success("Payment has been verified");
+            navigate.push("/mobilizer/dashboard"); // Redirect to dashboard
+          } else {
+            // Show error toast
+            toast.error(response.data.message);
+          }
+        } else {
+          // Show error toast
+          toast.error("An error occurred. Please try again later.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading1(false); // Hide loading spinner
+
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          toast.error(error.response.data.message); // Show the backend error message
+        } else {
+          toast.error("An error occurred. Please try again later.");
+        }
       });
   };
 
@@ -482,19 +530,35 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                               </button>
                             </a>
                           ) : (
-                            <button
-                              type="button"
-                              onClick={() => !loading && handlePayment()} // Prevent multiple clicks while loading
-                              className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-blue-600 ${
-                                loading ? "cursor-not-allowed" : ""
-                              }`}
-                            >
-                              {loading ? (
-                                <div className="spinner"></div>
-                              ) : (
-                                "Make Payment"
-                              )}
-                            </button>
+                            <div>
+                              <button
+                                type="button"
+                                onClick={() => !loading && handlePayment()} // Prevent multiple clicks while loading
+                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-blue-600 ${
+                                  loading ? "cursor-not-allowed" : ""
+                                }`}
+                              >
+                                {loading ? (
+                                  <div className="spinner"></div>
+                                ) : (
+                                  "Make Payment"
+                                )}
+                              </button>
+                              <button
+                                onClick={() =>
+                                  !loading1 && handleVerifyPayment()
+                                }
+                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-blue-600 ${
+                                  loading1 ? "cursor-not-allowed" : ""
+                                }`}
+                              >
+                                {loading1 ? (
+                                  <div className="spinner"></div>
+                                ) : (
+                                  "Already Made Payment? Click to update payment status."
+                                )}
+                              </button>
+                            </div>
                           )}
                         </div>
                       </div>
