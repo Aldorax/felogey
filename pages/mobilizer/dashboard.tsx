@@ -74,8 +74,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         ] = `Bearer ${access_token}`;
 
         const response = await httpClient.get(
-          // "https://enetworks-tovimikailu.koyeb.app/dashboard",
-          "http://localhost:5000/dashboard",
+          "https://enetworks-tovimikailu.koyeb.app/dashboard",
+          // "http://localhost:5000/dashboard",
           {
             withCredentials: true, // Include cookies in the request
           }
@@ -116,8 +116,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   useEffect(() => {
     if (user && !isEmailVerified) {
       navigate.push(
-        // "https://www.enetworksagencybanking.com.ng/mobilizer/verify-email"
-        "http://localhost:3000/mobilizer/verify-email"
+        "https://www.enetworksagencybanking.com.ng/mobilizer/verify-email"
+        // "http://localhost:3000/mobilizer/verify-email"
       );
     }
   }, [user, isEmailVerified, navigate]);
@@ -163,8 +163,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        // "https://enetworks-tovimikailu.koyeb.app/transfer",
-        "http://localhost:5000/transfer",
+        "https://enetworks-tovimikailu.koyeb.app/transfer",
+        // "http://localhost:5000/transfer",
         {},
         {
           headers: {
@@ -186,8 +186,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
 
     const access_token = localStorage.getItem("access_token");
     axios
-      // .get("https://enetworks-tovimikailu.koyeb.app/check-user-payment", {
-      .get("http://localhost:5000/check-user-payment", {
+      .get("https://enetworks-tovimikailu.koyeb.app/check-user-payment", {
+        // .get("http://localhost:5000/check-user-payment", {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
