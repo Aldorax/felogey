@@ -31,6 +31,12 @@ interface DashoardProps {
   user: User;
 }
 
+interface PaymentDetails {
+  account_name: string;
+  account_number: string;
+  bank_name: string;
+}
+
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "User dashboard",
@@ -43,6 +49,9 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   const [loading, setLoading] = useState(false);
   const [loading1, setLoading1] = useState(false);
   const [isUserMobilizer, setIsMobilizer] = useState(false);
+  const [paymentDetails, setPaymentDetails] = useState<PaymentDetails | null>(
+    null
+  ); // Explicitly set the type
 
   useEffect(() => {
     const isUserMobilizer = user?.role === "Mobilizer";
@@ -150,12 +159,12 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
   };
 
   const handlePayment = () => {
-    setLoading(true); // Show the loader
+    setLoading(true);
     const access_token = localStorage.getItem("access_token");
     axios
       .post(
-        "https://enetworks-tovimikailu.koyeb.app/pay/",
-        // "http://localhost:5000/pay/",
+        // "https://enetworks-tovimikailu.koyeb.app/transfer",
+        "http://localhost:5000/transfer",
         {},
         {
           headers: {
@@ -164,10 +173,8 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
         }
       )
       .then((response) => {
-        const { payment_url } = response.data;
-        setPaymentUrl(payment_url);
-        setLoading(false); // Hide the loader after registration attempt
-        navigate.push(paymentUrl);
+        setPaymentDetails(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -509,26 +516,54 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                             . Ensure that you have one but if you do not have,
                             Click the button below to pay and book for it.
                           </p>
-                          {paymentUrl ? (
-                            <a
-                              href={paymentUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
+                          {paymentDetails ? (
+                            <div className="p-3 border border-black text-start mt-5 bg-gray-200">
+                              <div>
+                                <h1>
+                                  Amount:{" "}
+                                  <span className="line-through">N</span>
+                                  <span className="font-bold">1500</span>
+                                </h1>
+                                <h1>
+                                  Payment For:{" "}
+                                  <span className="font-bold">
+                                    E-NETWORKS DIGITAL IDENTITY CARD
+                                  </span>
+                                </h1>
+                                <h1>
+                                  Account Name:{" "}
+                                  <span className="font-bold">
+                                    {paymentDetails.account_name}
+                                  </span>
+                                </h1>
+                                <h1>
+                                  Account Number:{" "}
+                                  <span className="font-bold">
+                                    {paymentDetails.account_number}
+                                  </span>
+                                </h1>
+                                <h1>
+                                  Bank Name:{" "}
+                                  <span className="font-bold">
+                                    {paymentDetails.bank_name}
+                                  </span>
+                                </h1>
+                              </div>
                               <button
-                                type="button"
-                                onClick={() => !loading} // Prevent multiple clicks while loading
-                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-1 bg-blue-600 ${
-                                  loading ? "cursor-not-allowed" : ""
+                                onClick={() =>
+                                  !loading1 && handleVerifyPayment()
+                                }
+                                className={`min-w-[100px] md:min-w-[400px] flex items-center justify-center rounded-xl my-2 md:my-4 text-white p-2 bg-blue-600 ${
+                                  loading1 ? "cursor-not-allowed" : ""
                                 }`}
                               >
-                                {loading ? (
+                                {loading1 ? (
                                   <div className="spinner"></div>
                                 ) : (
-                                  "Proceed"
+                                  "Already Made Payment? Click to update payment status."
                                 )}
                               </button>
-                            </a>
+                            </div>
                           ) : (
                             <div>
                               <button
