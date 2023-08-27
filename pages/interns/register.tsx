@@ -124,11 +124,17 @@ const RegisterPage: React.FC = () => {
           navigate.push("/interns/login");
         }
       } catch (error) {
-        console.log("An error occurred during registration");
-        console.log(error);
-        toast.error("An error occurred during registration");
+        console.log("An error occurred during registration:", error);
+        setLoading(false); // Hide the loader after the registration attempt
+
+        const responseData = (
+          error as { response: { data: { message: string } } }
+        )?.response?.data;
+        const errorMessage =
+          responseData?.message || "An error occurred during registration";
+        toast.error(errorMessage);
       } finally {
-        setLoading(false); // Hide the loader after registration attempt
+        setLoading(false); // Hide the loader after the registration attempt
       }
     }, 2000);
   };

@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "@/components/header";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import axios from "axios";
 
 interface RegisterRequest {
   email: string;
@@ -25,6 +26,11 @@ interface RegisterRequest {
 
 interface ErrorResponse {
   error: string;
+}
+
+interface ReferralName {
+  first_name: string;
+  last_name: string;
 }
 
 const MAX_IMAGE_SIZE_MB = 3;
@@ -48,8 +54,34 @@ const ReferralRegisterPage = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [referrerName, setReferrerName] = useState<ReferralName | null>(null);
+
+  useEffect(() => {
+    if (referralCode) {
+      // Fetch user's account details and earnings when the page loads
+      const accessToken = localStorage.getItem("access_token");
+
+      axios
+        .get(
+          `https://enetworks-tovimikailu.koyeb.app/get-mobilizer/${referralCode}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        .then((response) => {
+          setReferrerName(response.data);
+          console.log(response.data); // For example, log the response data
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [referralCode]);
 
   const handleRegister = async () => {
+    console.log(referralCode);
     if (!areRequiredFieldsFilled()) {
       toast.error("Please fill all required details", {
         position: "top-right",
@@ -119,11 +151,17 @@ const ReferralRegisterPage = () => {
           router.push("/interns/login");
         }
       } catch (error) {
-        console.log("An error occurred during registration");
-        console.log(error);
-        toast.error("An error occurred during registration");
+        console.log("An error occurred during registration:", error);
+        setIsLoading(false); // Hide the loader after the registration attempt
+
+        const responseData = (
+          error as { response: { data: { message: string } } }
+        )?.response?.data;
+        const errorMessage =
+          responseData?.message || "An error occurred during registration";
+        toast.error(errorMessage);
       } finally {
-        setIsLoading(false); // Hide the loader after registration attempt
+        setIsLoading(false); // Hide the loader after the registration attempt
       }
     }, 2000);
   };
@@ -220,6 +258,17 @@ const ReferralRegisterPage = () => {
               Sign Up to become an Intern!
             </p>
             <form className="flex flex-col justify-center md:items-start items-center p-2 min-w-screen">
+              {referrerName && (
+                <div className="cursor-pointer text-md font-bold bg-green-800 px-3 py-4 rounded-md text-white min-w-[80vw] md:min-w-[400px] text-center">
+                  <h2 className="text-md font-semibold">
+                    You are signing up under the mobilzer:
+                  </h2>
+                  <p className="font-bold py-2">
+                    {referrerName.first_name} {referrerName.last_name}
+                  </p>
+                </div>
+              )}
+
               <div className="p-1 md:p-2 flex flex-col items-center justify-center">
                 <label
                   htmlFor="profileImage"
