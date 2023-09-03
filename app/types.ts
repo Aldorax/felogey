@@ -18,6 +18,8 @@ export interface User {
   referral_link: string;
   referred_me: string;
   total_referred_users: number;
+  total_paid_users: number;
+  total_unpaid_users: number;
   total_users: number; // Total registered users
   // recent_referral_history: ReferralHistory[]; // Recent referral history
 }

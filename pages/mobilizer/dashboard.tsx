@@ -415,6 +415,26 @@ const Dashboard: React.FC<DashoardProps> = ({}) => {
                     </div>
                   </div>
                   <Link
+                    href={"/mobilizer/withdraw"}
+                    className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-white rounded-2xl mt-3 p-3 relative text-black"
+                  >
+                    <Image
+                      src={naira}
+                      alt="Naira"
+                      width={20}
+                      height={20}
+                      className="mr-3 ml-3 flex items-center justify-center text-center"
+                    />
+                    <div className="mx-3">
+                      <h3 className="text-sm md:text-3xl mb-2">
+                        Withdraw your earnings
+                      </h3>
+                      <div className="flex gap-2 items-center">
+                        <h4>Place a withdrawal request</h4>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link
                     className="flex flex-grow flex-grow-1 flex-wrap items-center justify-start bg-blue-400 rounded-2xl mt-3 p-3 relative hover:bg-blue-800"
                     href={"/mobilizer/referral-details"}
                   >
