@@ -10,6 +10,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "@/components/header";
 import type { Metadata } from "next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLock,
+  faLockOpen,
+  faMailBulk,
+  faMessage,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Login to your account",
@@ -44,6 +51,7 @@ const LoginPage: React.FC = () => {
 
         const resp = await httpClient.post(
           "https://enetworks-tovimikailu.koyeb.app/login",
+          // "http://localhost:5000/login",
           //
           data,
           {
@@ -87,16 +95,23 @@ const LoginPage: React.FC = () => {
       <Header />
       <div className="flex items-center justify-center">
         <div className="flex flex-col justify-center items-center mx-auto border border-white text-black bg-white mt-20 mb-5">
-          <div>
+          <div className="text-center flex flex-col justify-center items-center">
             <h1 className="px-3 text-4xl font-bold mb-2">Welcome Back!</h1>
             <p className="px-3 text-lg font-normal mb-4">
               Login to your account
             </p>
             <form className="flex flex-col justify-center md:items-start items-center p-2 min-w-screen">
-              <div className="p-1 md:p-2">
+              <div className="p-1 md:p-2 relative">
                 <label className="text-md font-bold text-black"></label>
+                <FontAwesomeIcon
+                  icon={faMailBulk}
+                  // width={50}
+                  // height={50}
+                  // scale={10}
+                  className="absolute top-7 md:top-9 left-2 md:left-4 w-[20px] h-[20px] md:w-[30px] md:h-[30px] px-1"
+                />
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px]"
+                  className="md:py-6 py-4 px-8 md:px-12 border-2 border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px] focus:border-black"
                   placeholder="Enter your Email:"
                   type="email"
                   value={email}
@@ -107,8 +122,16 @@ const LoginPage: React.FC = () => {
               </div>
               <div className="p-1 md:p-2 relative">
                 <label className="text-md font-bold text-black"></label>
+                <FontAwesomeIcon
+                  icon={showPassword ? faLockOpen : faLock}
+                  // width={50}
+                  // height={50}
+                  // scale={10}
+                  className="absolute top-7 md:top-9 left-2 md:left-4 w-[20px] h-[20px] md:w-[30px] md:h-[30px] px-1"
+                />
                 <input
-                  className="md:py-6 py-4 px-5 md:px-10 border border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px] custom-password-input"
+                  // When clicked the placeholder text should raise and be on the border using tailwindcss
+                  className="md:py-6 py-4 px-8 md:px-12 border-2 border-gray-400 rounded-xl my-1 min-w-[80vw] md:min-w-[400px] focus:border-black custom-password-input"
                   placeholder="Enter your Password:"
                   type={showPassword ? "text" : "password"}
                   value={password}
@@ -129,7 +152,7 @@ const LoginPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => !loading && logInUser()} // Prevent multiple clicks while loading
-                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-blue-500 rounded-xl my-4 text-white font-semibold ${
+                className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-blue-500 hover:bg-white hover:text-black hover:border-black border rounded-xl my-4 text-white font-semibold ${
                   loading ? "cursor-not-allowed" : ""
                 }`}
               >
