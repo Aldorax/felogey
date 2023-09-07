@@ -20,6 +20,7 @@ export interface User {
   total_referred_users: number;
   total_paid_users: number;
   total_unpaid_users: number;
+  mobilizer_intern_id: string;
   total_users: number; // Total registered users
   // recent_referral_history: ReferralHistory[]; // Recent referral history
 }
