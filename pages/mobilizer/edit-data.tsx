@@ -255,7 +255,7 @@ const RegisterPage: React.FC = () => {
                       </div>
                     </div>
                     {!user?.mobilizer_intern_id && (
-                      <div className="flex flex-col items-center ">
+                      <div className="flex flex-col items-center md:items-start">
                         <h1 className="text-sm font-semibold p-2">
                           Input the email of the Intern account in which you
                           paid for the E-networks Cash card with below to verify
