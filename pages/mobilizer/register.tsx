@@ -195,7 +195,7 @@ const RegisterPage: React.FC = () => {
     "Edo",
     "Ekiti",
     "Enugu",
-    "FCT", // Corrected entry
+    "FCT",
     "Gombe",
     "Imo",
     "Jigawa",
@@ -206,7 +206,7 @@ const RegisterPage: React.FC = () => {
     "Kogi",
     "Kwara",
     "Lagos",
-    "Nassarawa", // Corrected spelling
+    "Nasarawa",
     "Niger",
     "Ogun",
     "Ondo",
