@@ -230,7 +230,7 @@ const RegisterPage: React.FC = () => {
             <p className="px-3 text-lg mb-4 font-semibold">
               Sign Up to become an Intern!
             </p>
-            <a className="font-bold text-xl" href="https://forms.gle/55CdDbzgNS1FMj4j6">Click to register</a>
+            <a className="font-bold text-xl px-10 py-4 border border-black rounded-lg bg-green-500 text-white" href="https://forms.gle/55CdDbzgNS1FMj4j6">Click to fill registration form</a>
             <p className="text-center">
               Already have an account?{" "}
               <Link href={"/interns/login"} className="text-blue-700">
