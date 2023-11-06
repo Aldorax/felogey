@@ -1,26 +1,24 @@
-"use client";
-import Link from "next/link";
-import React from "react";
-import Header from "@/components/header";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Footer from "@/components/Footer";
-import Howto from "@/components/Howto";
-// import Require from "@/components/Require";
+import NextLink from "next/link";
+import { Link } from "@nextui-org/link";
+import { Snippet } from "@nextui-org/snippet";
+import { Code } from "@nextui-org/code";
+import { button as buttonStyles } from "@nextui-org/theme";
+import { siteConfig } from "@/config/site";
+import { title, subtitle } from "@/components/primitives";
+import { GithubIcon } from "@/components/icons";
+import Hero from "../components/home/Hero";
+import Howto from "@/components/home/Howto";
+import Footer from "@/components/home/Footer";
+import TabswithForm from "@/components/forms/TabsWithForm";
 
 export default function Home() {
   return (
+    // <section className="flex flex-col items-center justify-center gap-4 md:py-10">
     <div>
-      <Header />
-      <main className="flex min-h-screen flex-col items-center justify-center">
-        <div className="mt-10 text-black">
-          <Hero />
-          {/* <Services /> */}
-          <Howto />
-          {/* <Require /> */}
-          <Footer />
-        </div>
-      </main>
+      <Hero />
+      <Howto />
+      <Footer />
     </div>
+    // {/* </section> */}
   );
 }

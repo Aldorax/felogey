@@ -1,0 +1,408 @@
+<div>
+        {/* <ModalContent> */}
+        {/* {(onClose) => ( */}
+        <form onSubmit={handleFormSubmit}>
+          <div>
+            <h1>
+              {mobilizerName?.first_name} {mobilizerName?.last_name}
+            </h1>
+            {step === 1 && (
+              <div className="flex flex-col gap-2">
+                <Card className="border border-transparent">
+                  <CardHeader>
+                    <CardTitle>Registeration Type</CardTitle>
+                    <CardDescription>
+                      Choose what to register for
+                    </CardDescription>
+                  </CardHeader>
+
+                  <CardContent className="grid gap-4">
+                    <div
+                      className=" flex items-center space-x-4 rounded-md border p-4 cursor-pointer"
+                      onClick={() => handleUserTypeSelection("agent")}
+                    >
+                      <div className="flex-1 space-y-1">
+                        <p className="text-sm font-medium leading-none">
+                          Agent
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Click to register as an Agent.
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                  <CardContent className="grid gap-4 cursor-pointer">
+                    <div
+                      className=" flex items-center space-x-4 rounded-md border p-4 cursor-pointer"
+                      onClick={() => handleUserTypeSelection("intern")}
+                    >
+                      <div className="flex-1 space-y-1">
+                        <p className="text-sm font-medium leading-none">
+                          Intern
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Click to register as an intern.
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+            {step === 2 && (
+              <>
+                <div className="flex flex-wrap mx-auto mb-4 text-center">
+                  {!imagePreview ? (
+                    <div className="flex flex-wrap mx-auto mb-4 text-center">
+                      <label
+                        htmlFor="profileImage"
+                        className=" text-white p-3 rounded-xl bg-green-600 hover:bg-green-700 w-full"
+                      >
+                        Upload Passport Photograph
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        id="profileImage"
+                        title="profileImage"
+                        className="hidden p-5"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 flex-wrap mx-auto mb-4 text-center">
+                      {imagePreview && (
+                        <div className="mt-4">
+                          <Image
+                            isBlurred
+                            width={240}
+                            src={imagePreview}
+                            alt="Register Pfp"
+                            className="max-h-40 max-w-40 mx-auto"
+                          />
+                        </div>
+                      )}
+                      <label
+                        htmlFor="profileImage"
+                        className=" text-white p-3 rounded-xl bg-green-600 hover:bg-green-700 w-full"
+                      >
+                        Update Passport Photograph
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        id="profileImage"
+                        title="profileImage"
+                        className="hidden p-5"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="first_name"
+                    >
+                      First Name <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      id="first_name"
+                      type="text"
+                      className="w-full"
+                      placeholder="Enter your First Name"
+                      required
+                      name="first_name"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="last_name"
+                    >
+                      Last Name <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      id="last_name"
+                      type="text"
+                      className="w-full"
+                      placeholder="Enter your Last Name"
+                      required
+                      name="last_name"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                {/* Other inputs for step 1 */}
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="email"
+                    >
+                      Email Address <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      className="w-full"
+                      placeholder="Enter your Email Address"
+                      required
+                      name="email"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+            {step === 3 && (
+              <>
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="phoneNumber"
+                    >
+                      Phone Number <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      id="phone_number"
+                      type="text"
+                      className="w-full"
+                      placeholder="Enter your Phone Number"
+                      required
+                      name="phone_number"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="state"
+                    >
+                      State of Origin <span className="text-red-600">*</span>
+                    </label>
+                    <select
+                      id="state"
+                      className="form-select w-full text-default-800"
+                      required
+                      name="state"
+                      onChange={handleInputChange}
+                    >
+                      <option value="">Select your state</option>
+                      {availableStates.map((state) => (
+                        <option key={state} value={state}>
+                          {state}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="address"
+                    >
+                      Address <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      id="address"
+                      type="text"
+                      className="w-full"
+                      placeholder="Enter your Address"
+                      required
+                      name="address"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+            {step === 4 && (
+              <>
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="phoneNumber"
+                    >
+                      Local Goverment Area{" "}
+                      <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      id="local_goverment_area"
+                      type="text"
+                      className="w-full"
+                      placeholder="Enter your L.G.A"
+                      required
+                      name="local_goverment_area"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="phoneNumber"
+                    >
+                      Enaira ID <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      id="enaira_id"
+                      type="text"
+                      className="w-full"
+                      placeholder="Enter your Enaira ID"
+                      required
+                      name="enaira_id"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+            {step === 5 && (
+              <>
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="password"
+                    >
+                      Password <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      id="password"
+                      type="password"
+                      className="w-full"
+                      placeholder="Enter your Password"
+                      required
+                      name="password"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-4 border border-dark rounded-xl p-3">
+                  <div className="w-full px-3">
+                    <label
+                      className="block text-default-800 text-sm font-medium mb-1"
+                      htmlFor="cPassword"
+                    >
+                      Confirm Password <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      id="cPassword"
+                      type="password"
+                      className="w-full"
+                      placeholder="Confirm your password"
+                      required
+                      name="password"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+            {step === 2 && (
+              <div className="flex flex-col gap-2">
+                <button
+                  className=" text-white bg-green-600 hover:bg-green-700 w-full p-2 rounded-xl"
+                  onClick={handlePrev}
+                >
+                  Previous
+                </button>
+                <button
+                  className=" text-white bg-green-600 hover:bg-green-700 w-full p-2 rounded-xl"
+                  onClick={handleFormSubmit}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+            {step === 3 && (
+              <div className="flex flex-col gap-2">
+                <button
+                  className=" text-white bg-green-600 hover:bg-green-700 w-full p-2 rounded-xl"
+                  onClick={handlePrev}
+                >
+                  Previous
+                </button>
+                <button
+                  className=" text-white bg-green-600 hover:bg-green-700 w-full p-2 rounded-xl"
+                  onClick={handleFormSubmit}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+            {step === 4 && (
+              <div className="flex flex-col gap-2">
+                <button
+                  className=" text-white bg-green-600 hover:bg-green-700 w-full p-2 rounded-xl"
+                  onClick={handlePrev}
+                >
+                  Previous
+                </button>
+                <button
+                  className=" text-white bg-green-600 hover:bg-green-700 w-full p-2 rounded-xl"
+                  onClick={handleFormSubmit}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+            {step === 5 && (
+              <div className="flex flex-col gap-2">
+                <button
+                  className=" text-white bg-green-600 hover:bg-green-700 w-full p-2 rounded-xl"
+                  onClick={handlePrev}
+                >
+                  Previous
+                </button>
+              </div>
+            )}
+          </div>
+          {step === 5 && (
+            <div className="mt-4">
+              <Button
+                type="submit"
+                color="success"
+                className="text-white bg-green-600 hover:bg-green-700 w-full p-2 rounded-xl"
+                onClick={handleRegister}
+                isLoading={isLoading}
+                spinner={
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                }
+              >
+                {isLoading ? "Loading" : "Register"}
+              </Button>
+            </div>
+          )}
+        </form>
+      </div>
