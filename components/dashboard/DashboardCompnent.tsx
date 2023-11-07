@@ -61,6 +61,8 @@ export default function DashboardCompnent() {
                 <InternComponent user={user} />
               ) : user.role === "Agent" ? (
                 <MobilizerComponent user={user} />
+              ) : user.role === "Admin" ? (
+                <MobilizerComponent user={user} />
               ) : user.role === "Mobilizer" ? (
                 <MobilizerComponent user={user} />
               ) : (

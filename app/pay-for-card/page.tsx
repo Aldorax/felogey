@@ -3,7 +3,13 @@ import ProfileCompnent from "@/components/dashboard/ProfileComponent";
 import axios from "axios";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { Card, CardFooter, CardHeader, Divider } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardFooter,
+  CardHeader,
+  Divider,
+} from "@nextui-org/react";
 
 // export const metadata = {
 //   title: "Pay for cash Card - Enetworks Agency Banking",
@@ -148,24 +154,56 @@ export default function PaymentPage() {
         </Card>
       )}
       {paymentDetails ? (
-        <button
-          onClick={() => !loading1 && handleVerifyPayment()}
-          className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
-            loading1 ? "cursor-not-allowed" : ""
-          }`}
-        >
-          {loading1 ? <div className="spinner"></div> : "Verify Payment"}
-        </button>
+        ""
       ) : (
-        <button
-          onClick={() => !loading && handlePayment()}
-          className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] min-w-[80vw] flex items-center justify-center bg-green-800 rounded-xl my-4 text-white ${
-            loading ? "cursor-not-allowed" : ""
-          }`}
-        >
-          {loading ? <div className="spinner"></div> : "Initiate Payment"}
-        </button>
+        <Card>
+          <CardHeader>
+            <div className="flex flex-col w-full justify-between">
+              <p className="text-medium font-bold text-default-500">
+                Make payment for your enetworks cash card
+              </p>
+              <p className="text-small text-default-500 font-semibold">
+                Click to initialize payment
+              </p>
+            </div>
+          </CardHeader>
+          <CardFooter className="flex flex-col w-full justify-start items-start">
+            <Button
+              onClick={() => !loading && handlePayment()}
+              color="success"
+              className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] flex items-center justify-center text-white ${
+                loading1 ? "cursor-not-allowed" : ""
+              }`}
+            >
+              {loading ? <div className="spinner"></div> : "Initiate Payment"}
+            </Button>
+          </CardFooter>
+        </Card>
       )}
+      <Divider />
+      <Card>
+        <CardHeader>
+          <div className="flex w-full justify-between">
+            <p className="text-small text-default-500 font-semibold">
+              Already made payment?
+            </p>
+            <p className="text-small text-default-500 font-semibold">
+              Verify your payment here
+            </p>
+          </div>
+        </CardHeader>
+        <CardFooter className="flex flex-col w-full justify-start items-start">
+          <Button
+            onClick={() => !loading1 && handleVerifyPayment()}
+            color="warning"
+            className={`md:py-6 py-4 px-5 md:px-3 md:min-w-[400px] flex items-center justify-center text-white ${
+              loading1 ? "cursor-not-allowed" : ""
+            }`}
+          >
+            {loading1 ? <div className="spinner"></div> : "Verify Payment"}
+          </Button>
+        </CardFooter>
+      </Card>
     </section>
   );
 }
