@@ -555,7 +555,7 @@ export default function HireForm() {
             className="block text-default-800 text-sm font-medium mb-1"
             htmlFor="language"
           >
-            Next of Kin Phone Number <span className="text-red-600">*</span>
+            Next of Kin Relationship <span className="text-red-600">*</span>
           </label>
           <input
             id="next_of_kin_relationship"
