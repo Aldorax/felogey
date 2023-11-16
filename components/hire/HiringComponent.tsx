@@ -357,7 +357,7 @@ export default function HireForm() {
           </label>
           <select
             id="state"
-            className="form-select w-full text-default-800"
+            className="form-select w-full text-default-800 p-2"
             required
             name="state"
             onChange={handleInputChange}
