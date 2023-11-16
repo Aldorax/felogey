@@ -1,5 +1,5 @@
 import React from "react";
-import { Admin } from "@/types/Admin";
+import { Admin } from "@/types/admin";
 
 import {
   Card,
