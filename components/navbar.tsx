@@ -116,6 +116,16 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
+          <Link
+            className="font-normal p-2 bg-light"
+            color="warning"
+            href="/apply-for-position"
+            size="lg"
+          >
+            Get hired
+          </Link>
+        </NavbarItem>
+        <NavbarItem className="hidden md:flex">
           {user ? (
             <Dropdown placement="bottom-end">
               <DropdownTrigger>
@@ -226,6 +236,14 @@ export const Navbar = () => {
             </Link>
             <Link className="font-bold" color="warning" href="#" size="lg">
               Support
+            </Link>
+            <Link
+              className="font-bold"
+              color="warning"
+              href="/apply-for-position"
+              size="lg"
+            >
+              Get Hired
             </Link>
             <LogInTabForm />
             <div className="w-full">
